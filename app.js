@@ -1,11 +1,10 @@
-const { createApp, ref, onMounted, onUnmounted } = Vue;
+const { createApp, ref, onMounted } = Vue;
 
 createApp({
     setup() {
-        // Реактивные переменные
-        const currentTime = ref('');
-        const currentDate = ref(''); // <--- Новая переменная для даты
+        const currentDate = ref('');
         const currentTab = ref('today');
+        let activeSwipeCard = null;
 
         const tabs = ref([
             { id: 'today', name: 'Today', iconShape: 'rect' },
@@ -23,55 +22,109 @@ createApp({
                 publisher: 'NBC NEWS',
                 title: 'One pilot rescued, one missing after U.S. fighter jet shot down in Iran',
                 time: '2h ago',
-                authors: 'Courtney Kube, Mosheh Gains, Pat...'
+                authors: 'Courtney Kube, Mosheh Gains, Pat...',
+                swipeState: { startX: 0, offsetX: 0, isSwiping: false, revealMode: 'none', maxOffset: 160 }
             }
         ]);
 
-        // Функция обновления времени
-        const updateTime = () => {
-            const now = new Date();
-            const hours = String(now.getHours()).padStart(2, '0');
-            const minutes = String(now.getMinutes()).padStart(2, '0');
-            currentTime.value = `${hours}:${minutes}`;
-        };
-
-        // <--- Новая функция обновления даты
         const updateDate = () => {
             const now = new Date();
-            // Форматируем дату как "Месяц День" (например, "April 4")
             const options = { month: 'long', day: 'numeric' };
             currentDate.value = now.toLocaleDateString('en-US', options);
         };
 
-        let timer;
         onMounted(() => {
-            updateTime();
-            updateDate(); // <--- Вызываем форматирование даты при загрузке
-            timer = setInterval(updateTime, 1000);
+            updateDate();
         });
 
-        onUnmounted(() => {
-            clearInterval(timer);
-        });
+        // Логика свайпов
+        const handleSwipeStart = (event, cardId) => {
+            const card = topStories.value.find(s => s.id === cardId);
+            if (!card) return;
+
+            activeSwipeCard = card;
+            activeSwipeCard.swipeState.startX = event.touches ? event.touches[0].clientX : event.clientX;
+            activeSwipeCard.swipeState.isSwiping = true;
+
+            if (event.type === 'mousedown') {
+                document.addEventListener('mousemove', handleSwipeMove);
+                document.addEventListener('mouseup', handleSwipeEnd);
+            } else {
+                document.addEventListener('touchmove', handleSwipeMove, { passive: false });
+                document.addEventListener('touchend', handleSwipeEnd);
+            }
+        };
+
+        const handleSwipeMove = (event) => {
+            if (!activeSwipeCard || !activeSwipeCard.swipeState.isSwiping) return;
+            // Блокируем скролл страницы при свайпе карточки вбок
+            if (event.cancelable) event.preventDefault();
+
+            const state = activeSwipeCard.swipeState;
+            const currentX = event.touches ? event.touches[0].clientX : event.clientX;
+            const deltaX = currentX - state.startX;
+
+            if (deltaX > 0) {
+                state.offsetX = Math.min(deltaX, state.maxOffset);
+                state.revealMode = state.offsetX > 20 ? 'actionsL' : 'none';
+            } else if (deltaX < 0) {
+                state.offsetX = Math.max(deltaX, -state.maxOffset);
+                state.revealMode = state.offsetX < -20 ? 'actionsR' : 'none';
+            } else {
+                state.offsetX = 0;
+                state.revealMode = 'none';
+            }
+        };
+
+        const handleSwipeEnd = () => {
+            if (!activeSwipeCard) return;
+
+            const state = activeSwipeCard.swipeState;
+            state.isSwiping = false;
+            const threshold = state.maxOffset * 0.4;
+            
+            if (state.offsetX > threshold) {
+                state.offsetX = state.maxOffset;
+                state.revealMode = 'actionsL';
+            } else if (state.offsetX < -threshold) {
+                state.offsetX = -state.maxOffset;
+                state.revealMode = 'actionsR';
+            } else {
+                state.offsetX = 0;
+                state.revealMode = 'none';
+            }
+
+            document.removeEventListener('mousemove', handleSwipeMove);
+            document.removeEventListener('mouseup', handleSwipeEnd);
+            document.removeEventListener('touchmove', handleSwipeMove);
+            document.removeEventListener('touchend', handleSwipeEnd);
+            activeSwipeCard = null;
+        };
+
+        const onLike = (id) => { resetSwipe(id); };
+        const onDislike = (id) => { resetSwipe(id); };
+        const onSave = (id) => { resetSwipe(id); };
+        const onShare = (id) => { resetSwipe(id); };
+
+        const resetSwipe = (id) => {
+            const card = topStories.value.find(s => s.id === id);
+            if (card) {
+                card.swipeState.offsetX = 0;
+                card.swipeState.revealMode = 'none';
+            }
+        };
 
         const getIconStyle = (shape) => {
             const svg = shape === 'rect' 
                 ? `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><rect width='24' height='24' rx='4' fill='black'/></svg>`
                 : `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><circle cx='12' cy='12' r='10' fill='black'/></svg>`;
             const url = `url("data:image/svg+xml;utf8,${svg}")`;
-            return {
-                maskImage: url,
-                WebkitMaskImage: url
-            };
+            return { maskImage: url, WebkitMaskImage: url };
         };
 
         return {
-            currentTime,
-            currentDate, // <--- Не забываем вернуть переменную, чтобы HTML ее увидел
-            currentTab,
-            tabs,
-            topStories,
-            getIconStyle
+            currentDate, currentTab, tabs, topStories, getIconStyle,
+            handleSwipeStart, onLike, onDislike, onSave, onShare
         };
     }
 }).mount('#app');

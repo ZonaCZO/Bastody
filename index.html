@@ -2,23 +2,18 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apple News+ Vue Clone</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <title>Apple News+</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 </head>
 <body>
 
     <div id="app">
-        <div class="iphone-mockup">
+        <div class="app-container">
             
-            <div class="dynamic-island"></div>
-            
-            <div class="status-bar">
-                <span class="time">{{ currentTime }}</span>
-                <span class="icons">📶 🛜 🔋</span>
-            </div>
-
             <div class="content-area">
                 <div class="header">
                     <h1> News</h1>
@@ -26,22 +21,43 @@
                 </div>
 
                 <div class="top-stories-title">Top Stories</div>
-				
 
-                <div class="news-card" v-for="news in topStories" :key="news.id">
-                    <div class="news-card-image">
-                        <div :style="{ backgroundImage: 'url(' + news.image1 + ')' }"></div>
-                        <div :style="{ backgroundImage: 'url(' + news.image2 + ')' }"></div>
+                <div 
+                    class="news-card-swipe-container" 
+                    v-for="news in topStories" 
+                    :key="news.id"
+                    @mousedown="handleSwipeStart($event, news.id)"
+                    @touchstart="handleSwipeStart($event, news.id)"
+                >
+                    <div class="swipe-actions actions-left" :style="{ opacity: news.swipeState.revealMode === 'actionsL' ? 1 : 0 }">
+                        <button class="action-btn dislike-btn" @click.stop="onDislike(news.id)">👎<br>Dislike</button>
+                        <button class="action-btn like-btn" @click.stop="onLike(news.id)">👍<br>Like</button>
                     </div>
-                    <div class="news-card-content">
-                        <div class="publisher">
-                            <span style="color: red;">✿</span> {{ news.publisher }}
+
+                    <div 
+                        class="news-card" 
+                        :class="{ 'is-swiping': news.swipeState.isSwiping }"
+                        :style="{ transform: `translateX(${news.swipeState.offsetX}px)` }"
+                    >
+                        <div class="news-card-image">
+                            <div :style="{ backgroundImage: 'url(' + news.image1 + ')' }"></div>
+                            <div :style="{ backgroundImage: 'url(' + news.image2 + ')' }"></div>
                         </div>
-                        <h3 class="headline">{{ news.title }}</h3>
-                        <div class="meta">
-                            <span>{{ news.time }} · {{ news.authors }}</span>
-                            <span>•••</span>
+                        <div class="news-card-content">
+                            <div class="publisher">
+                                <span style="color: red;">✿</span> {{ news.publisher }}
+                            </div>
+                            <h3 class="headline">{{ news.title }}</h3>
+                            <div class="meta">
+                                <span>{{ news.time }} · {{ news.authors }}</span>
+                                <span>•••</span>
+                            </div>
                         </div>
+                    </div>
+
+                    <div class="swipe-actions actions-right" :style="{ opacity: news.swipeState.revealMode === 'actionsR' ? 1 : 0 }">
+                        <button class="action-btn save-btn" @click.stop="onSave(news.id)">📑<br>Save</button>
+                        <button class="action-btn share-btn" @click.stop="onShare(news.id)">🔗<br>Share</button>
                     </div>
                 </div>
             </div>
@@ -59,10 +75,9 @@
                 </div>
             </div>
 
-            <div class="home-indicator"></div>
         </div>
     </div>
 
     <script src="app.js"></script>
 </body>
-</html>	
+</html>
