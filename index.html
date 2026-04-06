@@ -13,7 +13,6 @@
 
     <div id="app">
         <div class="app-container">
-            
             <div class="content-area">
                 <div class="header">
                     <h1> News</h1>
@@ -29,9 +28,14 @@
                     @mousedown="handleSwipeStart($event, news.id)"
                     @touchstart="handleSwipeStart($event, news.id)"
                 >
-                    <div class="swipe-actions actions-left" :style="{ opacity: news.swipeState.revealMode === 'actionsL' ? 1 : 0 }">
-                        <button class="action-btn dislike-btn" @click.stop="onDislike(news.id)">👎<br>Dislike</button>
-                        <button class="action-btn like-btn" @click.stop="onLike(news.id)">👍<br>Like</button>
+                    <div class="swipe-actions actions-left">
+                        <button class="action-btn dislike-btn" @click.stop="onDislike(news.id)">👎</button>
+                        <button class="action-btn like-btn" @click.stop="onLike(news.id)">👍</button>
+                    </div>
+
+                    <div class="swipe-actions actions-right">
+                        <button class="action-btn save-btn" @click.stop="onSave(news.id)">📑</button>
+                        <button class="action-btn share-btn" @click.stop="onShare(news.id)">🔗</button>
                     </div>
 
                     <div 
@@ -54,11 +58,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="swipe-actions actions-right" :style="{ opacity: news.swipeState.revealMode === 'actionsR' ? 1 : 0 }">
-                        <button class="action-btn save-btn" @click.stop="onSave(news.id)">📑<br>Save</button>
-                        <button class="action-btn share-btn" @click.stop="onShare(news.id)">🔗<br>Share</button>
-                    </div>
                 </div>
             </div>
 
@@ -74,7 +73,6 @@
                     <span>{{ tab.name }}</span>
                 </div>
             </div>
-
         </div>
     </div>
 

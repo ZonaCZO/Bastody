@@ -23,7 +23,8 @@ createApp({
                 title: 'One pilot rescued, one missing after U.S. fighter jet shot down in Iran',
                 time: '2h ago',
                 authors: 'Courtney Kube, Mosheh Gains, Pat...',
-                swipeState: { startX: 0, offsetX: 0, isSwiping: false, revealMode: 'none', maxOffset: 160 }
+                // maxOffset теперь 130px (под размер двух круглых кнопок с отступами)
+                swipeState: { startX: 0, offsetX: 0, isSwiping: false, maxOffset: 130 }
             }
         ]);
 
@@ -33,11 +34,8 @@ createApp({
             currentDate.value = now.toLocaleDateString('en-US', options);
         };
 
-        onMounted(() => {
-            updateDate();
-        });
+        onMounted(() => { updateDate(); });
 
-        // Логика свайпов
         const handleSwipeStart = (event, cardId) => {
             const card = topStories.value.find(s => s.id === cardId);
             if (!card) return;
@@ -57,41 +55,37 @@ createApp({
 
         const handleSwipeMove = (event) => {
             if (!activeSwipeCard || !activeSwipeCard.swipeState.isSwiping) return;
-            // Блокируем скролл страницы при свайпе карточки вбок
-            if (event.cancelable) event.preventDefault();
+            if (event.cancelable) event.preventDefault(); // Блокируем скролл страницы
 
             const state = activeSwipeCard.swipeState;
             const currentX = event.touches ? event.touches[0].clientX : event.clientX;
-            const deltaX = currentX - state.startX;
+            let deltaX = currentX - state.startX;
 
-            if (deltaX > 0) {
-                state.offsetX = Math.min(deltaX, state.maxOffset);
-                state.revealMode = state.offsetX > 20 ? 'actionsL' : 'none';
-            } else if (deltaX < 0) {
-                state.offsetX = Math.max(deltaX, -state.maxOffset);
-                state.revealMode = state.offsetX < -20 ? 'actionsR' : 'none';
-            } else {
-                state.offsetX = 0;
-                state.revealMode = 'none';
+            // Добавляем эффект "резинки", если тянем дальше максимума
+            if (deltaX > state.maxOffset) {
+                deltaX = state.maxOffset + (deltaX - state.maxOffset) * 0.25;
+            } else if (deltaX < -state.maxOffset) {
+                deltaX = -state.maxOffset + (deltaX + state.maxOffset) * 0.25;
             }
+
+            state.offsetX = deltaX;
         };
 
         const handleSwipeEnd = () => {
             if (!activeSwipeCard) return;
 
             const state = activeSwipeCard.swipeState;
-            state.isSwiping = false;
+            state.isSwiping = false; // Возвращаем CSS-анимацию
+
+            // Если протянули больше 40% - закрепляем, иначе возвращаем обратно
             const threshold = state.maxOffset * 0.4;
             
             if (state.offsetX > threshold) {
-                state.offsetX = state.maxOffset;
-                state.revealMode = 'actionsL';
+                state.offsetX = state.maxOffset; // Прилипает вправо
             } else if (state.offsetX < -threshold) {
-                state.offsetX = -state.maxOffset;
-                state.revealMode = 'actionsR';
+                state.offsetX = -state.maxOffset; // Прилипает влево
             } else {
-                state.offsetX = 0;
-                state.revealMode = 'none';
+                state.offsetX = 0; // Возвращается в центр
             }
 
             document.removeEventListener('mousemove', handleSwipeMove);
@@ -108,10 +102,7 @@ createApp({
 
         const resetSwipe = (id) => {
             const card = topStories.value.find(s => s.id === id);
-            if (card) {
-                card.swipeState.offsetX = 0;
-                card.swipeState.revealMode = 'none';
-            }
+            if (card) { card.swipeState.offsetX = 0; }
         };
 
         const getIconStyle = (shape) => {
