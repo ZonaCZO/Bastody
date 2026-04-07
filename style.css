@@ -1,7 +1,9 @@
 :root {
-    --apple-red: #ff2d55;
-    --apple-green: #34c759;
-    --apple-blue: #007aff;
+    /* Точные цвета из палитры Apple iOS */
+    --apple-red: #FF3B30;
+    --apple-green: #34C759;
+    --apple-blue: #007AFF;
+    --apple-orange: #FF9500;
     --bg-color: #ffffff;
     --text-main: #000000;
     --text-secondary: #8e8e93;
@@ -35,13 +37,13 @@ body, html {
 .header h2 { font-size: 34px; font-weight: 800; color: var(--text-secondary); margin: 0; letter-spacing: -1px; }
 .top-stories-title { color: var(--apple-red); font-size: 28px; font-weight: 800; margin: 20px 0 15px 0; letter-spacing: -0.5px; }
 
-/* Контейнер свайпа */
+/* Контейнер карточки */
 .news-card-swipe-container {
     position: relative;
-    margin: 0 20px 20px 20px; /* Отступы перенесены на контейнер */
+    margin: 0 20px 20px 20px; 
 }
 
-/* Сама карточка */
+/* Карточка */
 .news-card {
     background: #fff;
     border-radius: 12px;
@@ -50,13 +52,10 @@ body, html {
     overflow: hidden;
     z-index: 5;
     position: relative;
-    /* Плавная, "айфоновская" пружинная анимация */
     transition: transform 0.4s cubic-bezier(0.32, 0.72, 0, 1);
-    /* Защита от рывков: просим браузер ускорить рендеринг */
     will-change: transform; 
 }
 
-/* При удержании пальцем анимация отключается для мгновенного отклика */
 .news-card.is-swiping { transition: none; }
 
 .news-card-image { display: flex; height: 200px; background-color: #e1e4e8; pointer-events: none; }
@@ -67,41 +66,52 @@ body, html {
 .headline { font-size: 24px; font-weight: 700; line-height: 1.2; margin: 0 0 10px 0; letter-spacing: -0.5px; }
 .meta { font-size: 13px; color: var(--text-secondary); display: flex; justify-content: space-between; align-items: center; }
 
-/* === КРУГЛЫЕ КНОПКИ ДЕЙСТВИЙ === */
+/* === КНОПКИ === */
 .swipe-actions {
     position: absolute;
-    top: 0; bottom: 0; /* Растягиваем на всю высоту карточки для центрирования кнопок */
-    width: 130px; 
+    top: 0; bottom: 0; 
+    width: 140px; 
     display: flex;
-    align-items: center; /* Центрируем кнопки по вертикали */
-    gap: 12px; /* Расстояние между кнопками */
-    padding: 0 16px;
+    align-items: center;
+    gap: 16px; /* Отступы между кнопками как на скрине */
+    padding: 0 12px;
     box-sizing: border-box;
-    z-index: 2; /* Лежат под карточкой */
+    z-index: 2; 
 }
 
 .actions-left { left: 0; justify-content: flex-start; }
 .actions-right { right: 0; justify-content: flex-end; }
 
+/* Стилизация круглых кнопок */
 .action-btn {
-    width: 44px; /* Круглый размер */
-    height: 44px;
-    border-radius: 50%; /* Делает круг */
+    width: 50px; 
+    height: 50px;
+    border-radius: 50%; 
     border: none;
     color: #fff;
-    font-size: 20px; /* Размер эмодзи */
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Легкая тень */
     padding: 0;
 }
 
+/* Стилизация SVG-иконок внутри кнопок */
+.action-btn svg {
+    width: 24px;
+    height: 24px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* Уникальные цвета для кнопок */
 .dislike-btn { background-color: var(--apple-red); }
 .like-btn { background-color: var(--apple-green); }
-.save-btn { background-color: var(--apple-blue); }
-.share-btn { background-color: var(--text-secondary); }
+.share-btn { background-color: var(--apple-blue); }
+.save-btn { background-color: var(--apple-orange); } /* Изменил на оранжевый из скрина */
 
 /* Нижнее меню */
 .bottom-nav {

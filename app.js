@@ -23,8 +23,8 @@ createApp({
                 title: 'One pilot rescued, one missing after U.S. fighter jet shot down in Iran',
                 time: '2h ago',
                 authors: 'Courtney Kube, Mosheh Gains, Pat...',
-                // maxOffset теперь 130px (под размер двух круглых кнопок с отступами)
-                swipeState: { startX: 0, offsetX: 0, isSwiping: false, maxOffset: 130 }
+                // Добавили startOffsetX для запоминания позиции перед новым свайпом
+                swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: 140 }
             }
         ]);
 
@@ -41,8 +41,17 @@ createApp({
             if (!card) return;
 
             activeSwipeCard = card;
-            activeSwipeCard.swipeState.startX = event.touches ? event.touches[0].clientX : event.clientX;
-            activeSwipeCard.swipeState.isSwiping = true;
+            const state = activeSwipeCard.swipeState;
+
+            // Запоминаем, где был палец
+            state.startX = event.touches ? event.touches[0].clientX : event.clientX;
+            state.startY = event.touches ? event.touches[0].clientY : event.clientY;
+            
+            // ВАЖНО: Запоминаем, где находилась КАРТОЧКА в момент касания
+            state.startOffsetX = state.offsetX; 
+            
+            state.isSwiping = true;
+            state.isDragging = false; 
 
             if (event.type === 'mousedown') {
                 document.addEventListener('mousemove', handleSwipeMove);
@@ -55,37 +64,62 @@ createApp({
 
         const handleSwipeMove = (event) => {
             if (!activeSwipeCard || !activeSwipeCard.swipeState.isSwiping) return;
-            if (event.cancelable) event.preventDefault(); // Блокируем скролл страницы
 
             const state = activeSwipeCard.swipeState;
             const currentX = event.touches ? event.touches[0].clientX : event.clientX;
+            const currentY = event.touches ? event.touches[0].clientY : event.clientY;
+            
             let deltaX = currentX - state.startX;
+            let deltaY = currentY - state.startY;
 
-            // Добавляем эффект "резинки", если тянем дальше максимума
-            if (deltaX > state.maxOffset) {
-                deltaX = state.maxOffset + (deltaX - state.maxOffset) * 0.25;
-            } else if (deltaX < -state.maxOffset) {
-                deltaX = -state.maxOffset + (deltaX + state.maxOffset) * 0.25;
+            // Проверка порога в 5px, чтобы отличить тап/скролл от свайпа
+            if (!state.isDragging) {
+                if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 5) {
+                    state.isDragging = true;
+                    // Компенсируем "мертвую зону" в 5px, чтобы карточка не прыгнула, когда порог пройден
+                    state.startX = currentX; 
+                    deltaX = 0; 
+                } 
+                else if (Math.abs(deltaY) > 5) {
+                    handleSwipeEnd();
+                    return;
+                } 
+                else {
+                    return;
+                }
             }
 
-            state.offsetX = deltaX;
+            if (event.cancelable && state.isDragging) event.preventDefault();
+
+            // ВАЖНО: Прибавляем движение пальца к ИСХОДНОЙ позиции карточки
+            let newOffsetX = state.startOffsetX + deltaX;
+
+            // Эффект резинки применяем к новой координате
+            if (newOffsetX > state.maxOffset) {
+                newOffsetX = state.maxOffset + (newOffsetX - state.maxOffset) * 0.25;
+            } else if (newOffsetX < -state.maxOffset) {
+                newOffsetX = -state.maxOffset + (newOffsetX + state.maxOffset) * 0.25;
+            }
+
+            state.offsetX = newOffsetX;
         };
 
         const handleSwipeEnd = () => {
             if (!activeSwipeCard) return;
 
             const state = activeSwipeCard.swipeState;
-            state.isSwiping = false; // Возвращаем CSS-анимацию
+            state.isSwiping = false;
+            state.isDragging = false; 
 
-            // Если протянули больше 40% - закрепляем, иначе возвращаем обратно
+            // Если протянули больше 40% от максимума в любую сторону - закрепляем
             const threshold = state.maxOffset * 0.4;
             
             if (state.offsetX > threshold) {
-                state.offsetX = state.maxOffset; // Прилипает вправо
+                state.offsetX = state.maxOffset;
             } else if (state.offsetX < -threshold) {
-                state.offsetX = -state.maxOffset; // Прилипает влево
+                state.offsetX = -state.maxOffset;
             } else {
-                state.offsetX = 0; // Возвращается в центр
+                state.offsetX = 0;
             }
 
             document.removeEventListener('mousemove', handleSwipeMove);
