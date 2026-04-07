@@ -1,5 +1,4 @@
 :root {
-    /* Точные цвета из палитры Apple iOS */
     --apple-red: #FF3B30;
     --apple-green: #34C759;
     --apple-blue: #007AFF;
@@ -73,7 +72,7 @@ body, html {
     width: 140px; 
     display: flex;
     align-items: center;
-    gap: 16px; /* Отступы между кнопками как на скрине */
+    gap: 16px; 
     padding: 0 12px;
     box-sizing: border-box;
     z-index: 2; 
@@ -94,6 +93,11 @@ body, html {
     align-items: center;
     cursor: pointer;
     padding: 0;
+    /* transform-origin в центре, чтобы кнопки росли от центра */
+    transform-origin: center center; 
+    /* ВАЖНО: Плавный возврат размера */
+    transition: transform 0.3s cubic-bezier(0.32, 0.72, 0, 1); 
+    will-change: transform;
 }
 
 /* Стилизация SVG-иконок внутри кнопок */
@@ -111,7 +115,7 @@ body, html {
 .dislike-btn { background-color: var(--apple-red); }
 .like-btn { background-color: var(--apple-green); }
 .share-btn { background-color: var(--apple-blue); }
-.save-btn { background-color: var(--apple-orange); } /* Изменил на оранжевый из скрина */
+.save-btn { background-color: var(--apple-orange); } 
 
 /* Нижнее меню */
 .bottom-nav {
