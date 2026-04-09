@@ -122,9 +122,45 @@ body, html {
 .card-trending .headline { font-size: 18px; }
 
 /* === КНОПКИ ДЕЙСТВИЙ === */
-.swipe-actions { position: absolute; top: 0; bottom: 0; display: flex; align-items: center; padding: 0 12px; box-sizing: border-box; z-index: 2; }
-.actions-left { left: 0; justify-content: flex-start; gap: 16px; width: 140px; }
-.actions-right { right: 0; justify-content: flex-end; gap: 16px; width: 140px; }
+.swipe-actions { 
+    position: absolute; top: 0; bottom: 0; display: flex; align-items: center; 
+    padding: 0 10px; /* Уменьшили боковые отступы, чтобы влезли большие кнопки */
+    box-sizing: border-box; z-index: 2; 
+}
+.actions-left { left: 0; justify-content: flex-start; gap: 14px; width: 140px; }
+.actions-right { right: 0; justify-content: flex-end; gap: 14px; width: 140px; }
+
+/* Уменьшаем ширину контейнера кнопок и центрируем для маленьких карточек */
+.layout-grid-half .swipe-actions { 
+    padding: 0; /* Убираем отступы */
+    justify-content: center; /* Идеально центрируем кнопки */
+}
+.layout-grid-half .actions-left, .layout-grid-half .actions-right { 
+    width: 80px; 
+    gap: 6px; /* Сжимаем расстояние между кнопками */
+}
+.layout-grid-half .action-btn { 
+    width: 36px; height: 36px; /* Чуть увеличили и для маленьких */
+}
+.layout-grid-half .action-btn svg { 
+    width: 18px; height: 18px; 
+}
+
+/* Общие стили кнопок (Увеличенный размер) */
+.action-btn {
+    width: 52px; height: 52px; /* Было 44px, стало 52px */
+    border-radius: 50%; border: none; color: #fff;
+    display: flex; justify-content: center; align-items: center; cursor: pointer; padding: 0;
+    transform-origin: center center; transition: transform 0.3s cubic-bezier(0.32, 0.72, 0, 1); will-change: transform;
+}
+.action-btn svg { 
+    width: 26px; height: 26px; /* Было 22px, стало 26px */
+    fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; 
+}
+.dislike-btn { background-color: var(--apple-red); }
+.like-btn { background-color: var(--apple-green); }
+.share-btn { background-color: var(--apple-blue); }
+.save-btn { background-color: var(--apple-orange); }
 
 /* Уменьшаем ширину контейнера кнопок и отступы для маленьких карточек */
 .layout-grid-half .actions-left, .layout-grid-half .actions-right { width: 80px; gap: 8px; padding: 0 8px; }
