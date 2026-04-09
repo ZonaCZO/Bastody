@@ -15,6 +15,8 @@ createApp({
         ]);
 
         // ПОЛНАЯ ЛЕНТА ИЗ СКРИНШОТОВ С РАЗНЫМИ ЛЕЙАУТАМИ
+        // P.S. Секции поддерживают фотографии через image:. P.P.S: Новость это всегда layout: grid-half, list и hero. Но последнее всегда 
+        // большая карточка, которая начинает новую секцию
         const topStories = ref([
             // СЕКЦИЯ: TOP STORIES
             {
@@ -31,7 +33,7 @@ createApp({
             },
             {
                 id: 3, layout: 'grid-half',
-                image: 'https://placehold.co/300x200/e1e4e8/999999?text=AP',
+                image: 'https://i.iplsc.com/-/000MFL84L9FFU1KQ-C316.webp',
                 publisher: 'AP apnews.com', title: 'Trump meets with European leaders',
                 time: '3h ago', authors: 'News', swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: 80 }
             },
@@ -126,6 +128,52 @@ createApp({
                 id: 18, layout: 'trending', rank: 4, isAppleNewsPlus: true,
                 publisher: 'People', title: 'Man with Chromosome Abnormality Hands Out Surprise Gift to Every Passenger on His Flight, with a Very...',
                 time: '23h ago', authors: 'Ashley Vega', swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: 140 }
+            },
+            {
+                id: 19, 
+                layout: 'hero', 
+                sectionTitle: 'Entertainment', 
+                sectionSubtitle: 'Love Entertainment? Tap + to follow.', 
+                image: 'https://placehold.co/600x400/e1e4e8/999999?text=Hulk+Hogan',
+                publisher: 'E NEWS', 
+                title: "Hulk Hogan's Eerie Words in Final Interview...",
+                time: '12h ago', 
+                authors: 'Entertainment', 
+                swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: 140 }
+            },
+            {
+                id: 20, 
+                layout: 'grid-half',
+                image: 'https://placehold.co/300x200/e1e4e8/999999?text=Actors',
+                publisher: 'Entertainment', 
+                title: '7 actors who lost out on roles for seriously bizarre reasons',
+                time: '1d ago', 
+                authors: 'Movies', 
+                swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: 80 }
+            },
+            {
+                id: 21, 
+                layout: 'grid-half',
+                image: 'https://placehold.co/300x200/e1e4e8/999999?text=Mormon+Wives',
+                publisher: 'E NEWS', 
+                title: "Mormon Wives' Jessi Draper Details Plans for Therapy Retreat Amid Jordan Ng...",
+                time: '38m ago', 
+                authors: 'TV', 
+                swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: 80 }
+            },
+
+            // СЕКЦИЯ: HEALTH & WELLNESS
+            {
+                id: 22, 
+                layout: 'hero', 
+                sectionTitle: 'Health & Wellness', 
+                sectionSubtitle: 'Love Health & Wellness? Tap + to follow.', 
+                image: 'https://placehold.co/600x400/e1e4e8/999999?text=Yoga+Class',
+                publisher: 'Health', 
+                title: 'Outdoor group workouts are taking over the parks this spring',
+                time: '4h ago', 
+                authors: 'Fitness', 
+                swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: 140 }
             }
         ]);
 
