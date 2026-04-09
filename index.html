@@ -13,9 +13,13 @@
 
     <div id="app">
         <div class="app-container">
+			
             <div class="content-area">
                 <div class="header">
-                    <h1> News</h1>
+					<h1>
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_logo_black.svg/500px-Apple_logo_black.svg.png" class="apple-logo-img" alt="Apple">
+                        News
+                    </h1>
                     <h2>{{ currentDate }}</h2>
                 </div>
 
@@ -78,8 +82,14 @@
             </div>
 
             <div class="bottom-nav">
-                <div v-for="tab in tabs" :key="tab.id" class="nav-item" :class="{ active: currentTab === tab.id }" @click="currentTab = tab.id">
-                    <div class="icon" :style="getIconStyle(tab.iconShape)"></div>
+                <div 
+                    v-for="tab in tabs" 
+                    :key="tab.id"
+                    class="nav-item" 
+                    :class="{ active: currentTab === tab.id }"
+                    @click="currentTab = tab.id"
+                >
+                    <div class="icon" :style="getIconStyle(tab.svg)"></div>
                     <span>{{ tab.name }}</span>
                 </div>
             </div>

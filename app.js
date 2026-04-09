@@ -6,14 +6,63 @@ createApp({
         const currentTab = ref('today');
         let activeSwipeCard = null;
 
+       // НОВЫЙ МАССИВ С ТОЧНЫМИ ИКОНКАМИ APPLE NEWS
+       // ТОЧНЫЕ ЗАЛИТЫЕ ИКОНКИ (в стиле SF Symbols)
         const tabs = ref([
-            { id: 'today', name: 'Today', iconShape: 'rect' },
-            { id: 'news', name: 'News+', iconShape: 'rect' },
-            { id: 'sports', name: 'Sports', iconShape: 'rect' },
-            { id: 'audio', name: 'Audio', iconShape: 'circle' },
-            { id: 'following', name: 'Following', iconShape: 'circle' }
+            { 
+                id: 'today', 
+                name: 'Today', 
+                // Вставляем твою прямую ссылку
+                svg: `<svg xmlns="http://www.w3.org/2000/svg" width="714" height="714" viewBox="0 0 714 714" fill="none"><g clip-path="url(#clip0_58_303)"><path fill-rule="evenodd" clip-rule="evenodd" d="M714 0H0V714H714V0ZM64.2578 611.641C64.2578 633.732 82.1664 651.641 104.258 651.641H280.369L64.2578 435.53V611.641ZM435.538 64.2496H611.648C633.739 64.2496 651.648 82.1582 651.648 104.25V280.36L435.538 64.2496ZM64.6428 189.177L64.6406 189.18L64.6428 189.182L527.442 651.981L651.978 527.445L189.178 64.6462L189.176 64.644L189.174 64.6462H104.643C82.5514 64.6462 64.6428 82.5548 64.6428 104.646V189.177ZM611.99 651.983C634.081 651.983 651.99 634.074 651.99 611.983V527.447L527.454 651.983H611.99Z" fill="black"></path></g><defs><clipPath id="clip0_58_303"><rect width="714" height="714" rx="70" fill="white"></rect></clipPath></defs></svg>`
+            },
+            { 
+                id: 'news', 
+                name: 'News+', 
+                svg: `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M6 2h7.5L19 7.5V20a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm7 2v4h4L13 4z'/></svg>` 
+            },
+            { 
+                id: 'sports', 
+                name: 'Sports', 
+                // НОВОЕ СТИЛИЗОВАННОЕ ФУТБОЛЬНОЕ ПОЛЕ (с разметкой и центром)
+                svg: `<svg fill="#000000" height="800px" width="800px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve">
+<g>
+	<g>
+		<path d="M0,79.175v353.65h512V79.175H0z M263.918,190.513c32.659,3.926,58.062,31.787,58.062,65.487
+			c0,33.7-25.403,61.561-58.062,65.487V190.513z M15.835,200.577h58.062v110.845H15.835V200.577z M248.082,321.487
+			c-32.659-3.926-58.062-31.787-58.062-65.487c0-33.7,25.403-61.561,58.062-65.487V321.487z M248.082,174.575
+			c-41.411,3.996-73.897,38.984-73.897,81.425s32.486,77.428,73.897,81.425v79.565H15.835v-89.732h73.897v-21.745
+			c23.9-3.808,42.227-24.558,42.227-49.513c0-24.955-18.326-45.705-42.227-49.513v-21.745H15.835V95.01h232.247V174.575z
+			 M89.732,289.377v-66.754c15.112,3.585,26.392,17.184,26.392,33.377S104.844,285.792,89.732,289.377z M496.165,311.423h-58.062
+			V200.577h58.062V311.423z M496.165,184.742h-73.897v21.745c-23.9,3.808-42.227,24.558-42.227,49.513
+			c0,24.955,18.326,45.705,42.227,49.513v21.745h73.897v89.732H263.918v-79.565c41.411-3.996,73.897-38.984,73.897-81.425
+			s-32.486-77.428-73.897-81.425V95.01h232.247V184.742z M422.268,222.623v66.754c-15.112-3.585-26.392-17.184-26.392-33.377
+			S407.156,226.208,422.268,222.623z"/>
+	</g>
+</g>
+</svg>` 
+            },
+            { 
+                id: 'audio', 
+                name: 'Audio', 
+                svg: `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 2C6.48 2 2 6.48 2 12v5.5C2 19.43 3.57 21 5.5 21H8a1 1 0 0 0 1-1v-7a1 1 0 0 0-1-1H4v-1c0-4.41 3.59-8 8-8s8 3.59 8 8v1h-4a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h2.5c1.93 0 3.5-1.57 3.5-3.5V12c0-5.52-4.48-10-10-10z'/></svg>` 
+            },
+            { 
+                id: 'following', 
+                name: 'Following', 
+                svg: `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M7 2h10a2 2 0 0 1 2 2v2H5a2 2 0 0 0-2 2v10h2V6a2 2 0 0 1 2-2zm-2 6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2H5zm7.5 3a3.5 3.5 0 1 1-2.12 6.27l-1.82 1.82a1 1 0 0 1-1.42-1.42l1.82-1.82A3.5 3.5 0 0 1 12.5 11zm0 2a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z'/></svg>` 
+            }
         ]);
 
+        // ОБНОВЛЕННАЯ ФУНКЦИЯ ДЛЯ ВСТАВКИ ИКОНОК
+        const getIconStyle = (svgString) => {
+            // encodeURIComponent гарантирует, что спецсимволы SVG будут правильно прочитаны браузером
+            const encodedSvg = encodeURIComponent(svgString);
+            const url = `url("data:image/svg+xml;utf8,${encodedSvg}")`;
+            return { 
+                maskImage: url, 
+                WebkitMaskImage: url 
+            };
+        };
         // ПОЛНАЯ ЛЕНТА ИЗ СКРИНШОТОВ С РАЗНЫМИ ЛЕЙАУТАМИ
         // P.S. Секции поддерживают фотографии через image:. P.P.S: Новость это всегда layout: grid-half, list и hero. Но последнее всегда 
         // большая карточка, которая начинает новую секцию
@@ -279,13 +328,6 @@ createApp({
             if (card) { card.swipeState.offsetX = 0; }
         };
 
-        const getIconStyle = (shape) => {
-            const svg = shape === 'rect' 
-                ? `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><rect width='24' height='24' rx='4' fill='black'/></svg>`
-                : `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><circle cx='12' cy='12' r='10' fill='black'/></svg>`;
-            const url = `url("data:image/svg+xml;utf8,${svg}")`;
-            return { maskImage: url, WebkitMaskImage: url };
-        };
 
         return {
             currentDate, currentTab, tabs, topStories, getIconStyle, getButtonScale,
