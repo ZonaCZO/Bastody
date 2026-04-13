@@ -4,7 +4,7 @@ createApp({
     setup() {
         const currentDate = ref('');
         const currentTab = ref('today');
-        const SWIPE_OFFSET_NORMAL = 140; // Для обычных карточек (hero, list, trending)
+        const SWIPE_OFFSET_NORMAL = 170; // Для обычных карточек (hero, list, trending)
         const SWIPE_OFFSET_GRID = 100;   // Для сетки (grid-row)
         let activeSwipeCard = null;
 
@@ -265,16 +265,36 @@ createApp({
         };
 
         const handleSwipeStart = (event, cardId) => {
+            // 1. ЗАЩИТА ОТ МУЛЬТИТАЧА
+            if (activeSwipeCard) return;
+
+            // === НОВОЕ: ЗАКРЫВАЕМ ВСЕ ОСТАЛЬНЫЕ КАРТОЧКИ ===
+            // Пробегаемся по всем новостям и схлопываем те, которые открыты (кроме текущей)
+            topStories.value.forEach(story => {
+                if (story.id !== cardId && story.swipeState.offsetX !== 0) {
+                    story.swipeState.offsetX = 0;
+                }
+            });
+
             const card = topStories.value.find(s => s.id === cardId);
             if (!card) return;
-            activeSwipeCard = card;
 
+            // 2. ЛОГИКА ДЛЯ СЕТКИ И СОСЕДНЕЙ КАРТОЧКИ
             if (card.layout === 'grid-row') {
                 const rect = event.currentTarget.getBoundingClientRect();
                 const clientX = event.touches ? event.touches[0].clientX : event.clientX;
                 const isLeft = (clientX - rect.left) < (rect.width / 2);
-                card.swipeState.activeSubCardIndex = isLeft ? 0 : 1;
+                const touchedIndex = isLeft ? 0 : 1;
+
+                if (card.swipeState.offsetX !== 0 && card.swipeState.activeSubCardIndex !== touchedIndex) {
+                    card.swipeState.offsetX = 0; 
+                    return; 
+                }
+
+                card.swipeState.activeSubCardIndex = touchedIndex;
             }
+
+            activeSwipeCard = card;
 
             activeSwipeCard.swipeState.startX = event.touches ? event.touches[0].clientX : event.clientX;
             activeSwipeCard.swipeState.startY = event.touches ? event.touches[0].clientY : event.clientY;
