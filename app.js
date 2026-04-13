@@ -218,30 +218,24 @@ createApp({
         };
 
        // === ЛОГИКА ОТОБРАЖЕНИЯ И АНИМАЦИИ КНОПОК ===
+       // === ЛОГИКА ОТОБРАЖЕНИЯ И АНИМАЦИИ КНОПОК ===
         const getButtonStyle = (news, side, index) => {
             const state = news.swipeState;
             const offsetX = state.offsetX;
-            
-            // 1. ЛОГИКА РЕЗКОГО ПОЯВЛЕНИЯ
-            // Изначально все кнопки невидимы
             let opacity = 0;
             
-            // Если сдвинули карточку вправо — резко показываем левые кнопки
             if (side === 'left' && offsetX > 0) opacity = 1;
-            // Если сдвинули карточку влево — резко показываем правые кнопки
             else if (side === 'right' && offsetX < 0) opacity = 1;
 
-            // 2. ЛОГИКА ПЛАВНОГО УВЕЛИЧЕНИЯ (Осталась без изменений)
             const bounds = getSwipeBounds(news);
             const currentMax = side === 'left' ? bounds.maxRight : Math.abs(bounds.maxLeft);
+            const currentSwipeDistance = Math.abs(offsetX);
 
             const BASE_SCALE = 0.9;
             const MAX_ADD = 0.1; 
             let scale = BASE_SCALE;
             
-            // Считаем красивое увеличение масштаба только для видимых кнопок
             if (opacity === 1) {
-                const currentSwipeDistance = Math.abs(offsetX);
                 const startReveal = (index === 0) ? 0 : (currentMax * 0.3);
                 const endReveal = (index === 0) ? (currentMax * 0.6) : currentMax;
                 
@@ -251,8 +245,21 @@ createApp({
                     scale = BASE_SCALE + (progress * MAX_ADD);
                 }
                 
-                // Легкое перерастяжение (overscroll)
-                if (currentSwipeDistance > currentMax && index === 1) {
+                // === НОВОЕ: ВИЗУАЛ ПРИ СИЛЬНОМ ПЕРЕТЯГИВАНИИ ===
+                const overswipeThreshold = currentMax + 30; // Порог: проехали на 30px дальше максимума
+                
+                if (currentSwipeDistance > overswipeThreshold) {
+                    if (index === 0) {
+                        // Крайняя кнопка (Дизлайк или Сохранить) увеличивается, показывая готовность
+                        scale = 1.15;
+                    } else {
+                        // Внутренняя кнопка (Лайк или Шер) плавно исчезает
+                        scale = 0.5;
+                        opacity = 0; 
+                    }
+                } 
+                // Стандартный легкий overscroll для второй кнопки
+                else if (currentSwipeDistance > currentMax && index === 1) {
                      const overscroll = (currentSwipeDistance - currentMax) / 50;
                      scale += overscroll * 0.05; 
                 }
@@ -260,21 +267,16 @@ createApp({
             
             return {
                 transform: `scale(${scale})`,
-                opacity: opacity
+                opacity: opacity,
+                // Делаем анимацию чуть быстрее при перетягивании, чтобы она реагировала мгновенно
+                transition: currentSwipeDistance > currentMax ? 'all 0.2s ease' : 'transform 0.3s cubic-bezier(0.32, 0.72, 0, 1)'
             };
         };
 
         const handleSwipeStart = (event, cardId) => {
-            // 1. ЗАЩИТА ОТ МУЛЬТИТАЧА
+            // 1. ЗАЩИТА ОТ МУЛЬТИТАЧА: 
+            // Если мы уже тянем какую-то карточку, игнорируем любые новые касания экрана!
             if (activeSwipeCard) return;
-
-            // === НОВОЕ: ЗАКРЫВАЕМ ВСЕ ОСТАЛЬНЫЕ КАРТОЧКИ ===
-            // Пробегаемся по всем новостям и схлопываем те, которые открыты (кроме текущей)
-            topStories.value.forEach(story => {
-                if (story.id !== cardId && story.swipeState.offsetX !== 0) {
-                    story.swipeState.offsetX = 0;
-                }
-            });
 
             const card = topStories.value.find(s => s.id === cardId);
             if (!card) return;
@@ -286,11 +288,14 @@ createApp({
                 const isLeft = (clientX - rect.left) < (rect.width / 2);
                 const touchedIndex = isLeft ? 0 : 1;
 
+                // Если ряд УЖЕ открыт, и мы трогаем НЕАКТИВНУЮ (исчезнувшую) половину:
                 if (card.swipeState.offsetX !== 0 && card.swipeState.activeSubCardIndex !== touchedIndex) {
+                    // Просто закрываем открытую карточку и блокируем новый свайп
                     card.swipeState.offsetX = 0; 
                     return; 
                 }
 
+                // Устанавливаем, какую именно половину мы сейчас тянем
                 card.swipeState.activeSubCardIndex = touchedIndex;
             }
 
@@ -347,25 +352,46 @@ createApp({
         const handleSwipeEnd = () => {
             if (!activeSwipeCard) return;
             const state = activeSwipeCard.swipeState;
-            state.isSwiping = false;
-            state.isDragging = false; 
             
-            const bounds = getSwipeBounds(activeSwipeCard);
-            const thresholdRight = bounds.maxRight * 0.4;
-            const thresholdLeft = bounds.maxLeft * 0.4;
+            if (!state.isDragging) {
+                if (state.startOffsetX !== 0) {
+                    state.offsetX = 0;
+                } else {
+                    state.offsetX = 0; 
+                }
+            } else {
+                const bounds = getSwipeBounds(activeSwipeCard);
+                const thresholdRight = bounds.maxRight * 0.4;
+                const thresholdLeft = bounds.maxLeft * 0.4;
+                
+                // === НОВОЕ: ПОРОГИ СРАБАТЫВАНИЯ АВТО-ДЕЙСТВИЯ ===
+                const triggerRight = bounds.maxRight + 30; // Потянули далеко вправо
+                const triggerLeft = bounds.maxLeft - 30;   // Потянули далеко влево
 
-            // Теперь любая сторона, которую протянули дальше порога (40%), будет зацепляться!
-            if (state.offsetX > thresholdRight) { 
-                state.offsetX = bounds.maxRight; 
-            } 
-            else if (state.offsetX < thresholdLeft) { 
-                state.offsetX = bounds.maxLeft; 
-            } 
-            else { 
-                // Возврат в исходное положение, если не дотянули
-                state.offsetX = 0; 
+                // Если отпустили палец в зоне перетягивания:
+                if (state.offsetX > triggerRight) { 
+                    onDislike(activeSwipeCard.id); // Вызываем 디злайк
+                    state.offsetX = 0;             // И сразу закрываем карточку
+                } 
+                else if (state.offsetX < triggerLeft) { 
+                    onSave(activeSwipeCard.id);    // Вызываем сохранение
+                    state.offsetX = 0;             // И сразу закрываем карточку
+                } 
+                // Стандартное поведение (просто открыть меню)
+                else if (state.offsetX > thresholdRight) { 
+                    state.offsetX = bounds.maxRight; 
+                } 
+                else if (state.offsetX < thresholdLeft) { 
+                    state.offsetX = bounds.maxLeft;  
+                } 
+                else { 
+                    state.offsetX = 0; 
+                }
             }
             
+            state.isSwiping = false;
+            state.isDragging = false; 
+
             document.removeEventListener('mousemove', handleSwipeMove);
             document.removeEventListener('mouseup', handleSwipeEnd);
             document.removeEventListener('touchmove', handleSwipeMove);
