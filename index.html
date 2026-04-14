@@ -49,13 +49,22 @@
                             </div>
                         </div>
 
-                        <div 
-                            class="news-card-swipe-container" 
-                            :class="'layout-' + news.layout"
-                            @mousedown="handleSwipeStart($event, news.id)"
-                            @touchstart="handleSwipeStart($event, news.id)"
-                        >
-                            <div class="swipe-actions actions-left">
+                        <div v-if="news.layout === 'ad'" class="card-ad">
+                            <div class="ad-top-bar" v-if="news.adBannerText">{{ news.adBannerText }}</div>
+                            <div class="ad-main" :style="{ backgroundImage: 'url(' + news.image + ')' }">
+                                <h2 class="ad-title" v-html="news.title"></h2>
+                                <div class="ad-controls">
+                                    <div class="ad-logo-wrap" v-html="news.logoText"></div>
+                                    <button class="ad-btn">{{ news.buttonText }}</button>
+                                </div>
+                                <p class="ad-disclaimer">{{ news.disclaimer }}</p>
+                                <div class="ad-badge">Ad</div>
+                            </div>
+                        </div>
+
+                        <div v-else class="news-card-swipe-container" :class="'layout-' + news.layout" @mousedown="handleSwipeStart($event, news.id)" @touchstart="handleSwipeStart($event, news.id)">
+                            
+                            <div v-if="!news.disableSwipe" class="swipe-actions actions-left">
                                 <button class="action-btn dislike-btn" :style="getButtonStyle(news, 'left', 0)" @click.stop="onDislike(news.id)">
                                     <svg viewBox="0 0 24 24"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3zm7-13h3a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-3"></path></svg>
                                 </button>
@@ -64,7 +73,7 @@
                                 </button>
                             </div>
 
-                            <div class="swipe-actions actions-right">
+                            <div v-if="!news.disableSwipe" class="swipe-actions actions-right">
                                 <button class="action-btn share-btn" :style="getButtonStyle(news, 'right', 1)" @click.stop="onShare(news.id)">
                                     <svg viewBox="0 0 24 24"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path><polyline points="16 6 12 2 8 6"></polyline><line x1="12" y1="2" x2="12" y2="15"></line></svg>
                                 </button>
@@ -73,34 +82,83 @@
                                 </button>
                             </div>
 
-                            <div class="swipe-surface" 
-                                 :class="{ 'is-swiping': news.swipeState.isDragging, 'grid-row-surface': news.layout === 'grid-row' }" 
-                                 :style="news.layout === 'grid-row' ? {} : { transform: `translateX(${news.swipeState.offsetX}px)` }">
+                            <div class="swipe-surface" :class="{ 'is-swiping': news.swipeState && news.swipeState.isDragging, 'grid-row-surface': news.layout === 'grid-row' }" :style="news.layout === 'grid-row' || news.disableSwipe ? {} : { transform: `translateX(${news.swipeState.offsetX}px)` }">
                                 
                                 <template v-if="news.layout === 'grid-row'">
-                                    <div class="news-card card-grid-half" 
-                                         v-for="(card, index) in news.cards" 
-                                         :key="card.id"
-                                         :class="{ 'is-swiping': news.swipeState.isDragging }"
-                                         :style="getGridCardStyle(news, index)">
-                                        <div class="news-card-image" v-if="card.image" :style="{ backgroundImage: 'url(' + card.image + ')' }"></div>
-                                        <div class="news-card-content">
-                                            <div class="publisher"><span v-if="card.isAppleNewsPlus" class="news-plus">News+</span><span v-html="card.publisher"></span></div>
-                                            <h3 class="headline">{{ card.title }}</h3>
-                                            <div class="meta"><span>{{ card.time }} · {{ card.authors }}</span><span>•••</span></div>
-                                        </div>
+                                    
+                                    <div class="news-card card-grid-half" v-for="(card, index) in news.cards" :key="card.id" :class="{ 'is-swiping': news.swipeState && news.swipeState.isDragging, 'card-recipe': card.type === 'recipe' }" :style="getGridCardStyle(news, index)">
+                                        
+                                        <template v-if="card.type === 'recipe'">
+                                            <div class="recipe-image-wrap" :style="{ backgroundImage: 'url(' + card.image + ')' }">
+                                                <div class="recipe-overlay">
+                                                    <div class="recipe-overlay-text">
+                                                        <span class="recipe-publisher" v-html="card.publisher"></span>
+                                                        <span class="recipe-label">RECIPE</span>
+                                                    </div>
+                                                    <svg class="recipe-icon" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><path d="M10 18v-5M10 13a2 2 0 1 1 4 0v5"></path></svg>
+                                                </div>
+                                            </div>
+                                            <div class="recipe-content">
+                                                <h3 class="recipe-title">{{ card.title }}</h3>
+                                                <div class="recipe-meta">
+                                                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                                    <span>{{ card.time }}</span>
+                                                </div>
+                                            </div>
+                                        </template>
+
+                                        <template v-else>
+                                            <div class="news-card-image" v-if="card.image" :style="{ backgroundImage: 'url(' + card.image + ')' }"></div>
+                                            <div class="news-card-content">
+                                                <div class="publisher">
+                                                    <span v-html="card.publisher"></span>
+                                                </div>
+                                                <h3 class="headline">{{ card.title }}</h3>
+                                                <div class="meta"><span>{{ card.time }} · {{ card.authors }}</span><span>•••</span></div>
+                                            </div>
+                                        </template>
                                     </div>
                                 </template>
 
                                 <template v-else>
                                     <div class="news-card" :class="'card-' + news.layout">
-                                        <div class="news-card-image" v-if="news.image" :style="{ backgroundImage: 'url(' + news.image + ')' }"></div>
-                                        <div v-if="news.layout === 'trending'" class="trending-rank">{{ news.rank }}</div>
-                                        <div class="news-card-content">
-                                            <div class="publisher"><span v-if="news.isAppleNewsPlus" class="news-plus">News+</span><span v-html="news.publisher"></span></div>
-                                            <h3 class="headline">{{ news.title }}</h3>
-                                            <div class="meta"><span>{{ news.time }} · {{ news.authors }}</span><span>•••</span></div>
+                                        <div v-if="news.hasNewsPlusHeader" class="news-plus-header">
+                                            <svg viewBox="0 0 384 512" style="width: 14px; height: 14px; fill: currentColor; margin-right: 3px; margin-bottom: 2px;">
+                                                <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/>
+                                            </svg>
+                                            News+
                                         </div>
+
+                                        <div v-if="news.layout === 'list'" class="list-layout-inner">
+                                            <div class="news-card-image" v-if="news.image" :style="{ backgroundImage: 'url(' + news.image + ')' }"></div>
+                                            <div class="news-card-content">
+                                                <div class="publisher">
+                                                    <span v-if="news.isAppleNewsPlus && !news.hasNewsPlusHeader" class="news-plus">
+                                                        <svg viewBox="0 0 384 512"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+                                                        News+
+                                                    </span>
+                                                    <span v-html="news.publisher"></span>
+                                                </div>
+                                                <h3 class="headline">{{ news.title }}</h3>
+                                                <div class="meta"><span>{{ news.time }} · {{ news.authors }}</span><span>•••</span></div>
+                                            </div>
+                                        </div>
+
+                                        <template v-else>
+                                            <div class="news-card-image" v-if="news.image" :style="{ backgroundImage: 'url(' + news.image + ')' }"></div>
+                                            <div v-if="news.layout === 'trending'" class="trending-rank">{{ news.rank }}</div>
+                                            <div class="news-card-content">
+                                                <div class="publisher">
+                                                    <span v-if="news.isAppleNewsPlus && !news.hasNewsPlusHeader" class="news-plus">
+                                                        <svg viewBox="0 0 384 512"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+                                                        News+
+                                                    </span>
+                                                    <span v-html="news.publisher"></span>
+                                                </div>
+                                                <h3 class="headline">{{ news.title }}</h3>
+                                                <div class="meta"><span>{{ news.time }} · {{ news.authors }}</span><span>•••</span></div>
+                                            </div>
+                                        </template>
                                     </div>
                                 </template>
 

@@ -29,116 +29,129 @@ createApp({
         };
 
         const topStories = ref([
+            // 1. Hero: Iran (The New York Times)
             {
                 id: '1', layout: 'hero', sectionTitle: 'Top Stories',
-                image: 'https://placehold.co/600x400/e1e4e8/999999?text=Reuters',
-                publisher: 'Reuters', title: 'Relief at truce gives way to alarm as Israel pounds Lebanon, Iran hits neighbors',
-                time: '1h ago', authors: 'World', swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
+                image: 'https://static01.nyt.com/images/2026/04/13/multimedia/13int-iran-global-pbkf/13int-iran-global-pbkf-superJumbo.jpg?quality=75&auto=webp',
+                publisher: 'The New York Times', title: 'Trump Wants to Blockade Iran',
+                time: '12h ago', authors: 'Ben Hubbard', swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
             },
+
+            // 2 & 3. Grid: Pope Leo & Hungary
             {
                 id: 'row-1', layout: 'grid-row',
                 swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_GRID, activeSubCardIndex: 0 },
                 cards: [
-                    { id: '2', image: 'https://placehold.co/300x200/e1e4e8/999999?text=THE+HILL', publisher: 'THE HILL', title: 'Republicans eye new cuts to food stamps, Medicaid', time: '2h ago', authors: 'Politics' },
-                    { id: '3', image: 'https://i.iplsc.com/-/000MFL84L9FFU1KQ-C316.webp', publisher: 'AP apnews.com', title: 'Trump meets with European leaders', time: '3h ago', authors: 'News' }
+                    { id: '2', image: 'https://media-cldnry.s-nbcnews.com/image/upload/t_fit-760w,f_auto,q_auto:best/rockcms/2025-05/250509-split-trump-pope-leo-mb-1016-aaa421.jpg', publisher: 'The Washington Post', title: "Pope Leo XIV responds to Donald Trump's criticism", time: '1d ago', authors: 'Anthony Faiola', isAppleNewsPlus: true },
+                    { id: '3', image: 'https://www.reuters.com/resizer/v2/CEIWLRE3UVLHHPX6NBK2BODQ2I.jpg?auth=0aeeb4c5278d3bf3eaf73c0034a1cae1a531a268cf816f7d00e3cb77adf3ab95&width=1080&quality=80', publisher: 'Reuters', title: 'Hungarian election winner Magyar vows democratic shift', time: '5m ago', authors: 'Anita Komuves' }
                 ]
             },
+
+            // 4. List: Artemis Heat Shield
             {
                 id: '4', layout: 'list',
-                image: 'https://placehold.co/200x200/e1e4e8/999999?text=CeraVe',
-                // Цветной логотип REAL SIMPLE!
-                publisher: '<span style="color: #FF2D55;">REAL</span>SIMPLE', title: "CeraVe's $15 Anti-Aging 'Wonder Cream' on Amazon Banishes Under-Eye Bags",
-                time: '8h ago', authors: 'Miles Walls', swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
+                image: 'https://gizmodo.com/app/uploads/2026/04/Artemis-2-Splashdown-Orion-Heat-Shield-Chunk-1-960x640.jpg',
+                publisher: 'Gizmodo', title: "NASA Sets the Record Straight on That ‘Missing Chunk’ of Artemis 2’s Heat Shield",
+                time: '11h ago', authors: '', swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
             },
+
+            // 5. List: Assassin's Creed
             {
-                id: '5', layout: 'list', isAppleNewsPlus: true,
-                image: 'https://placehold.co/200x200/e1e4e8/999999?text=Vox',
-                publisher: 'Vox', title: 'Ozempic just got cheap enough to change the world',
-                time: '1h ago', authors: 'Health', swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
+                id: '5', layout: 'list',
+                image: 'https://insider-gaming.com/wp-content/uploads/2026/04/Black-Flag-rating.jpg',
+                publisher: 'insider-gaming', title: "ASSASSIN'S CREED BLACK FLAG REMAKE LEAK CONFIRMS NEW CONTENT",
+                time: '1h ago', authors: 'Sam Sepiol', swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
             },
+
+            // 6. List: Frieren Season 2
             {
-                id: '6', layout: 'list', isAppleNewsPlus: true,
-                image: 'https://placehold.co/200x200/e1e4e8/999999?text=New+Yorker',
-                publisher: 'THE NEW YORKER', title: 'The camps promising to turn men into alphas',
-                time: '2h ago', authors: 'Culture', swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
+                id: '6', layout: 'list',
+                image: 'https://comicbook.com/wp-content/uploads/sites/4/2026/04/Frieren-Fern-Season-2.jpeg?resize=1024,576',
+                publisher: 'ComicBook', title: "Frieren: Beyond Journey’s End Opens Up About Major Change in Season 2",
+                time: '9h ago', authors: '', swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
             },
+
+            // 7. List: Evanescence
             {
-                id: '7', layout: 'hero', sectionTitle: 'For You', sectionSubtitle: 'Recommendations based on topics & channels you read.',
-                image: 'https://placehold.co/600x400/e1e4e8/999999?text=People',
-                publisher: 'People', title: 'Craig Melvin Accidentally Reveals Major Jenna Bush Hager News During Live \'Today\' Show Broadcast: \'My Bad!\'',
-                time: '3h ago', authors: 'Entertainment', swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
+                id: '7', layout: 'list',
+                image: 'https://assets.blabbermouth.net/media/amyleeapril2026_638.jpg',
+                publisher: 'BLABBERMOUTH.NET', title: "EVANESCENCE'S AMY LEE On Upcoming 'Sanctuary' Album",
+                time: '4h ago', authors: '', swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
             },
+
+            // 8. List (For You): Missouri Town
+            {
+                id: '8', layout: 'list', sectionTitle: 'For You', hasNewsPlusHeader: true,
+                image: 'https://www.politico.com/dims4/default/resize/630/quality/90/format/webp?url=https%3A%2F%2Fstatic.politico.com%2Fe7%2F67%2F6dc03ce8483fa6c3160c6b164ebf%2Fcw-0413-tomich-2000-01.jpg',
+                publisher: 'POLITICO', title: 'Missouri town fires half its city council over data center deal',
+                time: '12h ago', authors: 'Jeff Tomich', swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
+            },
+
+            // === РЕКЛАМА (Разрыв сетки) ===
+            {
+                id: 'ad-1', layout: 'ad',
+                adBannerText: 'Beat the April 15 tax deadline!',
+                title: 'File your<br><span style="color: #FF7A8A;">taxes free</span>',
+                buttonText: 'Get the app',
+                logoText: '<svg viewBox="0 0 24 24"><path fill="#E2445C" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg><div>turbotax<br><span style="font-size: 9px; font-weight: normal;">Free Edition</span></div>',
+                image: 'https://placehold.co/600x300/1C1E21/1C1E21?text=W-2+Forms+Here', 
+                disclaimer: '~37% of filers qualify. Simple Form 1040 returns only (no schedules, except for EITC, CTC, student loan interest, and Schedule 1-A).'
+            },
+
+            // 9. Hero: Project Hail Mary
+            {
+                id: '9', layout: 'hero', sectionTitle: 'Entertainment', sectionSubtitle: 'Movies, TV & Pop Culture.',
+                image: 'https://static0.srcdn.com/wordpress/wp-content/uploads/2026/04/ryan-gosling-looking-at-something-in-project-hail-mary.jpg?q=70&fit=crop&w=1600&h=900&dpr=1',
+                publisher: 'ScreenRant', title: "Ridley Scott's Sci-Fi Masterpiece Officially Surpassed By Project Hail Mary",
+                time: '3d ago', authors: 'Jeff Dodge', swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
+            },
+            
+            // 10 & 11. Grid: Call of Duty & Next Project Hail Mary
             {
                 id: 'row-2', layout: 'grid-row',
                 swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_GRID, activeSubCardIndex: 0 },
                 cards: [
-                    { id: '8', image: 'https://placehold.co/300x200/e1e4e8/999999?text=NBC+NEWS', publisher: 'NBC NEWS', title: 'See the first close-up photos of the moon from NASA\'s Artemis II mission', time: '1d ago', authors: 'Space' },
-                    { id: '9', isAppleNewsPlus: true, image: 'https://placehold.co/300x200/e1e4e8/999999?text=BBC', publisher: 'BBC Science Focus', title: 'These are the 6 worst poops you\'ll ever do, according to a Harvard doctor', time: '2d ago', authors: 'Health' }
+                    { id: '10', image: 'https://images.purexbox.com/d010fecadf093/rumour-microsoft-might-not-launch-call-of-duty-2026-on-xbox-game-pass.900x.jpg', publisher: 'PUREXBOX', title: 'Rumour: Microsoft Might Not Launch Call Of Duty 2026 On Xbox Game Pass', time: '1d ago', authors: 'Ben Kerry' },
+                    { id: '11', image: 'https://www.comingsoon.net/wp-content/uploads/sites/3/2026/04/Next-Project-Hail-Mary-Story-From-Andy-Weir-Revealed-With-Videos-Photo.jpg?resize=1024,576', publisher: 'ComingSoon', title: 'Next Project Hail Mary Story From Andy Weir Revealed', time: '4d ago', authors: 'Movies' }
                 ]
             },
+
+            // 12 & 13. Grid: The Strokes & Obama
             {
-                id: 'row-3', layout: 'grid-row',
+                id: 'row-3', layout: 'grid-row', sectionTitle: 'Reader Favorites',
                 swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_GRID, activeSubCardIndex: 0 },
                 cards: [
-                    { id: '10', image: 'https://placehold.co/300x200/e1e4e8/999999?text=billboard', publisher: 'billboard', title: 'Karol G Strips Down for Steamy \'Playboy\' Cover & Discusses Making Coachella Histor...', time: '4h ago', authors: 'Music' },
-                    { id: '11', image: 'https://placehold.co/300x200/e1e4e8/999999?text=VOGUE', publisher: 'VOGUE', title: 'Kylie and Kendall Jenner Have a Spring It-Shoe-Off', time: '3h ago', authors: 'Fashion' }
+                    { id: '12', image: 'https://www.rollingstone.com/wp-content/uploads/2026/04/GettyImages-2270941094.jpg?w=1581&h=1054&crop=1', publisher: '<span style="color: #D22027; font-weight: 900;">Rolling Stone</span>', title: "THE STROKES SET SUMMER TOUR IN SUPPORT OF 'REALITY AWAITS'", time: '5h ago', authors: 'Daniel Kreps' },
+                    { id: '13', isAppleNewsPlus: true, image: 'https://www.thedailybeast.com/resizer/v2/KPDBN74UMBHUNNI2H32KD3IRYI.jpg?smart=true&auth=801a0ee0a9fb568f0fb079d3151a1a1ce614b1b1ff3c6cf8cdb0774fe11d2760&width=1600&height=900', publisher: 'DAILY BEAST', title: "Obama Twists the Knife After JD Vance’s Humiliation", time: '14h ago', authors: 'Harry Thompson' }
                 ]
             },
+
+            // 14. Hero: Swalwell
             {
-                id: 'row-4', layout: 'grid-row', sectionTitle: 'Reader Favorites',
-                swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_GRID, activeSubCardIndex: 0 },
-                cards: [
-                    // Цветной логотип FOOD&WINE
-                    { id: '12', image: 'https://placehold.co/300x200/e1e4e8/999999?text=Food', publisher: '<strong>FOOD</strong>&<strong>WINE</strong>', title: 'Stop Tossing Mushy Bananas — Shoppers Found a Solution', time: '6h ago', authors: 'Grace Cooper' },
-                    { id: '13', isAppleNewsPlus: true, image: 'https://placehold.co/300x200/e1e4e8/999999?text=WSJ', publisher: 'THE WALL STREET JOURNAL', title: 'Retired and moving closer to your adult child? Think again.', time: '1d ago', authors: 'Francine Russo' }
-                ]
+                id: '14', layout: 'hero', sectionTitle: 'Politics',
+                image: 'https://dims.apnews.com/dims4/default/1db0337/2147483647/strip/true/crop/5000x3439+0+0/resize/1440x990!/format/webp/quality/90/?url=https%3A%2F%2Fassets.apnews.com%2F6f%2F3c%2F7b67d80fae0429c3ba1b862195d1%2F3f9e40474b2d438bbc59c175026f7f0d',
+                publisher: '<span style="color: #FF3333; font-weight: bold;">AP News</span>', title: 'Swalwell exits California governor’s race after assault allegations',
+                time: '2h ago', authors: '', swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
             },
+
+            // 15. Trending: Pope in Algeria
             {
                 id: '15', layout: 'trending', sectionTitle: 'Trending Stories', isTrendingSection: true, rank: 1,
-                publisher: '<span style="color: red; font-style: italic;">autoblog</span>', title: 'Subaru Ditched the Wagon and Outback Sales Dropped Over 40%',
-                time: '23h ago', authors: 'Marnus Moolman', swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
-            },
-            {
-                id: '16', layout: 'trending', rank: 2,
-                publisher: 'The Guardian', title: "The pet I'll never forget: Chilly, the kitten I saved from freezing to death",
-                time: '3h ago', authors: 'News', swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
-            },
-            {
-                id: '17', layout: 'trending', rank: 3,
-                publisher: '<span style="color: #FF2D55;">Newsweek</span>', title: '"My husband died at 30 from colon cancer. This one symptom was shockingly common"',
-                time: '5h ago', authors: 'Health', swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
-            },
-            {
-                id: '19', layout: 'hero', sectionTitle: 'Travel', sectionSubtitle: 'Love Travel? Tap + to follow.', 
-                image: 'https://placehold.co/600x400/e1e4e8/999999?text=Greece',
-                publisher: 'AFAR', title: "Greece's New Hiking Trail Network Passes Ancient Ruins",
-                time: '16m ago', authors: 'Helen Iatrou', swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
+                publisher: 'BBC', title: "Leo becomes first Pope to visit Algeria at start of major Africa tour",
+                time: '4h ago', authors: 'Lebo Diseko', swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
             },
 
-            // СЕКЦИЯ: LATEST PUZZLES
-            {
-                id: '200', layout: 'hero', sectionTitle: 'Latest Puzzles',
-                image: 'https://placehold.co/600x600/8B5CF6/FFFFFF?text=Crossword',
-                publisher: 'Crossword', title: 'Monday, Apr 13\nHybrid Animals',
-                time: 'Easy', authors: 'Claire Rimkus', isAppleNewsPlus: true, swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
-            },
-            {
-                id: '201', layout: 'list',
-                image: 'https://placehold.co/200x200/FFCC00/000000?text=Emoji+Game',
-                publisher: 'Emoji Game', title: 'Monday, Apr 13',
-                time: 'Play Now', authors: 'Games', isAppleNewsPlus: true, swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
-            },
-
-            // СЕКЦИЯ: FOOD (Spring Pastas)
+            // === РЕЦЕПТЫ ===
             {
                 id: 'row-food', layout: 'grid-row', sectionTitle: 'Spring Pastas', sectionSubtitle: 'Selected by the Apple News editors.',
-                swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_GRID, activeSubCardIndex: 0 },
+                disableSwipe: true,
                 cards: [
-                    { id: '202', isAppleNewsPlus: true, image: 'https://placehold.co/300x350/e1e4e8/999999?text=Penne+Skillet', publisher: 'EatingWell', title: 'Marry-Me Chicken-and-Spinach Penne Skillet', time: '35m', authors: 'Recipe' },
-                    { id: '203', isAppleNewsPlus: true, image: 'https://placehold.co/300x350/e1e4e8/999999?text=Pasta+Salad', publisher: '<strong>FOOD</strong>&<strong>WINE</strong>', title: 'Caprese-Pesto Pasta Salad', time: '20m', authors: 'Recipe' }
+                    { id: '202', type: 'recipe', isAppleNewsPlus: true, image: 'https://placehold.co/300x350/e1e4e8/999999?text=Penne+Skillet', publisher: 'EatingWell', title: 'Marry-Me Chicken-and-Spinach Penne Skillet', time: '35m' },
+                    { id: '203', type: 'recipe', isAppleNewsPlus: true, image: 'https://placehold.co/300x350/e1e4e8/999999?text=Pasta+Salad', publisher: '<strong>FOOD</strong>&<strong>WINE</strong>', title: 'Caprese-Pesto Pasta Salad', time: '20m' }
                 ]
             },
         ]);
+
 
         const updateDate = () => {
             const now = new Date();
@@ -150,6 +163,8 @@ createApp({
 
         const getSwipeBounds = (card) => {
             const state = card.swipeState;
+            if(!state) return { maxRight: 0, maxLeft: 0 };
+            
             let maxRight = state.maxOffset; 
             let maxLeft = -state.maxOffset;
 
@@ -171,6 +186,8 @@ createApp({
         };
 
         const getGridCardStyle = (news, index) => {
+            if (news.disableSwipe || !news.swipeState) return { transform: 'translateX(0px)', opacity: 1, zIndex: 1, pointerEvents: 'auto' };
+            
             const state = news.swipeState;
             const offsetX = state.offsetX;
             const activeIdx = state.activeSubCardIndex;
@@ -204,6 +221,8 @@ createApp({
         };
 
         const getButtonStyle = (news, side, index) => {
+            if (news.disableSwipe || !news.swipeState) return { opacity: 0 };
+            
             const state = news.swipeState;
             const offsetX = state.offsetX;
             let opacity = 0;
@@ -256,7 +275,7 @@ createApp({
             if (activeSwipeCard) return;
 
             const card = topStories.value.find(s => s.id === cardId);
-            if (!card) return;
+            if (!card || card.disableSwipe) return;
 
             if (card.layout === 'grid-row') {
                 const rect = event.currentTarget.getBoundingClientRect();
@@ -290,7 +309,7 @@ createApp({
         };
 
         const handleSwipeMove = (event) => {
-            if (!activeSwipeCard || !activeSwipeCard.swipeState.isSwiping) return;
+            if (!activeSwipeCard || !activeSwipeCard.swipeState || !activeSwipeCard.swipeState.isSwiping) return;
             const state = activeSwipeCard.swipeState;
             const currentX = event.touches ? event.touches[0].clientX : event.clientX;
             const currentY = event.touches ? event.touches[0].clientY : event.clientY;
@@ -322,7 +341,7 @@ createApp({
         };
 
         const handleSwipeEnd = () => {
-            if (!activeSwipeCard) return;
+            if (!activeSwipeCard || !activeSwipeCard.swipeState) return;
             const state = activeSwipeCard.swipeState;
             
             if (!state.isDragging) {
@@ -374,7 +393,7 @@ createApp({
         const onShare = (id) => { resetSwipe(id); };
         const resetSwipe = (id) => {
             const card = topStories.value.find(s => s.id === id);
-            if (card) { card.swipeState.offsetX = 0; }
+            if (card && card.swipeState) { card.swipeState.offsetX = 0; }
         };
 
        return {
