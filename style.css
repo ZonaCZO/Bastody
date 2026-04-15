@@ -10,6 +10,8 @@
         --border-color: #e5e5ea;
     }
 
+    
+
     body, html {
         margin: 0; padding: 0; width: 100%; height: 100%;
         background-color: var(--bg-color);
@@ -35,10 +37,51 @@
     .apple-logo-img { width: 28px; height: 28px; fill: var(--text-main); margin-bottom: 2px; }
     .header-titles h2 { font-size: 42px; font-weight: 800; color: var(--text-secondary); margin: -4px 0 0 0; letter-spacing: -1.5px; }
 
-    .try-free-btn {
-        background-color: var(--apple-red); color: white; border: none; border-radius: 20px;
-        padding: 10px 18px; font-size: 15px; font-weight: 700; cursor: pointer; margin-top: 6px;
-    }
+.try-free-btn {
+    /* Жестко задаем фон и скругляем, чтобы ничего не торчало */
+    background: var(--apple-red) !important; 
+    color: white !important; 
+    border: none !important; 
+    border-radius: 20px !important;
+    padding: 10px 18px; 
+    font-size: 15px; 
+    font-weight: 700; 
+    cursor: pointer; 
+    margin-top: 6px;
+    
+    /* === УБИВАЕМ СИНИЕ МЕТКИ И КВАДРАТЫ === */
+    outline: none !important; 
+    box-shadow: none !important;
+    -webkit-appearance: none !important; /* Отключает системный вид кнопок (особенно важно для Apple) */
+    appearance: none !important;
+    -webkit-tap-highlight-color: transparent !important; /* Убирает вспышку при нажатии */
+    -webkit-touch-callout: none !important; /* Отключает меню по долгому тапу на iOS */
+    user-select: none !important; 
+    
+    /* Анимация для "вкусного" нажатия (если ты оставлял прошлый код) */
+    transition: transform 0.25s cubic-bezier(0.32, 0.72, 0, 1), opacity 0.25s ease, background 0.2s;
+}
+
+/* И на всякий случай, чтобы при активном состоянии не вылезал квадрат */
+.try-free-btn:active, .try-free-btn:focus {
+    outline: none !important;
+    background: var(--apple-red) !important;
+}
+    /* 1. Настраиваем плавный возврат (когда отпустили палец) */
+.try-free-btn, .topic-pill, .ad-btn, .section-more-btn, .section-add-btn {
+    transition: transform 0.25s cubic-bezier(0.32, 0.72, 0, 1), opacity 0.25s ease;
+}
+
+/* 2. Настраиваем само нажатие (когда палец на экране) */
+.try-free-btn:active, 
+.topic-pill:active, 
+.ad-btn:active, 
+.section-more-btn:active, 
+.section-add-btn:active {
+    transform: scale(0.94); /* Легкое сжатие */
+    opacity: 0.7;           /* Легкое потускнение */
+    transition: transform 0.1s ease, opacity 0.1s ease; /* Нажимается очень быстро */
+}
 
     /* === ТЕМЫ (Скролл) === */
     .topics-nav { display: flex; gap: 10px; overflow-x: auto; padding: 0 20px 15px 20px; scrollbar-width: none; }
@@ -47,10 +90,24 @@
         background: #E5E5EA; color: #000; border-radius: 20px; padding: 8px 16px; font-size: 15px; font-weight: 600;
         display: flex; align-items: center; gap: 6px; white-space: nowrap; cursor: pointer;
     }
-    .topic-icon { font-size: 16px; opacity: 0.6; display: flex; align-items: center; }
+    .topic-icon { 
+    font-size: 16px; 
+    opacity: 0.6; 
+    display: flex; 
+    align-items: center;
+    color: #000; /* Убеждаемся, что currentColor для SVG будет черным */
+}
+
+/* Добавляем это правило для выравнивания SVG внутри span */
+.topic-icon svg {
+    height: 16px; /* Жестко привязываем высоту к размеру шрифта эмодзи */
+    width: auto;  /* Ширина подстроится автоматически */
+    fill: currentColor; /* Подхватит color: #000 из родителя */
+    display: block;
+}
 
     /* === СЕТКА === */
-    .feed-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 16px; padding: 0 20px; }
+    .feed-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 16px; padding: 0 20px; }
 
     /* === ЗАГОЛОВКИ СЕКЦИЙ === */
     .section-header { 
@@ -84,23 +141,48 @@
         box-shadow: 0 4px 15px rgba(0,0,0,0.03); 
         overflow: hidden; transition: transform 0.4s cubic-bezier(0.32, 0.72, 0, 1), opacity 0.3s ease; 
         will-change: transform, opacity;
+        transition: transform 0.3s cubic-bezier(0.32, 0.72, 0, 1), opacity 0.3s ease;
     }
     .news-card.is-swiping { transition: none; }
     .news-card-image { background-size: cover; background-position: center; pointer-events: none; }
     .news-card-content { padding: 16px; pointer-events: none; }
+    .news-card:active {
+    transform: scale(0.98); /* Сжимается совсем чуть-чуть (2%) */
+    opacity: 0.9;
+    transition: transform 0.1s ease, opacity 0.1s ease;
+}
 
     /* === ШАПКА ДЛЯ NEWS+ === */
-    .news-plus-header {
-        background: linear-gradient(90deg, #dfdfdf 0%, #FFFFFF 100%); 
-        padding: 4px 16px; 
-        font-size: 14px; 
-        color: var(--apple-red);
-        font-weight: 800; 
-        display: flex; 
-        align-items: center;
-        border-bottom: 1px solid rgba(0,0,0,0.04);
-    }
+/* === ШАПКА ДЛЯ NEWS+ === */
+/* === ШАПКА ДЛЯ NEWS+ === */
+/* === ШАПКА ДЛЯ NEWS+ === */
+.news-plus-header {
+    /* Возвращаем мягкий градиент от серого к белому */
+    background: linear-gradient(90deg, #d6d6d6 0%, #FFFFFF 100%); 
+    /* Делаем плашку уже (уменьшаем верхний и нижний padding до 4px) */
+    padding: 4px 16px; 
+    font-size: 14px; 
+    color: var(--apple-red);
+    font-weight: 800; 
+    display: flex; 
+    align-items: center;
+    margin-top: 0;
+    position: relative;
+    z-index: 1;
+}
 
+/* 1. Отступ контейнеру, чтобы текст оставался на месте */
+.news-plus-header + .list-layout-inner {
+    padding-top: 8px; 
+}
+
+/* 2. Нахлест картинки на плашку */
+.news-plus-header + .list-layout-inner .news-card-image {
+    /* Сделал -32px вместо -38px, потому что сама плашка стала тоньше */
+    margin-top: -20px; 
+    position: relative;
+    z-index: 2; /* Кладем картинку ПОВЕРХ плашки */
+}
     .publisher { font-size: 15px; font-weight: 800; letter-spacing: -0.2px; margin-bottom: 4px; display: flex; align-items: center; gap: 4px; color: #000;}
 
     .news-plus { 
