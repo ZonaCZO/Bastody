@@ -30,65 +30,93 @@ createApp({
         };
 
         const topStories = ref([
-            // 1. Hero: Iran (The New York Times)
+            // === TOP STORIES ===
             {
-                id: '1', layout: 'hero', sectionTitle: 'Top Stories',
+                id: 'top-1', layout: 'hero', sectionTitle: 'Top Stories',
                 image: 'https://static01.nyt.com/images/2026/04/13/multimedia/13int-iran-global-pbkf/13int-iran-global-pbkf-superJumbo.jpg?quality=75&auto=webp',
                 publisher: 'The New York Times', title: 'Trump Wants to Blockade Iran',
                 time: '12h ago', authors: 'Ben Hubbard', swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
             },
-
-            // 2 & 3. Grid: Pope Leo & Hungary
             {
-                id: 'row-1', layout: 'grid-row',
-                swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_GRID, activeSubCardIndex: 0 },
-                cards: [
-                    { id: '2', image: 'https://media-cldnry.s-nbcnews.com/image/upload/t_fit-760w,f_auto,q_auto:best/rockcms/2025-05/250509-split-trump-pope-leo-mb-1016-aaa421.jpg', publisher: 'The Washington Post', title: "Pope Leo XIV responds to Donald Trump's criticism", time: '1d ago', authors: 'Anthony Faiola', isAppleNewsPlus: true },
-                    { id: '3', image: 'https://www.reuters.com/resizer/v2/CEIWLRE3UVLHHPX6NBK2BODQ2I.jpg?auth=0aeeb4c5278d3bf3eaf73c0034a1cae1a531a268cf816f7d00e3cb77adf3ab95&width=1080&quality=80', publisher: 'Reuters', title: 'Hungarian election winner Magyar vows democratic shift', time: '5m ago', authors: 'Anita Komuves' }
-                ]
+                id: 'top-2', layout: 'list',
+                image: 'https://media-cldnry.s-nbcnews.com/image/upload/t_fit-760w,f_auto,q_auto:best/rockcms/2025-05/250509-split-trump-pope-leo-mb-1016-aaa421.jpg',
+                publisher: 'The Washington Post', title: "Pope Leo XIV responds to Donald Trump's criticism",
+                time: '1d ago', authors: 'Anthony Faiola',
+                swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
             },
-
-            // 4. List: Artemis Heat Shield
             {
-                id: '4', layout: 'list',
+                id: 'top-3', layout: 'list',
+                image: 'https://www.reuters.com/resizer/v2/CEIWLRE3UVLHHPX6NBK2BODQ2I.jpg?auth=0aeeb4c5278d3bf3eaf73c0034a1cae1a531a268cf816f7d00e3cb77adf3ab95&width=1080&quality=80',
+                publisher: 'Reuters', title: 'Hungarian election winner Magyar vows democratic shift',
+                time: '5m ago', authors: 'Anita Komuves',
+                swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
+            },
+            {
+                id: 'top-4', layout: 'list',
                 image: 'https://gizmodo.com/app/uploads/2026/04/Artemis-2-Splashdown-Orion-Heat-Shield-Chunk-1-960x640.jpg',
                 publisher: 'Gizmodo', title: "NASA Sets the Record Straight on That ‘Missing Chunk’ of Artemis 2’s Heat Shield",
                 time: '11h ago', authors: '', swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
             },
-
-            // 5. List: Assassin's Creed
             {
-                id: '5', layout: 'list',
+                id: 'top-5', layout: 'list',
                 image: 'https://insider-gaming.com/wp-content/uploads/2026/04/Black-Flag-rating.jpg',
                 publisher: 'insider-gaming', title: "ASSASSIN'S CREED BLACK FLAG REMAKE LEAK CONFIRMS NEW CONTENT",
                 time: '1h ago', authors: 'Sam Sepiol', swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
             },
-
-            // 6. List: Frieren Season 2
             {
-                id: '6', layout: 'list',
+                id: 'top-6', layout: 'list',
                 image: 'https://comicbook.com/wp-content/uploads/sites/4/2026/04/Frieren-Fern-Season-2.jpeg?resize=1024,576',
                 publisher: 'ComicBook', title: "Frieren: Beyond Journey’s End Opens Up About Major Change in Season 2",
                 time: '9h ago', authors: '', swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
             },
 
-            // 7. List: Evanescence
+            // === FOR YOU (Обычное, без плашки подписки) ===
             {
-                id: '7', layout: 'list',
-                image: 'https://assets.blabbermouth.net/media/amyleeapril2026_638.jpg',
-                publisher: 'BLABBERMOUTH.NET', title: "EVANESCENCE'S AMY LEE On Upcoming 'Sanctuary' Album",
+                id: 'foryou-1', layout: 'list', sectionTitle: 'For You', sectionSubtitle: 'Recommendations based on topics & channels you read.',
+                image: 'https://i.guim.co.uk/img/media/26524c089f7682565ba3ce23c8059727045b97e6/0_0_3500_2333/master/3500.jpg?width=620&dpr=1&s=none&crop=none',
+                publisher: 'The Guardian', title: 'Bernie Sanders pushes resolutions to block US weapons sales to Israel',
                 time: '4h ago', authors: '', swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
             },
-
-            // 8. List (For You): Missouri Town
             {
-                id: '8', layout: 'list', sectionTitle: 'For You', sectionSubtitle: 'Recommendation based on topics & channels you read.', hasNewsPlusHeader: true,
+                id: 'foryou-2', layout: 'list',
+                image: 'https://bi.im-g.pl/im/ff/35/1f/z32725759AMP.Wiceprezydent-USA-J-D--Vance.jpg',
+                publisher: 'AP', title: "As Vance rallies with Turning Point, some supporters bristle at Trump's war, memes and feuds",
+                time: '6h ago', authors: '', swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
+            },
+            {
+                id: 'foryou-3', layout: 'list',
+                image: 'https://static01.nyt.com/images/2026/04/15/multimedia/15int-italy-meloni-01-jzbm/15int-italy-meloni-01-jzbm-superJumbo.jpg?quality=75&auto=webp',
+                publisher: 'The New York Times', title: 'Trump and Meloni Split Amid Growing Dispute Over Pope and Iran',
+                time: '1h ago', authors: '', swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
+            },
+             {
+                id: 'foryou-4', layout: 'list', hasNewsPlusHeader: true,
                 image: 'https://www.politico.com/dims4/default/resize/630/quality/90/format/webp?url=https%3A%2F%2Fstatic.politico.com%2Fe7%2F67%2F6dc03ce8483fa6c3160c6b164ebf%2Fcw-0413-tomich-2000-01.jpg',
                 publisher: 'POLITICO', title: 'Missouri town fires half its city council over data center deal',
                 time: '12h ago', authors: 'Jeff Tomich', swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
             },
 
-            // === РЕКЛАМА (Разрыв сетки) ===
+            // === POLITICS ===
+            {
+                id: 'pol-1', layout: 'hero', sectionTitle: 'Politics',
+                image: 'https://dims.apnews.com/dims4/default/1db0337/2147483647/strip/true/crop/5000x3439+0+0/resize/1440x990!/format/webp/quality/90/?url=https%3A%2F%2Fassets.apnews.com%2F6f%2F3c%2F7b67d80fae0429c3ba1b862195d1%2F3f9e40474b2d438bbc59c175026f7f0d',
+                publisher: '<span style="color: #FF3333; font-weight: bold;">AP News</span>', title: 'Swalwell exits California governor’s race after assault allegations',
+                time: '2h ago', authors: '', swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
+            },
+            {
+                id: 'pol-2', layout: 'list',
+                image: 'https://www.politico.com/dims4/default/resize/630/quality/90/format/webp?url=https%3A%2F%2Fstatic.politico.com%2Ffc%2F92%2Fa845fec9435f94c0fbae9eea1056%2Fu-s-congress-84756.jpg',
+                publisher: 'POLITICO', title: 'Johnson backs Trump, Vance in criticism of pope',
+                time: '14h ago', authors: 'Cheyanne M. Daniels', swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
+            },
+            {
+                id: 'pol-3', layout: 'list',
+                image: 'https://www.washingtonpost.com/wp-apps/imrs.php?src=https://arc-anglerfish-washpost-prod-washpost.s3.amazonaws.com/public/T4P6AYNNLQET36OYIVFB3GAKO4size-normalized.jpg&w=1440&impolicy=high_res',
+                publisher: 'The Washington Post', title: 'U.S. sends thousands more troops to Mideast as Trump seeks to squeeze Iran',
+                time: '12h ago', authors: '', swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
+            },
+
+            // === РЕКЛАМА 1 ===
             {
                 id: 'ad-1', layout: 'ad',
                 adBannerText: 'Beat the April 15 tax deadline!',
@@ -99,58 +127,256 @@ createApp({
                 disclaimer: '~37% of filers qualify. Simple Form 1040 returns only (no schedules, except for EITC, CTC, student loan interest, and Schedule 1-A).'
             },
 
-            // 9. Hero: Project Hail Mary
+            // === ENTERTAINMENT ===
             {
-                id: '9', layout: 'hero', sectionTitle: 'Entertainment', sectionSubtitle: 'Movies, TV & Pop Culture.',
+                id: 'ent-1', layout: 'hero', sectionTitle: 'Entertainment', sectionSubtitle: 'Movies, TV & Pop Culture.',
                 image: 'https://static0.srcdn.com/wordpress/wp-content/uploads/2026/04/ryan-gosling-looking-at-something-in-project-hail-mary.jpg?q=70&fit=crop&w=1600&h=900&dpr=1',
                 publisher: 'ScreenRant', title: "Ridley Scott's Sci-Fi Masterpiece Officially Surpassed By Project Hail Mary",
                 time: '3d ago', authors: 'Jeff Dodge', swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
             },
-            
-            // 10 & 11. Grid: Call of Duty & Next Project Hail Mary
             {
-                id: 'row-2', layout: 'grid-row',
+                id: 'ent-2', layout: 'grid-row', 
                 swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_GRID, activeSubCardIndex: 0 },
                 cards: [
-                    { id: '10', image: 'https://images.purexbox.com/d010fecadf093/rumour-microsoft-might-not-launch-call-of-duty-2026-on-xbox-game-pass.900x.jpg', publisher: 'PUREXBOX', title: 'Rumour: Microsoft Might Not Launch Call Of Duty 2026 On Xbox Game Pass', time: '1d ago', authors: 'Ben Kerry' },
-                    { id: '11', image: 'https://www.comingsoon.net/wp-content/uploads/sites/3/2026/04/Next-Project-Hail-Mary-Story-From-Andy-Weir-Revealed-With-Videos-Photo.jpg?resize=1024,576', publisher: 'ComingSoon', title: 'Next Project Hail Mary Story From Andy Weir Revealed', time: '4d ago', authors: 'Movies' }
+                    { id: 'ent-2a', image: 'https://images.purexbox.com/d010fecadf093/rumour-microsoft-might-not-launch-call-of-duty-2026-on-xbox-game-pass.900x.jpg', publisher: 'PUREXBOX', title: 'Rumour: Microsoft Might Not Launch Call Of Duty 2026 On Xbox Game Pass', time: '1d ago', authors: 'Ben Kerry' },
+                    { id: 'ent-2b', image: 'https://www.comingsoon.net/wp-content/uploads/sites/3/2026/04/Next-Project-Hail-Mary-Story-From-Andy-Weir-Revealed-With-Videos-Photo.jpg?resize=1024,576', publisher: 'ComingSoon', title: 'Next Project Hail Mary Story From Andy Weir Revealed', time: '4d ago', authors: 'Movies' }
                 ]
             },
-
-            // 12 & 13. Grid: The Strokes & Obama
             {
-                id: 'row-3', layout: 'grid-row', sectionTitle: 'Reader Favorites',
-                swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_GRID, activeSubCardIndex: 0 },
-                cards: [
-                    { id: '12', image: 'https://www.rollingstone.com/wp-content/uploads/2026/04/GettyImages-2270941094.jpg?w=1581&h=1054&crop=1', publisher: '<span style="color: #D22027; font-weight: 900;">Rolling Stone</span>', title: "THE STROKES SET SUMMER TOUR IN SUPPORT OF 'REALITY AWAITS'", time: '5h ago', authors: 'Daniel Kreps' },
-                    { id: '13', isAppleNewsPlus: true, image: 'https://www.thedailybeast.com/resizer/v2/KPDBN74UMBHUNNI2H32KD3IRYI.jpg?smart=true&auth=801a0ee0a9fb568f0fb079d3151a1a1ce614b1b1ff3c6cf8cdb0774fe11d2760&width=1600&height=900', publisher: 'DAILY BEAST', title: "Obama Twists the Knife After JD Vance’s Humiliation", time: '14h ago', authors: 'Harry Thompson' }
-                ]
+                id: 'ent-3', layout: 'list',
+                image: 'https://assets.blabbermouth.net/media/amyleeapril2026_638.jpg',
+                publisher: 'BLABBERMOUTH.NET', title: "EVANESCENCE'S AMY LEE On Upcoming 'Sanctuary' Album",
+                time: '4h ago', authors: '', swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
             },
 
-            // 14. Hero: Swalwell
+            // === TRENDING ===
             {
-                id: '14', layout: 'hero', sectionTitle: 'Politics',
-                image: 'https://dims.apnews.com/dims4/default/1db0337/2147483647/strip/true/crop/5000x3439+0+0/resize/1440x990!/format/webp/quality/90/?url=https%3A%2F%2Fassets.apnews.com%2F6f%2F3c%2F7b67d80fae0429c3ba1b862195d1%2F3f9e40474b2d438bbc59c175026f7f0d',
-                publisher: '<span style="color: #FF3333; font-weight: bold;">AP News</span>', title: 'Swalwell exits California governor’s race after assault allegations',
-                time: '2h ago', authors: '', swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
-            },
-
-            // 15. Trending: Pope in Algeria
-            {
-                id: '15', layout: 'trending', sectionTitle: 'Trending Stories', isTrendingSection: true, rank: 1,
+                id: 'trend-1', layout: 'trending', sectionTitle: 'Trending Stories', isTrendingSection: true, rank: 1,
                 publisher: 'BBC', title: "Leo becomes first Pope to visit Algeria at start of major Africa tour",
                 time: '4h ago', authors: 'Lebo Diseko', swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
             },
-
-            // === РЕЦЕПТЫ ===
             {
-                id: 'row-food', layout: 'grid-row', sectionTitle: 'Spring Pastas', sectionSubtitle: 'Selected by the Apple News editors.',
+                id: 'trend-2', layout: 'trending', rank: 2,
+                publisher: '<span style="color: #D22027; font-weight: 900;">Rolling Stone</span>', title: "THE STROKES SET SUMMER TOUR IN SUPPORT OF 'REALITY AWAITS'",
+                time: '5h ago', authors: 'Daniel Kreps',
+                swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
+            },
+            {
+                id: 'trend-3', layout: 'trending', rank: 3,
+                publisher: 'DAILY BEAST', title: "Obama Twists the Knife After JD Vance’s Humiliation",
+                time: '14h ago', authors: 'Harry Thompson',
+                swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
+            },
+
+            // === ГЛАВНЫЙ РЕЦЕПТ (Featured Recipe) ===
+            {
+                id: 'featured-recipe-1', layout: 'recipe-hero', sectionTitle: 'Featured Recipe', sectionSubtitle: 'Selected by the Apple News editors.',
+                image: 'https://hips.hearstapps.com/hmg-prod/images/3807b2a1-0a1b-4d4d-9ebe-caaefc5b2cac.jpg', 
+                publisher: '<span style="font-family: Georgia, serif; font-size: 22px;">delish</span>', 
+                title: 'Crispy Green-Goddess Tofu',
+                description: 'The kind of bright, simple spring dinner you’ve been itching to make.',
+                time: '1h', disableSwipe: true
+            },
+
+            // === РЕЦЕПТЫ (Горизонтальный скролл) ===
+            {
+                id: 'recipes-block', layout: 'recipe-carousel', sectionTitle: 'Recipes For You',
                 disableSwipe: true,
                 cards: [
-                    { id: '202', type: 'recipe', isAppleNewsPlus: true, image: 'https://placehold.co/300x350/e1e4e8/999999?text=Penne+Skillet', publisher: 'EatingWell', title: 'Marry-Me Chicken-and-Spinach Penne Skillet', time: '35m' },
-                    { id: '203', type: 'recipe', isAppleNewsPlus: true, image: 'https://placehold.co/300x350/e1e4e8/999999?text=Pasta+Salad', publisher: '<strong>FOOD</strong>&<strong>WINE</strong>', title: 'Caprese-Pesto Pasta Salad', time: '20m' }
+                    { id: 'rec-1', isAppleNewsPlus: true, image: 'https://www.allrecipes.com/thmb/3vI9SYy4cMXun82_Y97CYowjUCk=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Freezer-Door-Manhattan-PIFS-Beauty-4x3-408b14e9ea1c48a8b909122d1d65b14b.jpg', publisher: 'allrecipes', title: 'Freezer Door Manhattan', time: '2h 10m' },
+                    { id: 'rec-2', isAppleNewsPlus: true, image: 'https://lemonsandzest.com/wp-content/uploads/2021/07/Protein-Overnight-Oats-3.2.jpg', publisher: 'EatingWell', title: 'Peanut Butter Protein Overnight Oats', time: '8h' },
+                    { id: 'rec-3', isAppleNewsPlus: true, image: 'https://cleananddelicious.com/wp-content/uploads/2025/01/avocado-toast.jpg', publisher: 'Veggie', title: 'Avocado Toast', time: '10m' }
+                ],
+                links: [
+                    { text: 'Recipe Catalog', icon: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h4v4H4zm6 0h4v4h-4zm6 0h4v4h-4zM4 10h4v4H4zm6 0h4v4h-4zm6 0h4v4h-4zM4 16h4v4H4zm6 0h4v4h-4zm6 0h4v4h-4z"/></svg>' },
+                    { text: 'Saved Recipes', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/></svg>' }
+                ],
+                
+            },
+
+            // === ИГРЫ И ГОЛОВОЛОМКИ (Latest Puzzles) ===
+            {
+                id: 'puzzles-section', layout: 'puzzles-block', sectionTitle: 'Latest Puzzles',
+                disableSwipe: true,
+                puzzles: [
+                    {
+                        type: 'hero', id: 'puz-1',
+                        image: '<img src="ico/game.png">', 
+                        gameName: 'Emoji Game',
+                        title: 'Wednesday, Apr 15, 2569 BE',
+                        author: ''
+                    },
+                    {
+                        type: 'list', id: 'puz-2',
+                        iconColor: '#FF6B4A', 
+                        iconSvg: '<svg viewBox="0 0 100 100"><rect x="15" y="15" width="32" height="32" rx="8" fill="#FFC9B9"/><rect x="53" y="15" width="32" height="32" rx="8" fill="#FFFFFF"/><rect x="15" y="53" width="32" height="32" rx="8" fill="#FFFFFF"/><rect x="53" y="53" width="32" height="32" rx="8" fill="#222222"/></svg>',
+                        gameName: 'Crossword Mini',
+                        title: 'Wednesday, Apr 15, 2569 BE',
+                        author: 'Erik Agard'
+                    },
+                    {
+                        type: 'list', id: 'puz-3',
+                        iconColor: '#1A73E8', 
+                        iconSvg: '<svg viewBox="0 0 100 100"><rect x="12" y="30" width="16" height="40" rx="6" fill="#A8C7FA"/><rect x="32" y="30" width="16" height="40" rx="6" fill="#FFFFFF"/><rect x="52" y="30" width="16" height="40" rx="6" fill="#FFFFFF"/><rect x="72" y="30" width="16" height="40" rx="6" fill="#FFFFFF"/></svg>',
+                        gameName: 'Quartiles',
+                        title: 'Wednesday, Apr 15, 2569 BE',
+                        author: ''
+                    },
+                    {
+                        type: 'list', id: 'puz-4',
+                        iconColor: '#9B26B6', 
+                        iconSvg: '<svg viewBox="0 0 100 100"><rect x="16" y="16" width="20" height="20" rx="4" fill="#FFFFFF"/><rect x="40" y="16" width="20" height="20" rx="4" fill="#FFFFFF"/><rect x="64" y="16" width="20" height="20" rx="4" fill="#FFFFFF"/><rect x="16" y="40" width="20" height="20" rx="4" fill="#FFFFFF"/><rect x="40" y="40" width="20" height="20" rx="4" fill="#222222"/><rect x="64" y="40" width="20" height="20" rx="4" fill="#FFFFFF"/><rect x="16" y="64" width="20" height="20" rx="4" fill="#FFFFFF"/><rect x="40" y="64" width="20" height="20" rx="4" fill="#FFFFFF"/><rect x="64" y="64" width="20" height="20" rx="4" fill="#222222"/></svg>',
+                        gameName: 'Crossword',
+                        title: 'Wednesday, Apr 15, 2569 BE',
+                        subtitle: 'Opening Numbers',
+                        difficulty: 'Moderate',
+                        author: 'Zhouqin Burnikel'
+                    },
+                    {
+                        type: 'list', id: 'puz-5',
+                        iconColor: '#34A853', 
+                        iconSvg: '<svg viewBox="0 0 100 100"><rect x="18" y="18" width="22" height="22" rx="4" fill="#A8DAB5"/><text x="29" y="34" font-family="-apple-system, sans-serif" font-weight="800" font-size="16" text-anchor="middle" fill="#000">9</text><rect x="39" y="39" width="22" height="22" rx="4" fill="#FFFFFF"/><text x="50" y="55" font-family="-apple-system, sans-serif" font-weight="800" font-size="16" text-anchor="middle" fill="#000">4</text><rect x="60" y="60" width="22" height="22" rx="4" fill="#FFFFFF"/><text x="71" y="76" font-family="-apple-system, sans-serif" font-weight="800" font-size="16" text-anchor="middle" fill="#000">1</text></svg>',
+                        gameName: 'Sudoku',
+                        title: 'Wednesday, Apr 15, 2569 BE',
+                        difficulty: 'Easy',
+                        actionText: 'More sudoku'
+                    }
                 ]
             },
+
+            // === SCIENCE & SPACE ===
+            {
+                id: 'sci-1', layout: 'list', sectionTitle: 'Science',
+                image: 'https://www.nhm.ac.uk/content/dam/nhm-www/discover/what-is-space/what-is-space-milky-way-full-width.jpg',
+                publisher: 'VICE', title: 'Scientists Figured Out How Fast the Universe Is Expanding, But the Answer Is Troubling',
+                time: '9h ago', authors: 'Luis Prada', swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
+            },
+            {
+                id: 'sci-2', layout: 'list',
+                image: 'https://cdn.mos.cms.futurecdn.net/5dL3xQGKEDTXX4RCTy3q8f-650-80.jpg.webp',
+                publisher: 'SPACE.com', title: 'SpaceX launches two Starlink satellite groups 19 hours apart',
+                time: '16h ago', authors: 'Robert Z. Pearlman', swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
+            },
+            {
+                id: 'sci-3', layout: 'list',
+                image: 'https://gizmodo.com/app/uploads/2026/04/Artemis-2-Splashdown-Orion-Heat-Shield-Chunk-1-960x640.jpg', 
+                publisher: 'Defense News', title: 'How a Navy photographer snapped an iconic Artemis II astronaut photo',
+                time: '1d ago', authors: '', swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
+            },
+
+            // === РЕКЛАМА 2 ===
+            {
+                id: 'ad-2', layout: 'ad',
+                adBannerText: 'Beat the April 15 tax deadline!',
+                title: 'File your<br><span style="color: #FF7A8A;">taxes free</span>',
+                buttonText: 'Get the app',
+                logoText: '<svg viewBox="0 0 24 24"><path fill="#E2445C" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg><div>turbotax<br><span style="font-size: 9px; font-weight: normal;">Free Edition</span></div>',
+                image: 'https://placehold.co/600x300/1C1E21/1C1E21?text=W-2+Forms+Here', 
+                disclaimer: '~37% of filers qualify. Simple Form 1040 returns only (no schedules, except for EITC, CTC, student loan interest, and Schedule 1-A).'
+            },
+
+            
+
+            // === SPORTS ===
+            {
+                id: 'sports-header', layout: 'sports-scores', sectionTitle: 'Sports',
+                disableSwipe: true,
+                teams: [
+                    { id: 'dal', logo: 'https://upload.wikimedia.org/wikipedia/commons/1/15/Dallas_Cowboys.svg', bgColor: '#002244' },
+                    { id: 'nyy', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/NewYorkYankees_caplogo.svg/500px-NewYorkYankees_caplogo.svg.png', bgColor: '#0C2340', isCenter: true },
+                    { id: 'lal', logo: 'https://upload.wikimedia.org/wikipedia/commons/3/3c/Los_Angeles_Lakers_logo.svg', bgColor: '#552583' }
+                ],
+                buttonText: 'Pick Your Teams',
+                scores: [
+                    {
+                        league: 'NHL',
+                        team1: { name: 'DET', score: '41-30-10', icon: '<img src="https://upload.wikimedia.org/wikipedia/en/0/03/Detroit_City_FC_logo.svg">' },
+                        team2: { name: 'FLA', score: '39-38-4', icon: '<img src="https://upload.wikimedia.org/wikipedia/en/thumb/7/74/Florida_Gators_football_logo.svg/250px-Florida_Gators_football_logo.svg.png">' },
+                        time: '4/16 · 01:00'
+                    },
+                    {
+                        league: 'MLB',
+                        team1: { name: 'LAA', score: '9-9', icon: '<img src = "https://sports.cbsimg.net/fly/images/team-logos/light/301.svg">' },
+                        team2: { name: 'NYY', score: '9-8', icon: '<img src = https://www.freepnglogos.com/uploads/yankees-logo-png/new-york-yankees-blank-printable-logo-png-20.png">' },
+                        time: '4/16 · 01:05'
+                    },
+                    {
+                        league: 'NBA',
+                        team1: { name: 'GSW', score: '', icon: '<img src = "https://www.pngall.com/wp-content/uploads/13/Golden-State-Warriors-Logo.png">' },
+                        team2: { name: 'LAC', score: '', icon: '<img src = "https://upload.wikimedia.org/wikipedia/en/thumb/e/ed/Los_Angeles_Clippers_%282024%29.svg/1280px-Los_Angeles_Clippers_%282024%29.svg.png">' },
+                        time: '4/16 · 04:00'
+                    }
+                ]
+            },
+            {
+                id: 'spo-1', layout: 'list', 
+                /* Убрали отсюда sectionTitle, так как он теперь в блоке выше */
+                image: 'https://imageio.forbes.com/specials-images/imageserve/68adfe41f07d0fb1351c3157/Dallas-Cowboys-quarterback-Dak-Prescott-/0x0.jpg?format=jpg&height=1093&width=1639',
+                publisher: 'NFL', title: '2026 NFL mock draft 2.0: Cowboys take Rueben Bain Jr.; Steelers and Eagles select receivers',
+                time: '2h ago', authors: 'Mike Band', swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
+            },
+            {
+                id: 'spo-1', layout: 'list', sectionTitle: 'Sports',
+                image: 'https://imageio.forbes.com/specials-images/imageserve/68adfe41f07d0fb1351c3157/Dallas-Cowboys-quarterback-Dak-Prescott-/0x0.jpg?format=jpg&height=1093&width=1639',
+                publisher: 'NFL', title: '2026 NFL mock draft 2.0: Cowboys take Rueben Bain Jr.; Steelers and Eagles select receivers',
+                time: '2h ago', authors: 'Mike Band', swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
+            },
+            {
+                id: 'spo-2', layout: 'list',
+                image: 'https://s7.tvp.pl/images2/7/b/4/uid_7b4949d5413a40d8aebeda2bc8f80bac_width_1200_play_0_pos_0_gs_0_height_678_arsenal-nie-dal-szans-tottenhamowi-hotspur-fot-getty-images.jpg',
+                publisher: 'Sky Sports', title: 'Arsenal 0-0 (1-0 agg.) Sporting Lisbon: Gunners back in Champions League semifinals',
+                time: '3h ago', authors: '', swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
+            },
+            {
+                id: 'spo-3', layout: 'list',
+                image: 'https://cdn.nba.com/manage/2026/04/maxey1-1536x864.jpg',
+                publisher: 'NBA', title: "2026 SoFi NBA Play-In Tournament: Your guide to Wednesday's matchups",
+                time: '5h ago', authors: 'Steve Aschburner', swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
+            },
+
+            // === FASHION ===
+            {
+                id: 'fash-1', layout: 'list', sectionTitle: 'Fashion', hasNewsPlusHeader: true,
+                image: 'https://s.yimg.com/ny/api/res/1.2/xSj8NdHiw3ewyFntOF2wA--/YXBwaWQ9aGlnaGxhbmRlcjt3PTE5MjA7aD0yODgwO2NmPXdIYnA-/https://media.zenfs.com/en/harpers_bazaar_391/46d1c6a0a2e25ff94aad115a17ebb0af',
+                publisher: 'BAZAAR', title: "Hilary Duff's Backless Dress Solidifies Her New Fashion Era",
+                time: '1d ago', authors: 'Joel Calfee',
+                swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
+            },
+            {
+                id: 'fash-2', layout: 'list',
+                image: 'https://placehold.co/400x300/F2F2F7/8e8e93?text=Moda+Man+Closes',
+                publisher: 'THE DENVER POST', title: "Downtown men's fashion retailer to close after decades in business",
+                time: '8h ago', authors: '',
+                swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
+            },
+            {
+                id: 'fash-3', layout: 'list',
+                image: 'https://static01.nyt.com/images/2026/04/15/multimedia/15FASH-WEB-harlow-vhgl/15FASH-WEB-harlow-vhgl-superJumbo.jpg?quality=75&auto=webp',
+                publisher: 'The New York Times', title: 'What Was the Deal With Jack Harlow\'s Giant Hat?',
+                time: '12h ago', authors: '', swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
+            },
+
+            // === TRAVEL ===
+            {
+                id: 'trav-1', layout: 'list', sectionTitle: 'Travel',
+                image: 'https://www.gannett-cdn.com/authoring/authoring-images/2026/01/29/USAT/88418688007-16th-century-castle.jpg?crop=2874,2155,x0,y0',
+                publisher: 'USA TODAY', title: 'Americans now need an ETA to visit the UK. What it is, how to get one',
+                time: '15h ago', authors: 'Eve Chen', swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
+            },
+            {
+                id: 'trav-2', layout: 'list',
+                image: 'https://www.nj.com/resizer/v2/XQT54P253FHV7DVMHKWLRO6YXQ.png?auth=aefcc57dbe12bf1cb6f53dfdebdf87780097e662132d9c533d46a4aaf9d6bdde&width=1280&smart=true&quality=90',
+                publisher: 'nj.com', title: "U.S. issues 'reconsider travel' to Caribbean island nation in state of emergency",
+                time: '18h ago', authors: '',
+                swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
+            },
+            {
+                id: 'trav-3', layout: 'list',
+                image: 'https://nypost.com/wp-content/uploads/sites/2/2026/04/skyscannersoccer.jpg?resize=1024&quality=75&strip=all',
+                publisher: 'NEW YORK POST', title: "Scored tickets? Use this Soccer Flight Finder to save your summer",
+                time: '1d ago', authors: 'Kendall Cornish',
+                swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
+            }
         ]);
 
 

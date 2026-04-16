@@ -97,6 +97,105 @@
     align-items: center;
     color: #000; /* Убеждаемся, что currentColor для SVG будет черным */
 }
+/* === КАРУСЕЛЬ РЕЦЕПТОВ (Горизонтальная) === */
+.card-recipe-carousel-block {
+    grid-column: span 2;
+    margin: 0 -20px; /* Растягиваем на всю ширину экрана */
+    padding-bottom: 20px;
+}
+.recipe-carousel-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory; /* Плавная доводка карточек */
+    scrollbar-width: none; 
+}
+.recipe-carousel-wrapper::-webkit-scrollbar { display: none; }
+
+.recipe-carousel-scroll {
+    display: flex;
+    gap: 12px;
+    padding: 0 20px;
+    width: max-content;
+}
+.recipe-carousel-card {
+    width: 160px;
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.recipe-carousel-image {
+    width: 100%;
+    height: 210px;
+    border-radius: 16px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: inset 0 30px 40px -15px rgba(0,0,0,0.4); /* Затемнение верха для белого текста */
+}
+.recipe-carousel-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    padding: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    color: white;
+}
+.recipe-carousel-publisher {
+    display: flex;
+    flex-direction: column;
+    font-size: 13px;
+    font-weight: 700;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+.recipe-carousel-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    opacity: 0.9;
+    margin-top: 2px;
+}
+.recipe-icon { width: 22px; height: 22px; stroke: white; fill: none; stroke-width: 2; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.4));}
+.recipe-carousel-info { display: flex; flex-direction: column; gap: 4px; }
+.recipe-carousel-title {
+    margin: 0; font-size: 17px; font-weight: 700; line-height: 1.2;
+    color: #000; letter-spacing: -0.3px;
+}
+.recipe-carousel-time {
+    display: flex; align-items: center; gap: 4px;
+    font-size: 13px; color: var(--text-secondary); font-weight: 500;
+}
+.recipe-carousel-time svg { width: 14px; height: 14px; }
+
+/* === МЕНЮ ПОД РЕЦЕПТАМИ === */
+.recipe-links {
+    margin: 24px 20px 0 20px;
+    border-top: 1px solid var(--border-color);
+}
+.recipe-link-item {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 16px 0; border-bottom: 1px solid var(--border-color); cursor: pointer;
+}
+.recipe-link-left { display: flex; align-items: center; gap: 14px; }
+.recipe-link-icon {
+    width: 24px; height: 24px; display: flex; justify-content: center; align-items: center; color: #000;
+}
+.recipe-link-icon svg { width: 100%; height: 100%; }
+.recipe-link-text { font-size: 18px; font-weight: 700; color: #000; letter-spacing: -0.2px;}
+.chevron-right { width: 20px; height: 20px; color: #C7C7CC; }
+.recipe-more-link {
+    text-align: right; padding: 16px 20px 0 20px; font-size: 16px;
+    font-weight: 800; color: #000; cursor: pointer;
+}
+
+/* === ЛОГОТИП NEWS+ СНИЗУ === */
+.news-plus-logo-small {
+    display: flex; align-items: center; gap: 2px;
+    color: var(--apple-red); font-size: 13px; font-weight: 800; margin-top: 2px;
+}
+.news-plus-logo-small svg { width: 12px; height: 12px; fill: currentColor; margin-bottom: 1px;}
 
 /* Добавляем это правило для выравнивания SVG внутри span */
 .topic-icon svg {
@@ -403,3 +502,283 @@
         display: flex; justify-content: center; align-items: center; box-shadow: 0 10px 30px rgba(0,0,0,0.12); color: #000; cursor: pointer;
     }
     .search-fab svg { width: 26px; height: 26px; }  
+    /* === ГЛАВНЫЙ РЕЦЕПТ (Featured Recipe Hero) === */
+.card-recipe-hero-block {
+    grid-column: span 2;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 24px; /* Отступ до следующего блока (карусели) */
+}
+.recipe-hero-image {
+    width: 100%;
+    height: 340px; /* Большая почти квадратная картинка */
+    border-radius: 20px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+    /* Создаем затемнение сверху, чтобы белый текст всегда хорошо читался */
+    box-shadow: inset 0 80px 60px -30px rgba(0,0,0,0.5); 
+}
+.recipe-hero-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    padding: 16px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    color: white;
+}
+.recipe-hero-publisher {
+    display: flex;
+    flex-direction: column;
+    font-weight: 800;
+}
+.recipe-hero-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    opacity: 0.9;
+    margin-top: 2px;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+.recipe-hero-save {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.recipe-hero-save svg {
+    width: 22px;
+    height: 22px;
+    stroke: white;
+}
+.recipe-hero-info {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 0 4px; /* Небольшой отступ, чтобы текст не прилипал к краям экрана */
+}
+.recipe-hero-title {
+    font-size: 22px;
+    font-weight: 700;
+    margin: 0;
+    color: #000;
+    letter-spacing: -0.4px;
+    line-height: 1.2;
+}
+.recipe-hero-desc {
+    margin: 0;
+    font-size: 16px;
+    color: var(--text-secondary);
+    line-height: 1.3;
+}
+.recipe-hero-meta {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 13px;
+    color: var(--text-secondary);
+    font-weight: 500;
+    margin-top: 4px;
+}
+.recipe-hero-meta svg {
+    width: 14px;
+    height: 14px;
+}
+/* === ИГРЫ И ГОЛОВОЛОМКИ (Puzzles) === */
+.card-puzzles-block {
+    grid-column: span 2;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 24px;
+}
+.puzzle-cards-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Общие стили для текста внутри игр */
+.puzzle-news-plus-label {
+    display: flex; align-items: center; gap: 4px;
+    font-size: 13px; font-weight: 600; margin-bottom: 4px;
+}
+.news-plus-red {
+    color: var(--apple-red); font-weight: 800;
+    display: flex; align-items: center; gap: 2px;
+}
+.news-plus-red svg { width: 12px; height: 12px; fill: currentColor; margin-bottom: 1px;}
+.puzzle-game-name { color: var(--text-secondary); }
+
+.puzzle-card-bottom {
+    margin-top: auto;
+    display: flex; justify-content: space-between; align-items: flex-end;
+}
+.puzzle-author { color: var(--text-secondary); font-size: 13px; }
+.puzzle-action-text { color: #000; font-size: 14px; font-weight: 700; }
+.puzzle-more-btn {
+    background: transparent; border: none; color: var(--text-secondary);
+    font-size: 16px; letter-spacing: 2px; padding: 0; cursor: pointer;
+}
+.puzzle-spacer { flex: 1; }
+
+/* Карточка Hero (С большой картинкой) */
+.puzzle-hero-card {
+    display: flex; flex-direction: column;
+}
+.puzzle-hero-image {
+    width: 100%; height: 200px;
+    background-size: cover; background-position: center;
+}
+.puzzle-hero-content {
+    padding: 16px;
+    display: flex; flex-direction: column;
+}
+.puzzle-hero-title {
+    font-size: 20px; font-weight: 700; margin: 4px 0 16px 0; color: #000; letter-spacing: -0.3px;
+}
+
+/* Карточка List (С квадратной иконкой слева) */
+.puzzle-list-card {
+    display: flex; flex-direction: row; padding: 16px; align-items: stretch;
+}
+.puzzle-icon {
+    width: 90px; height: 90px;
+    border-radius: 18px;
+    flex-shrink: 0;
+    display: flex; justify-content: center; align-items: center;
+}
+.puzzle-icon svg {
+    width: 100%; height: 100%;
+}
+.puzzle-list-content {
+    margin-left: 16px;
+    display: flex; flex-direction: column; flex: 1;
+}
+.puzzle-list-title {
+    font-size: 18px; font-weight: 700; margin: 0; color: #000; letter-spacing: -0.3px; line-height: 1.2;
+}
+.puzzle-subtitle {
+    font-size: 16px; font-weight: 600; margin-top: 4px; color: #000;
+}
+.puzzle-difficulty {
+    font-size: 14px; color: var(--text-secondary); margin-top: 2px;
+}
+
+/* Кнопка внизу */
+.puzzles-more-link {
+    text-align: right; padding: 24px 0 0 0; font-size: 16px;
+    font-weight: 800; color: #000; cursor: pointer;
+}
+/* === БЛОК СЧЕТА И КОМАНД (Sports) === */
+.card-sports-scores {
+    grid-column: span 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 24px;
+    padding-top: 10px;
+}
+.sports-teams-circles {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    margin-bottom: 24px;
+}
+.team-circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+.team-circle-large {
+    width: 104px;
+    height: 104px;
+}
+.team-circle img {
+    width: 65%;
+    height: 65%;
+    object-fit: contain;
+}
+.pick-teams-btn {
+    background-color: var(--apple-red);
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 14px 0;
+    border-radius: 24px;
+    width: 100%;
+    border: none;
+    margin-bottom: 24px;
+    cursor: pointer;
+}
+.sports-scores-grid {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+.score-column {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    border-right: 1px solid var(--border-color);
+    padding-right: 10px;
+}
+.score-column:last-child {
+    border-right: none;
+    padding-right: 0;
+    padding-left: 10px;
+}
+.score-column:nth-child(2) {
+    padding-left: 10px;
+}
+.score-league {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+}
+.score-team {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+.score-team-name {
+    font-weight: 800;
+    margin-right: 6px;
+    color: #000;
+}
+.score-team-record {
+    color: var(--text-secondary);
+    font-weight: 500;
+    font-size: 13px;
+}
+.score-time {
+    font-size: 13px;
+    font-weight: 600;
+    color: #000;
+    margin-top: 6px;
+}
+.score-team-icon {
+    margin-right: 6px;
+    font-size: 14px; /* Размер для обычных эмодзи */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px; /* Фиксируем ширину для картинок */
+    height: 16px; /* Фиксируем высоту для картинок */
+}
+
+/* Правило конкретно для картинок внутри иконки */
+.score-team-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Картинка не сплюснется, а аккуратно впишется в квадрат 16x16 */
+}
