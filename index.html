@@ -53,17 +53,23 @@
                             </div>
                         </div>
                         <div v-else-if="news.layout === 'recipe-hero'" class="card-recipe-hero-block">
-                            <div class="recipe-hero-image" :style="{ backgroundImage: 'url(' + news.image + ')' }">
+                            
+                            <div class="recipe-hero-visual" :style="{ backgroundImage: 'url(' + news.image + ')' }">
+                                <div class="recipe-hero-blur-overlay"></div>
+                                
                                 <div class="recipe-hero-overlay">
                                     <div class="recipe-hero-publisher">
                                         <span v-html="news.publisher"></span>
                                         <div class="recipe-hero-label">RECIPE</div>
                                     </div>
                                     <div class="recipe-hero-save">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/></svg>
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
                                     </div>
                                 </div>
+                                
+                                <div class="recipe-hero-image-inner" :style="{ backgroundImage: 'url(' + news.image + ')' }"></div>
                             </div>
+                            
                             <div class="recipe-hero-info">
                                 <h3 class="recipe-hero-title">{{ news.title }}</h3>
                                 <p class="recipe-hero-desc" v-if="news.description">{{ news.description }}</p>
@@ -92,12 +98,22 @@
                                 <div class="recipe-carousel-scroll">
                                     <div class="recipe-carousel-card" v-for="card in news.cards" :key="card.id">
                                         <div class="recipe-carousel-image" :style="{ backgroundImage: 'url(' + card.image + ')' }">
+                                            
+                                            <div class="recipe-carousel-gradient" :style="{ backgroundColor: card.bgColor || 'rgba(0,0,0,0.6)' }"></div>
+                                            
                                             <div class="recipe-carousel-overlay">
                                                 <div class="recipe-carousel-publisher">
                                                     <span v-html="card.publisher"></span>
                                                     <div class="recipe-carousel-label">RECIPE</div>
                                                 </div>
-                                                <svg class="recipe-icon" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><path d="M10 18v-5M10 13a2 2 0 1 1 4 0v5"></path></svg>
+                                                <svg class="recipe-icon" style="fill: white; stroke: none;" viewBox="0 0 16.7871 20.9473">
+                                                 <g>
+                                                  <path d="M0 17.8809C0 19.9219 1.00586 20.9375 3.02734 20.9375L13.3984 20.9375C15.4199 20.9375 16.4258 19.9219 16.4258 17.8809L16.4258 3.06641C16.4258 1.03516 15.4199 0 13.3984 0L3.02734 0C1.00586 0 0 1.03516 0 3.06641ZM1.57227 17.8516L1.57227 3.0957C1.57227 2.11914 2.08984 1.57227 3.10547 1.57227L13.3203 1.57227C14.3359 1.57227 14.8535 2.11914 14.8535 3.0957L14.8535 17.8516C14.8535 18.8281 14.3359 19.3652 13.3203 19.3652L3.10547 19.3652C2.08984 19.3652 1.57227 18.8281 1.57227 17.8516Z"/>
+                                                  <path d="M4.51172 5.6543L11.9238 5.6543C12.2656 5.6543 12.5195 5.39062 12.5195 5.04883C12.5195 4.7168 12.2656 4.45312 11.9238 4.45312L4.51172 4.45312C4.16016 4.45312 3.90625 4.7168 3.90625 5.04883C3.90625 5.39062 4.16016 5.6543 4.51172 5.6543Z"/>
+                                                  <path d="M4.51172 9.0625L11.9238 9.0625C12.2656 9.0625 12.5195 8.79883 12.5195 8.45703C12.5195 8.125 12.2656 7.86133 11.9238 7.86133L4.51172 7.86133C4.16016 7.86133 3.90625 8.125 3.90625 8.45703C3.90625 8.79883 4.16016 9.0625 4.51172 9.0625Z"/>
+                                                  <path d="M4.51172 12.4707L8.01758 12.4707C8.36914 12.4707 8.62305 12.2168 8.62305 11.8848C8.62305 11.5332 8.36914 11.2695 8.01758 11.2695L4.51172 11.2695C4.16016 11.2695 3.90625 11.5332 3.90625 11.8848C3.90625 12.2168 4.16016 12.4707 4.51172 12.4707Z"/>
+                                                 </g>
+                                                </svg>
                                             </div>
                                         </div>
                                         <div class="recipe-carousel-info">

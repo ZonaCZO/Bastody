@@ -132,8 +132,21 @@
     background-position: center;
     position: relative;
     overflow: hidden;
-    box-shadow: inset 0 30px 40px -15px rgba(0,0,0,0.4); /* Затемнение верха для белого текста */
+    /* box-shadow: убрали, так как теперь есть красивый блюр */
 }
+
+/* МАГИЯ APPLE: Плавный градиент с размытием (frosted glass) */
+.recipe-carousel-gradient {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 60px; /* Высота плашки */
+    backdrop-filter: blur(20px); /* 👈 Мощное размытие */
+    -webkit-backdrop-filter: blur(20px); /* Для iPhone/Safari */
+    
+    z-index: 1;
+    /* Больше никаких масок и opacity! Цвет регулируется через rgba в app.js */
+}
+
 .recipe-carousel-overlay {
     position: absolute;
     top: 0; left: 0; right: 0;
@@ -142,6 +155,7 @@
     justify-content: space-between;
     align-items: flex-start;
     color: white;
+    z-index: 2; /* Текст должен быть поверх блюра */
 }
 .recipe-carousel-publisher {
     display: flex;
@@ -514,35 +528,72 @@
         border-radius: 40px; display: flex; justify-content: space-between; align-items: center;
         padding: 10px 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.12); width: 260px;
     }
-    .nav-item { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: #000; font-size: 10px; font-weight: 600; gap: 4px; cursor: pointer; transition: color 0.2s; opacity: 0.5;}
+    .nav-item { 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    text-decoration: none; 
+    color: #000; 
+    font-size: 10px; 
+    font-weight: 700; /* Можно также сделать шрифт чуть толще для четкости */
+    gap: 4px; 
+    cursor: pointer; 
+    transition: all 0.2s; 
+    opacity: 0.8; /* 👈 Было 0.5, теперь они станут намного чернее */
+}
     .nav-item.active { opacity: 1; color: var(--apple-red); }
     .icon { width: 26px; height: 26px; background-color: currentColor; mask-size: contain; mask-repeat: no-repeat; mask-position: center; -webkit-mask-size: contain; -webkit-mask-repeat: no-repeat; -webkit-mask-position: center; }
 
     .search-fab {
-        pointer-events: auto; width: 60px; height: 60px; border-radius: 50%;
-        background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
-        display: flex; justify-content: center; align-items: center; box-shadow: 0 10px 30px rgba(0,0,0,0.12); color: #000; cursor: pointer;
-    }
+    pointer-events: auto; 
+    width: 60px; 
+    height: 60px; 
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.95); /* Чуть плотнее фон */
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.12); 
+    color: #000; /* Чистый черный цвет иконки */
+    cursor: pointer;
+    opacity: 1; /* Убеждаемся, что она не прозрачная */
+}
     .search-fab svg { width: 26px; height: 26px; }  
     /* === ГЛАВНЫЙ РЕЦЕПТ (Featured Recipe Hero) === */
+/* === ГЛАВНЫЙ РЕЦЕПТ (Featured Recipe Hero) === */
+/* === ГЛАВНЫЙ РЕЦЕПТ (Featured Recipe Hero) === */
 .card-recipe-hero-block {
     grid-column: span 2;
     display: flex;
     flex-direction: column;
     gap: 14px;
-    margin-bottom: 24px; /* Отступ до следующего блока (карусели) */
+    margin-bottom: 24px;
 }
-.recipe-hero-image {
+
+/* Внешний контейнер (рамка с матовым стеклом) */
+.recipe-hero-visual {
+    position: relative;
     width: 100%;
-    height: 340px; /* Большая почти квадратная картинка */
     border-radius: 20px;
     background-size: cover;
     background-position: center;
-    position: relative;
     overflow: hidden;
-    /* Создаем затемнение сверху, чтобы белый текст всегда хорошо читался */
-    box-shadow: inset 0 80px 60px -30px rgba(0,0,0,0.5); 
+    display: flex;
+    flex-direction: column;
+    padding: 65px 12px 12px 12px; /* Отступ сверху для логотипа, рамка по бокам и снизу */
 }
+
+/* Эффект матового стекла на фоне */
+.recipe-hero-blur-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4); /* Легкое затемнение фона */
+    backdrop-filter: blur(25px); /* Мощное размытие картинки */
+    -webkit-backdrop-filter: blur(25px);
+    z-index: 1;
+}
+
+/* Логотип и значок сохранения поверх размытия */
 .recipe-hero-overlay {
     position: absolute;
     top: 0; left: 0; right: 0;
@@ -551,12 +602,15 @@
     justify-content: space-between;
     align-items: flex-start;
     color: white;
+    z-index: 2;
 }
+
 .recipe-hero-publisher {
     display: flex;
     flex-direction: column;
     font-weight: 800;
 }
+
 .recipe-hero-label {
     font-size: 11px;
     font-weight: 600;
@@ -565,23 +619,42 @@
     margin-top: 2px;
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
 }
+
+/* Кружок для кнопки закладки, как на скриншоте */
 .recipe-hero-save {
     width: 32px;
     height: 32px;
+    background: rgba(255, 255, 255, 0.25); /* Полупрозрачный белый фон */
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 .recipe-hero-save svg {
-    width: 22px;
-    height: 22px;
+    width: 16px;
+    height: 16px;
     stroke: white;
 }
+
+/* Четкая картинка внутри рамки */
+.recipe-hero-image-inner {
+    width: 100%;
+    height: 220px;
+    border-radius: 12px;
+    background-size: cover;
+    background-position: center;
+    z-index: 2;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+/* Текстовый блок под картинкой */
 .recipe-hero-info {
     display: flex;
     flex-direction: column;
     gap: 6px;
-    padding: 0 4px; /* Небольшой отступ, чтобы текст не прилипал к краям экрана */
+    padding: 0 4px;
 }
 .recipe-hero-title {
     font-size: 22px;
@@ -610,6 +683,9 @@
     width: 14px;
     height: 14px;
 }
+
+
+
 /* === ИГРЫ И ГОЛОВОЛОМКИ (Puzzles) === */
 .card-puzzles-block {
     grid-column: span 2;
