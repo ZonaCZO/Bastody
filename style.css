@@ -223,9 +223,9 @@
 
 /* Добавляем это правило для выравнивания SVG внутри span */
 .topic-icon svg {
-    height: 16px; /* Жестко привязываем высоту к размеру шрифта эмодзи */
-    width: auto;  /* Ширина подстроится автоматически */
-    fill: currentColor; /* Подхватит color: #000 из родителя */
+    width: 18px;  /* 👈 Строго фиксируем ширину */
+    height: 18px; /* 👈 Строго фиксируем высоту */
+    fill: currentColor; 
     display: block;
 }
 
@@ -237,6 +237,13 @@
         grid-column: span 2; margin-top: 24px; margin-bottom: 4px; padding-bottom: 8px;
         display: flex; justify-content: space-between; align-items: flex-start;
     }
+    .section-header h2 { 
+    font-size: 30px; /* 👈 Было 34px, сделали чуть меньше и аккуратнее */
+    font-weight: 900; 
+    margin: 0; 
+    letter-spacing: -0.8px; 
+    color: #000; 
+}
     .section-title-wrap { flex: 1; }
     .section-header h2 { font-size: 34px; font-weight: 900; margin: 0; letter-spacing: -0.8px; color: #000; }
     .section-header.trending-header h2 { color: var(--apple-orange); } 

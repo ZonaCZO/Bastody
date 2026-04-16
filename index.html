@@ -38,7 +38,7 @@
                         
                         <div v-if="news.sectionTitle" class="section-header" :class="{'trending-header': news.isTrendingSection}">
                             <div class="section-title-wrap">
-                                <h2 :style="(news.isSubHeader ? 'font-size: 22px; margin-top: 10px; ' : '') + (news.sectionColor ? 'color: ' + news.sectionColor + ';' : '')">{{ news.sectionTitle }}</h2>
+                                <h2 :style="(news.isSubHeader ? 'font-size: 18px; margin-top: 10px; ' : '') + (news.sectionColor ? 'color: ' + news.sectionColor + ';' : '')">{{ news.sectionTitle }}</h2>
                                 <p v-if="news.sectionSubtitle">{{ news.sectionSubtitle }}</p>
                             </div>
                             <div class="section-actions" v-if="!news.isSubHeader">

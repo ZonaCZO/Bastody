@@ -197,6 +197,23 @@ createApp({
                 description: 'The kind of bright, simple spring dinner you’ve been itching to make.',
                 time: '1h', disableSwipe: true
             },
+            // === FOR YOU (FOOD) ===
+            {
+                id: 'food-foryou-1', layout: 'list', sectionTitle: 'For You', isSubHeader: true,
+                image: 'https://www.gannett-cdn.com/authoring/authoring-images/2024/11/01/USAT/75996179007-foods-that-cause-and-foods-that-combat-inflammation.jpg?crop=7199,5399,x0,y0',
+                publisher: '<span style="font-weight: 900; font-family: Helvetica, Arial, sans-serif; letter-spacing: -0.5px;">USA TODAY</span>', 
+                title: 'Foods that cause and combat inflammation',
+                time: '2h ago', authors: '', 
+                swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
+            },
+            {
+                id: 'food-foryou-2', layout: 'list',
+                image: 'https://a57.foxnews.com/static.foxnews.com/foxnews.com/content/uploads/2026/04/720/405/CLOVER-FOOD-LAB-VEGAN-VEGETARIAN-RESTAURANT-TRENDS-2.jpeg?ve=1&tl=1',
+                publisher: '<span style="font-weight: 900; font-family: Helvetica, Arial, sans-serif; letter-spacing: -0.5px;">FoxNews</span>', 
+                title: 'Clover Food Lab and the latest vegan and vegetarian restaurant trends',
+                time: '4h ago', authors: 'Fox News', 
+                swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
+            },
 
             // 3. Второй подзаголовок (Recipes For You)
             {
