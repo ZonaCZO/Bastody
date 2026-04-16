@@ -35,7 +35,7 @@ createApp({
             const topStories = ref([
             // === TOP STORIES ===
             {
-                id: 'top-1', layout: 'hero', sectionTitle: 'Top Stories',
+                id: 'top-1', layout: 'hero', sectionTitle: 'Top Stories', sectionColor: 'var(--apple-red)',
                 image: 'https://static01.nyt.com/images/2026/04/13/multimedia/13int-iran-global-pbkf/13int-iran-global-pbkf-superJumbo.jpg?quality=75&auto=webp',
                 publisher: '<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/NewYorkTimes.svg/1280px-NewYorkTimes.svg.png" alt="The New York Times">', 
                 title: 'Trump Wants to Blockade Iran',
@@ -78,7 +78,7 @@ createApp({
 
             // === FOR YOU (Обычное, без плашки подписки) ===
             {
-                id: 'foryou-1', layout: 'list', sectionTitle: 'For You', sectionSubtitle: 'Recommendations based on topics & channels you read.',
+                id: 'foryou-1', layout: 'list', sectionTitle: 'For You', sectionColor: 'var(--apple-green)', sectionSubtitle: 'Recommendations based on topics & channels you read.',
                 image: 'https://i.guim.co.uk/img/media/26524c089f7682565ba3ce23c8059727045b97e6/0_0_3500_2333/master/3500.jpg?width=620&dpr=1&s=none&crop=none',
                 publisher: '<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/The_Guardian_2018.svg/3840px-The_Guardian_2018.svg.png" alt="The Guardian">', 
                 title: 'Bernie Sanders pushes resolutions to block US weapons sales to Israel',
@@ -226,7 +226,7 @@ createApp({
                     }
                 ],
                 links: [
-                    { text: 'Recipe Catalog', icon: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h4v4H4zm6 0h4v4h-4zm6 0h4v4h-4zM4 10h4v4H4zm6 0h4v4h-4zm6 0h4v4h-4zM4 16h4v4H4zm6 0h4v4h-4zm6 0h4v4h-4z"/></svg>' },
+                    { text: 'Recipe Catalog', icon: '<svg viewBox="0 0 18.3398 17.998" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M11.6699 17.998L16.1133 17.998C17.3535 17.998 17.9785 17.3828 17.9785 16.0938L17.9785 11.7188C17.9785 10.4395 17.3535 9.81445 16.1133 9.81445L11.6699 9.81445C10.4199 9.81445 9.79492 10.4395 9.79492 11.7188L9.79492 16.0938C9.79492 17.3828 10.4199 17.998 11.6699 17.998Z"/><path d="M1.86523 17.998L6.31836 17.998C7.55859 17.998 8.18359 17.3828 8.18359 16.0938L8.18359 11.7188C8.18359 10.4395 7.55859 9.81445 6.31836 9.81445L1.86523 9.81445C0.625 9.81445 0 10.4395 0 11.7188L0 16.0938C0 17.3828 0.625 17.998 1.86523 17.998Z"/><path d="M11.6699 8.20312L16.1133 8.20312C17.3535 8.20312 17.9785 7.57812 17.9785 6.28906L17.9785 1.92383C17.9785 0.634766 17.3535 0.0195312 16.1133 0.0195312L11.6699 0.0195312C10.4199 0.0195312 9.79492 0.634766 9.79492 1.92383L9.79492 6.28906C9.79492 7.57812 10.4199 8.20312 11.6699 8.20312Z"/><path d="M1.86523 8.20312L6.31836 8.20312C7.55859 8.20312 8.18359 7.57812 8.18359 6.28906L8.18359 1.92383C8.18359 0.634766 7.55859 0.0195312 6.31836 0.0195312L1.86523 0.0195312C0.625 0.0195312 0 0.634766 0 1.92383L0 6.28906C0 7.57812 0.625 8.20312 1.86523 8.20312Z"/></svg>' },
                     { text: 'Saved Recipes', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/></svg>' }
                 ],
             },

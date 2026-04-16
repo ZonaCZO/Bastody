@@ -38,25 +38,22 @@
                         
                         <div v-if="news.sectionTitle" class="section-header" :class="{'trending-header': news.isTrendingSection}">
                             <div class="section-title-wrap">
-                                <h2 :style="news.isSubHeader ? 'font-size: 22px; margin-top: 10px;' : ''">{{ news.sectionTitle }}</h2>
+                                <h2 :style="(news.isSubHeader ? 'font-size: 22px; margin-top: 10px; ' : '') + (news.sectionColor ? 'color: ' + news.sectionColor + ';' : '')">{{ news.sectionTitle }}</h2>
                                 <p v-if="news.sectionSubtitle">{{ news.sectionSubtitle }}</p>
                             </div>
-                            
                             <div class="section-actions" v-if="!news.isSubHeader">
                                 <button v-if="!['For You', 'Top Stories'].includes(news.sectionTitle)" class="section-add-btn">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                                        <line x1="12" y1="5" x2="12" y2="19"></line>
-                                        <line x1="5" y1="12" x2="19" y2="12"></line>
-                                    </svg>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                                 </button>
                                 <button class="section-more-btn">•••</button>
                             </div>
                         </div>
+
+                        <div v-if="news.layout === 'hidden'" style="display: none;"></div>
+
                         <div v-else-if="news.layout === 'recipe-hero'" class="card-recipe-hero-block">
-                            
                             <div class="recipe-hero-visual" :style="{ backgroundImage: 'url(' + news.image + ')' }">
                                 <div class="recipe-hero-blur-overlay"></div>
-                                
                                 <div class="recipe-hero-overlay">
                                     <div class="recipe-hero-publisher">
                                         <span v-html="news.publisher"></span>
@@ -66,10 +63,8 @@
                                         <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
                                     </div>
                                 </div>
-                                
                                 <div class="recipe-hero-image-inner" :style="{ backgroundImage: 'url(' + news.image + ')' }"></div>
                             </div>
-                            
                             <div class="recipe-hero-info">
                                 <h3 class="recipe-hero-title">{{ news.title }}</h3>
                                 <p class="recipe-hero-desc" v-if="news.description">{{ news.description }}</p>
@@ -79,9 +74,8 @@
                                 </div>
                             </div>
                         </div>
-                        
 
-                        <div v-if="news.layout === 'ad'" class="card-ad">
+                        <div v-else-if="news.layout === 'ad'" class="card-ad">
                             <div class="ad-top-bar" v-if="news.adBannerText">{{ news.adBannerText }}</div>
                             <div class="ad-main" :style="{ backgroundImage: 'url(' + news.image + ')' }">
                                 <h2 class="ad-title" v-html="news.title"></h2>
@@ -93,14 +87,13 @@
                                 <div class="ad-badge">Ad</div>
                             </div>
                         </div>
+
                         <div v-else-if="news.layout === 'recipe-carousel'" class="card-recipe-carousel-block">
                             <div class="recipe-carousel-wrapper">
                                 <div class="recipe-carousel-scroll">
                                     <div class="recipe-carousel-card" v-for="card in news.cards" :key="card.id">
                                         <div class="recipe-carousel-image" :style="{ backgroundImage: 'url(' + card.image + ')' }">
-                                            
                                             <div class="recipe-carousel-gradient" :style="{ backgroundColor: card.bgColor || 'rgba(0,0,0,0.6)' }"></div>
-                                            
                                             <div class="recipe-carousel-overlay">
                                                 <div class="recipe-carousel-publisher">
                                                     <span v-html="card.publisher"></span>
@@ -130,7 +123,6 @@
                                     </div>
                                 </div>
                             </div>
-                            
                             <div class="recipe-links">
                                 <div class="recipe-link-item" v-for="link in news.links" :key="link.text">
                                     <div class="recipe-link-left">
@@ -140,15 +132,14 @@
                                     <svg class="chevron-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
                                 </div>
                             </div>
-                            
                             <div class="recipe-more-link" v-if="news.moreText">
                                 {{ news.moreText }}
                             </div>
                         </div>
+
                         <div v-else-if="news.layout === 'puzzles-block'" class="card-puzzles-block">
                             <div class="puzzle-cards-container">
                                 <template v-for="puzzle in news.puzzles" :key="puzzle.id">
-                                    
                                     <div v-if="puzzle.type === 'hero'" class="news-card puzzle-hero-card">
                                         <div class="puzzle-hero-image" :style="{ backgroundImage: 'url(' + puzzle.image + ')' }"></div>
                                         <div class="puzzle-hero-content">
@@ -164,7 +155,6 @@
                                             </div>
                                         </div>
                                     </div>
-
                                     <div v-if="puzzle.type === 'list'" class="news-card puzzle-list-card">
                                         <div class="puzzle-icon" :style="{ backgroundColor: puzzle.iconColor }" v-html="puzzle.iconSvg"></div>
                                         <div class="puzzle-list-content">
@@ -175,7 +165,6 @@
                                             <h3 class="puzzle-list-title">{{ puzzle.title }}</h3>
                                             <div class="puzzle-subtitle" v-if="puzzle.subtitle">{{ puzzle.subtitle }}</div>
                                             <div class="puzzle-difficulty" v-if="puzzle.difficulty">{{ puzzle.difficulty }}</div>
-                                            
                                             <div class="puzzle-card-bottom">
                                                 <div class="puzzle-author" v-if="puzzle.author">{{ puzzle.author }}</div>
                                                 <div class="puzzle-action-text" v-else-if="puzzle.actionText">{{ puzzle.actionText }}</div>
@@ -184,21 +173,18 @@
                                             </div>
                                         </div>
                                     </div>
-
                                 </template>
                             </div>
                             <div class="puzzles-more-link">More Puzzles ></div>
                         </div>
+
                         <div v-else-if="news.layout === 'sports-scores'" class="card-sports-scores">
-                            
                             <div class="sports-teams-circles">
                                 <div class="team-circle" v-for="team in news.teams" :key="team.id" :class="{'team-circle-large': team.isCenter}" :style="{ backgroundColor: team.bgColor }">
                                     <img :src="team.logo" alt="team logo" />
                                 </div>
                             </div>
-                            
                             <button class="pick-teams-btn">{{ news.buttonText }}</button>
-                            
                             <div class="sports-scores-grid">
                                 <div class="score-column" v-for="score in news.scores" :key="score.league">
                                     <div class="score-league">{{ score.league }}</div>
@@ -216,6 +202,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div v-else class="news-card-swipe-container" :class="'layout-' + news.layout" @mousedown="handleSwipeStart($event, news.id)" @touchstart="handleSwipeStart($event, news.id)">
                             
                             <div v-if="!news.disableSwipe" class="swipe-actions actions-left">
@@ -239,9 +226,7 @@
                             <div class="swipe-surface" :class="{ 'is-swiping': news.swipeState && news.swipeState.isDragging, 'grid-row-surface': news.layout === 'grid-row' }" :style="news.layout === 'grid-row' || news.disableSwipe ? {} : { transform: `translateX(${news.swipeState.offsetX}px)` }">
                                 
                                 <template v-if="news.layout === 'grid-row'">
-                                    
                                     <div class="news-card card-grid-half" v-for="(card, index) in news.cards" :key="card.id" :class="{ 'is-swiping': news.swipeState && news.swipeState.isDragging, 'card-recipe': card.type === 'recipe' }" :style="getGridCardStyle(news, index)">
-                                        
                                         <template v-if="card.type === 'recipe'">
                                             <div class="recipe-image-wrap" :style="{ backgroundImage: 'url(' + card.image + ')' }">
                                                 <div class="recipe-overlay">
@@ -315,7 +300,6 @@
                                         </template>
                                     </div>
                                 </template>
-
                             </div>
                         </div>
                     </template>

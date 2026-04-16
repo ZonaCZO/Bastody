@@ -35,7 +35,7 @@
     .header-top { display: flex; justify-content: space-between; align-items: flex-start; padding: 0 20px 15px 20px; }
     .header-titles h1 { font-size: 38px; font-weight: 900; margin: 0; letter-spacing: -1px; display: flex; align-items: center; gap: 6px; }
     .apple-logo-img { width: 28px; height: 28px; fill: var(--text-main); margin-bottom: 2px; }
-    .header-titles h2 { font-size: 42px; font-weight: 800; color: var(--text-secondary); margin: -4px 0 0 0; letter-spacing: -1.5px; }
+    .header-titles h2 { font-size: 42px; font-weight: 800; color: var(--text-secondary); margin: -16px 0 0 0; letter-spacing: -1.5px; }
 
 .try-free-btn {
     /* Жестко задаем фон и скругляем, чтобы ничего не торчало */
@@ -103,26 +103,36 @@
     margin: 0 -20px; /* Растягиваем на всю ширину экрана */
     padding-bottom: 20px;
 }
-.recipe-carousel-wrapper {
-    width: 100%;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory; /* Плавная доводка карточек */
+.recipe-carousel-wrapper { 
+    width: 100%; 
+    overflow-x: auto; 
+    scroll-snap-type: x mandatory; 
     scrollbar-width: none; 
+    /* 👈 УКАЗЫВАЕМ БРАУЗЕРУ ТОЧКУ ПРИЛИПАНИЯ, чтобы он не "съедал" левый отступ */
+    scroll-padding-left: 20px; 
 }
-.recipe-carousel-wrapper::-webkit-scrollbar { display: none; }
 
-.recipe-carousel-scroll {
-    display: flex;
-    gap: 12px;
-    padding: 0 20px;
-    width: max-content;
+.recipe-carousel-scroll { 
+    display: flex; 
+    gap: 12px; 
+    padding: 0 20px; 
+    width: max-content; 
 }
-.recipe-carousel-card {
-    width: 160px;
-    scroll-snap-align: start;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+
+/* 👈 ДОБАВЛЯЕМ НЕВИДИМЫЙ БЛОК В КОНЕЦ: Это лечит баг Safari с обрезанием правого отступа */
+.recipe-carousel-scroll::after {
+    content: '';
+    width: 8px; /* Дополняет gap (12px) до полных 20px отступа справа */
+    flex-shrink: 0;
+    display: block;
+}
+
+.recipe-carousel-card { 
+    width: 160px; 
+    scroll-snap-align: start; /* 👈 Теперь карточки будут идеально прилипать ровно к отступу 20px */
+    display: flex; 
+    flex-direction: column; 
+    gap: 12px; 
 }
 .recipe-carousel-image {
     width: 100%;
@@ -246,7 +256,7 @@
 
     .swipe-surface { width: 100%; position: relative; z-index: 5; transition: transform 0.4s cubic-bezier(0.32, 0.72, 0, 1); will-change: transform; }
     .swipe-surface.is-swiping { transition: none; }
-    .grid-row-surface { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .grid-row-surface { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 
     /* === КАРТОЧКИ === */
     .news-card {
@@ -395,7 +405,7 @@
     /* === ТРЕНДЫ === */
     .card-trending { 
         display: flex; 
-        align-items: center; 
+        align-items: flex-start; 
         padding: 16px 20px; /* 👈 Добавляем "запас" фона внутри (20px слева и справа) */
         margin: 0 -20px;    /* 👈 Растягиваем сам фон до краев экрана */
         border: none; 
@@ -409,6 +419,7 @@
     .trending-rank { 
         width: 52px; /* Было 36px, сделали больше */
         height: 52px; 
+        margin-top: 50spx;
         background-color: var(--apple-orange); /* Цвет по умолчанию */
         color: white; 
         border-radius: 50%; 
@@ -573,14 +584,15 @@
 /* Внешний контейнер (рамка с матовым стеклом) */
 .recipe-hero-visual {
     position: relative;
-    width: 100%;
+    width: calc(100% + 12px); /* Компенсируем ширину, чтобы справа не было дырки */
+    margin-left: -18px;       /* 👈 Вот это сдвигает ВЕСЬ блок влево */
     border-radius: 20px;
     background-size: cover;
     background-position: center;
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    padding: 65px 12px 12px 12px; /* Отступ сверху для логотипа, рамка по бокам и снизу */
+    padding: 65px 12px 12px 12px; 
 }
 
 /* Эффект матового стекла на фоне */
@@ -644,7 +656,8 @@
     height: 220px;
     border-radius: 12px;
     background-size: cover;
-    background-position: center;
+    /* Было center, делаем left center (или просто left), чтобы показать левый край фото */
+    background-position: left center; 
     z-index: 2;
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
@@ -654,7 +667,7 @@
     display: flex;
     flex-direction: column;
     gap: 6px;
-    padding: 0 4px;
+    padding: 0 0px;
 }
 .recipe-hero-title {
     font-size: 22px;
