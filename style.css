@@ -380,15 +380,37 @@
 
     /* === ТРЕНДЫ === */
     .card-trending { 
-        display: flex; align-items: center; padding: 16px 0; border: none; box-shadow: none; 
-        border-bottom: 1px solid var(--border-color); border-radius: 0; background: var(--bg-color); 
-    }
+        display: flex; 
+        align-items: center; 
+        padding: 16px 20px; /* 👈 Добавляем "запас" фона внутри (20px слева и справа) */
+        margin: 0 -20px;    /* 👈 Растягиваем сам фон до краев экрана */
+        border: none; 
+        box-shadow: none; 
+        border-bottom: 1px solid var(--border-color); 
+        border-radius: 0; 
+        background: var(--bg-color); /* 👈 Делаем фон белым для красоты (если хочешь оставить серым, напиши var(--bg-color)) */
+    } 
+    
     .card-trending:last-child { border-bottom: none; }
     .trending-rank { 
-        width: 36px; height: 36px; background-color: var(--apple-orange); color: white; 
-        border-radius: 50%; display: flex; justify-content: center; align-items: center; 
-        font-weight: 800; font-size: 18px; margin-right: 16px; flex-shrink: 0; 
+        width: 52px; /* Было 36px, сделали больше */
+        height: 52px; 
+        background-color: var(--apple-orange); /* Цвет по умолчанию */
+        color: white; 
+        border-radius: 50%; 
+        display: flex; 
+        justify-content: center; 
+        align-items: center; 
+        font-weight: 700; 
+        font-size: 26px; /* Увеличили цифру */
+        margin-right: 16px; 
+        flex-shrink: 0; 
     }
+    
+    /* Цвета для первых трех мест (как на скриншоте) */
+    .rank-1 { background-color: #FF823B; } /* Оранжевый */
+    .rank-2 { background-color: #FF5752; } /* Кораллово-красный */
+    .rank-3 { background-color: #FF2D55; } /* Фирменный розово-красный (News+) */
     .card-trending .headline { font-size: 18px; font-weight: 700; line-height: 1.2; margin-top: 4px; }
 
     /* === РЕКЛАМА === */
@@ -709,14 +731,14 @@
 .pick-teams-btn {
     background-color: var(--apple-red);
     color: white;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 700;
-    padding: 14px 0;
+    padding: 12px 40px; /* Делаем кнопку уже (убрали width: 100%) */
     border-radius: 24px;
-    width: 100%;
     border: none;
     margin-bottom: 24px;
     cursor: pointer;
+    box-shadow: 0 4px 12px rgba(255, 45, 85, 0.3); /* Легкая тень для красоты */
 }
 .sports-scores-grid {
     display: flex;
@@ -739,32 +761,35 @@
     padding-left: 10px;
 }
 .score-league {
-    font-size: 13px;
+    font-size: 12px;
     color: var(--text-secondary);
-    margin-bottom: 8px;
+    margin-bottom: 4px; /* Уменьшили интервал */
+    letter-spacing: 0.5px; 
 }
 .score-team {
     display: flex;
     align-items: center;
     font-size: 14px;
-    margin-bottom: 4px;
+    margin-bottom: 2px; /* Уменьшили интервал между командами */
+    letter-spacing: -0.2px; /* Делаем шрифт чуть плотнее */
 }
 
 .score-team-name {
-    font-weight: 800;
+    font-weight: 700; /* Было 800 (экстра-жирный), сделали 600 (полужирный) */
     margin-right: 6px;
     color: #000;
 }
 .score-team-record {
     color: var(--text-secondary);
-    font-weight: 500;
+    font-weight: 400; /* Было 500, сделали 400 (обычный текст) */
     font-size: 13px;
 }
 .score-time {
-    font-size: 13px;
-    font-weight: 600;
+    font-size: 12px;
+    font-weight: 500; /* Было 500, сделали 400 (обычный текст) */
     color: #000;
-    margin-top: 6px;
+    opacity: 0.8;
+    margin-top: 4px; 
 }
 .score-team-icon {
     margin-right: 6px;
@@ -781,4 +806,17 @@
     width: 100%;
     height: 100%;
     object-fit: contain; /* Картинка не сплюснется, а аккуратно впишется в квадрат 16x16 */
+}
+
+/* Скрываем саму карточку, оставляя только её заголовок */
+.layout-hidden {
+    display: none !important;
+}
+/* Ограничиваем размер логотипов изданий (NYT, AP, Reuters и т.д.) */
+.publisher img, 
+.publisher svg {
+    height: 18px; 
+    width: auto;
+    object-fit: contain;
+    display: block;
 }

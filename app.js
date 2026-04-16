@@ -29,25 +29,28 @@ createApp({
             return { maskImage: url, WebkitMaskImage: url };
         };
 
-        const topStories = ref([
+            const topStories = ref([
             // === TOP STORIES ===
             {
                 id: 'top-1', layout: 'hero', sectionTitle: 'Top Stories',
                 image: 'https://static01.nyt.com/images/2026/04/13/multimedia/13int-iran-global-pbkf/13int-iran-global-pbkf-superJumbo.jpg?quality=75&auto=webp',
-                publisher: 'The New York Times', title: 'Trump Wants to Blockade Iran',
+                publisher: '<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/NewYorkTimes.svg/1280px-NewYorkTimes.svg.png" alt="The New York Times">', 
+                title: 'Trump Wants to Blockade Iran',
                 time: '12h ago', authors: 'Ben Hubbard', swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
             },
             {
                 id: 'top-2', layout: 'list',
                 image: 'https://media-cldnry.s-nbcnews.com/image/upload/t_fit-760w,f_auto,q_auto:best/rockcms/2025-05/250509-split-trump-pope-leo-mb-1016-aaa421.jpg',
-                publisher: 'The Washington Post', title: "Pope Leo XIV responds to Donald Trump's criticism",
+                publisher: '<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/The_Logo_of_The_Washington_Post_Newspaper.svg/1280px-The_Logo_of_The_Washington_Post_Newspaper.svg.png" alt="The Washington Post">', 
+                title: "Pope Leo XIV responds to Donald Trump's criticism",
                 time: '1d ago', authors: 'Anthony Faiola',
                 swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
             },
             {
                 id: 'top-3', layout: 'list',
                 image: 'https://www.reuters.com/resizer/v2/CEIWLRE3UVLHHPX6NBK2BODQ2I.jpg?auth=0aeeb4c5278d3bf3eaf73c0034a1cae1a531a268cf816f7d00e3cb77adf3ab95&width=1080&quality=80',
-                publisher: 'Reuters', title: 'Hungarian election winner Magyar vows democratic shift',
+                publisher: '<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Reuters_Logo.svg/1280px-Reuters_Logo.svg.png" alt="Reuters">', 
+                title: 'Hungarian election winner Magyar vows democratic shift',
                 time: '5m ago', authors: 'Anita Komuves',
                 swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
             },
@@ -60,7 +63,7 @@ createApp({
             {
                 id: 'top-5', layout: 'list',
                 image: 'https://insider-gaming.com/wp-content/uploads/2026/04/Black-Flag-rating.jpg',
-                publisher: 'insider-gaming', title: "ASSASSIN'S CREED BLACK FLAG REMAKE LEAK CONFIRMS NEW CONTENT",
+                publisher: 'Insider Gaming', title: "ASSASSIN'S CREED BLACK FLAG REMAKE LEAK CONFIRMS NEW CONTENT",
                 time: '1h ago', authors: 'Sam Sepiol', swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
             },
             {
@@ -74,25 +77,29 @@ createApp({
             {
                 id: 'foryou-1', layout: 'list', sectionTitle: 'For You', sectionSubtitle: 'Recommendations based on topics & channels you read.',
                 image: 'https://i.guim.co.uk/img/media/26524c089f7682565ba3ce23c8059727045b97e6/0_0_3500_2333/master/3500.jpg?width=620&dpr=1&s=none&crop=none',
-                publisher: 'The Guardian', title: 'Bernie Sanders pushes resolutions to block US weapons sales to Israel',
+                publisher: '<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/The_Guardian_2018.svg/3840px-The_Guardian_2018.svg.png" alt="The Guardian">', 
+                title: 'Bernie Sanders pushes resolutions to block US weapons sales to Israel',
                 time: '4h ago', authors: '', swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
             },
             {
                 id: 'foryou-2', layout: 'list',
-                image: 'https://bi.im-g.pl/im/ff/35/1f/z32725759AMP.Wiceprezydent-USA-J-D--Vance.jpg',
-                publisher: 'AP', title: "As Vance rallies with Turning Point, some supporters bristle at Trump's war, memes and feuds",
+                image: 'https://static01.nyt.com/images/2026/04/13/multimedia/13trump-news-pope-vance-jlbz/13trump-news-pope-vance-jlbz-articleLarge.jpg?quality=75&auto=webp&disable=upscale',
+                publisher: '<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Associated_Press_logo_2012.svg/250px-Associated_Press_logo_2012.svg.png" alt="AP">', 
+                title: "As Vance rallies with Turning Point, some supporters bristle at Trump's war, memes and feuds",
                 time: '6h ago', authors: '', swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
             },
             {
                 id: 'foryou-3', layout: 'list',
                 image: 'https://static01.nyt.com/images/2026/04/15/multimedia/15int-italy-meloni-01-jzbm/15int-italy-meloni-01-jzbm-superJumbo.jpg?quality=75&auto=webp',
-                publisher: 'The New York Times', title: 'Trump and Meloni Split Amid Growing Dispute Over Pope and Iran',
+                publisher: '<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/NewYorkTimes.svg/1280px-NewYorkTimes.svg.png" alt="The New York Times">', 
+                title: 'Trump and Meloni Split Amid Growing Dispute Over Pope and Iran',
                 time: '1h ago', authors: '', swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
             },
              {
                 id: 'foryou-4', layout: 'list', hasNewsPlusHeader: true,
                 image: 'https://www.politico.com/dims4/default/resize/630/quality/90/format/webp?url=https%3A%2F%2Fstatic.politico.com%2Fe7%2F67%2F6dc03ce8483fa6c3160c6b164ebf%2Fcw-0413-tomich-2000-01.jpg',
-                publisher: 'POLITICO', title: 'Missouri town fires half its city council over data center deal',
+                publisher: '<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRi4XPw5Z-nU0ClRsalvSb4yfRzc4gCNP4hnQ&s" alt="POLITICO">', 
+                title: 'Missouri town fires half its city council over data center deal',
                 time: '12h ago', authors: 'Jeff Tomich', swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
             },
 
@@ -100,19 +107,22 @@ createApp({
             {
                 id: 'pol-1', layout: 'hero', sectionTitle: 'Politics',
                 image: 'https://dims.apnews.com/dims4/default/1db0337/2147483647/strip/true/crop/5000x3439+0+0/resize/1440x990!/format/webp/quality/90/?url=https%3A%2F%2Fassets.apnews.com%2F6f%2F3c%2F7b67d80fae0429c3ba1b862195d1%2F3f9e40474b2d438bbc59c175026f7f0d',
-                publisher: '<span style="color: #FF3333; font-weight: bold;">AP News</span>', title: 'Swalwell exits California governor’s race after assault allegations',
+                publisher: '<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Associated_Press_logo_2012.svg/250px-Associated_Press_logo_2012.svg.png" alt="AP News">', 
+                title: 'Swalwell exits California governor’s race after assault allegations',
                 time: '2h ago', authors: '', swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
             },
             {
                 id: 'pol-2', layout: 'list',
                 image: 'https://www.politico.com/dims4/default/resize/630/quality/90/format/webp?url=https%3A%2F%2Fstatic.politico.com%2Ffc%2F92%2Fa845fec9435f94c0fbae9eea1056%2Fu-s-congress-84756.jpg',
-                publisher: 'POLITICO', title: 'Johnson backs Trump, Vance in criticism of pope',
+                publisher: '<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRi4XPw5Z-nU0ClRsalvSb4yfRzc4gCNP4hnQ&s" alt="POLITICO">', 
+                title: 'Johnson backs Trump, Vance in criticism of pope',
                 time: '14h ago', authors: 'Cheyanne M. Daniels', swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
             },
             {
                 id: 'pol-3', layout: 'list',
-                image: 'https://www.washingtonpost.com/wp-apps/imrs.php?src=https://arc-anglerfish-washpost-prod-washpost.s3.amazonaws.com/public/T4P6AYNNLQET36OYIVFB3GAKO4size-normalized.jpg&w=1440&impolicy=high_res',
-                publisher: 'The Washington Post', title: 'U.S. sends thousands more troops to Mideast as Trump seeks to squeeze Iran',
+                image: 'https://www.amu.apus.edu/images/site/amu/us-iran.jpg',
+                publisher: '<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/The_Logo_of_The_Washington_Post_Newspaper.svg/1280px-The_Logo_of_The_Washington_Post_Newspaper.svg.png" alt="The Washington Post">', 
+                title: 'U.S. sends thousands more troops to Mideast as Trump seeks to squeeze Iran',
                 time: '12h ago', authors: '', swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
             },
 
@@ -168,9 +178,16 @@ createApp({
                 swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
             },
 
-            // === ГЛАВНЫЙ РЕЦЕПТ (Featured Recipe) ===
+            // === FOOD (ЕДА) ===
+            
+            // 1. Главный большой заголовок
             {
-                id: 'featured-recipe-1', layout: 'recipe-hero', sectionTitle: 'Featured Recipe', sectionSubtitle: 'Selected by the Apple News editors.',
+                id: 'food-header', layout: 'hidden', sectionTitle: 'Food', disableSwipe: true
+            },
+
+            // 2. Первый подзаголовок (Featured Recipe)
+            {
+                id: 'featured-recipe-1', layout: 'recipe-hero', sectionTitle: 'Featured Recipe', sectionSubtitle: 'Selected by the Apple News editors.', isSubHeader: true,
                 image: 'https://hips.hearstapps.com/hmg-prod/images/3807b2a1-0a1b-4d4d-9ebe-caaefc5b2cac.jpg', 
                 publisher: '<span style="font-family: Georgia, serif; font-size: 22px;">delish</span>', 
                 title: 'Crispy Green-Goddess Tofu',
@@ -178,12 +195,12 @@ createApp({
                 time: '1h', disableSwipe: true
             },
 
-            // === РЕЦЕПТЫ (Горизонтальный скролл) ===
+            // 3. Второй подзаголовок (Recipes For You)
             {
-                id: 'recipes-block', layout: 'recipe-carousel', sectionTitle: 'Recipes For You',
+                id: 'recipes-block', layout: 'recipe-carousel', sectionTitle: 'Recipes For You', isSubHeader: true,
                 disableSwipe: true,
                 cards: [
-                    { id: 'rec-1', isAppleNewsPlus: true, image: 'https://www.allrecipes.com/thmb/3vI9SYy4cMXun82_Y97CYowjUCk=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Freezer-Door-Manhattan-PIFS-Beauty-4x3-408b14e9ea1c48a8b909122d1d65b14b.jpg', publisher: 'allrecipes', title: 'Freezer Door Manhattan', time: '2h 10m' },
+                    { id: 'rec-1', isAppleNewsPlus: true, image: 'https://images.food52.com/a2PYZYizq3QxcGjbvjBsXCnvSbU=/031efcab-244d-46be-931f-f66dc2d6dad8--Freezer_Door_Manhattan_Credit_Lucianna_McIntosh.jpg?w=3840&q=75', publisher: 'allrecipes', title: 'Freezer Door Manhattan', time: '2h 10m' },
                     { id: 'rec-2', isAppleNewsPlus: true, image: 'https://lemonsandzest.com/wp-content/uploads/2021/07/Protein-Overnight-Oats-3.2.jpg', publisher: 'EatingWell', title: 'Peanut Butter Protein Overnight Oats', time: '8h' },
                     { id: 'rec-3', isAppleNewsPlus: true, image: 'https://cleananddelicious.com/wp-content/uploads/2025/01/avocado-toast.jpg', publisher: 'Veggie', title: 'Avocado Toast', time: '10m' }
                 ],
@@ -191,7 +208,6 @@ createApp({
                     { text: 'Recipe Catalog', icon: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h4v4H4zm6 0h4v4h-4zm6 0h4v4h-4zM4 10h4v4H4zm6 0h4v4h-4zm6 0h4v4h-4zM4 16h4v4H4zm6 0h4v4h-4zm6 0h4v4h-4z"/></svg>' },
                     { text: 'Saved Recipes', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/></svg>' }
                 ],
-                
             },
 
             // === ИГРЫ И ГОЛОВОЛОМКИ (Latest Puzzles) ===
@@ -201,7 +217,7 @@ createApp({
                 puzzles: [
                     {
                         type: 'hero', id: 'puz-1',
-                        image: '<img src="ico/game.png">', 
+                        image: 'ico/game.png', 
                         gameName: 'Emoji Game',
                         title: 'Wednesday, Apr 15, 2569 BE',
                         author: ''
@@ -253,7 +269,7 @@ createApp({
             },
             {
                 id: 'sci-2', layout: 'list',
-                image: 'https://cdn.mos.cms.futurecdn.net/5dL3xQGKEDTXX4RCTy3q8f-650-80.jpg.webp',
+                image: 'https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/19727037/Dragon_Carousel_0007_2.jpg?quality=90&strip=all&crop=7.8125,0,84.375,100',
                 publisher: 'SPACE.com', title: 'SpaceX launches two Starlink satellite groups 19 hours apart',
                 time: '16h ago', authors: 'Robert Z. Pearlman', swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
             },
@@ -275,8 +291,6 @@ createApp({
                 disclaimer: '~37% of filers qualify. Simple Form 1040 returns only (no schedules, except for EITC, CTC, student loan interest, and Schedule 1-A).'
             },
 
-            
-
             // === SPORTS ===
             {
                 id: 'sports-header', layout: 'sports-scores', sectionTitle: 'Sports',
@@ -297,7 +311,7 @@ createApp({
                     {
                         league: 'MLB',
                         team1: { name: 'LAA', score: '9-9', icon: '<img src = "https://sports.cbsimg.net/fly/images/team-logos/light/301.svg">' },
-                        team2: { name: 'NYY', score: '9-8', icon: '<img src = https://www.freepnglogos.com/uploads/yankees-logo-png/new-york-yankees-blank-printable-logo-png-20.png">' },
+                        team2: { name: 'NYY', score: '9-8', icon: '<img src = "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/NewYorkYankees_caplogo.svg/500px-NewYorkYankees_caplogo.svg.png">' },
                         time: '4/16 · 01:05'
                     },
                     {
@@ -310,13 +324,6 @@ createApp({
             },
             {
                 id: 'spo-1', layout: 'list', 
-                /* Убрали отсюда sectionTitle, так как он теперь в блоке выше */
-                image: 'https://imageio.forbes.com/specials-images/imageserve/68adfe41f07d0fb1351c3157/Dallas-Cowboys-quarterback-Dak-Prescott-/0x0.jpg?format=jpg&height=1093&width=1639',
-                publisher: 'NFL', title: '2026 NFL mock draft 2.0: Cowboys take Rueben Bain Jr.; Steelers and Eagles select receivers',
-                time: '2h ago', authors: 'Mike Band', swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
-            },
-            {
-                id: 'spo-1', layout: 'list', sectionTitle: 'Sports',
                 image: 'https://imageio.forbes.com/specials-images/imageserve/68adfe41f07d0fb1351c3157/Dallas-Cowboys-quarterback-Dak-Prescott-/0x0.jpg?format=jpg&height=1093&width=1639',
                 publisher: 'NFL', title: '2026 NFL mock draft 2.0: Cowboys take Rueben Bain Jr.; Steelers and Eagles select receivers',
                 time: '2h ago', authors: 'Mike Band', swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
@@ -352,7 +359,8 @@ createApp({
             {
                 id: 'fash-3', layout: 'list',
                 image: 'https://static01.nyt.com/images/2026/04/15/multimedia/15FASH-WEB-harlow-vhgl/15FASH-WEB-harlow-vhgl-superJumbo.jpg?quality=75&auto=webp',
-                publisher: 'The New York Times', title: 'What Was the Deal With Jack Harlow\'s Giant Hat?',
+                publisher: '<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/NewYorkTimes.svg/1280px-NewYorkTimes.svg.png" alt="The New York Times">', 
+                title: 'What Was the Deal With Jack Harlow\'s Giant Hat?',
                 time: '12h ago', authors: '', swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
             },
 
@@ -373,7 +381,8 @@ createApp({
             {
                 id: 'trav-3', layout: 'list',
                 image: 'https://nypost.com/wp-content/uploads/sites/2/2026/04/skyscannersoccer.jpg?resize=1024&quality=75&strip=all',
-                publisher: 'NEW YORK POST', title: "Scored tickets? Use this Soccer Flight Finder to save your summer",
+                publisher: '<img src="https://upload.wikimedia.org/wikipedia/commons/1/13/New_York_Post_logo.png" alt="NEW YORK POST">', 
+                title: "Scored tickets? Use this Soccer Flight Finder to save your summer",
                 time: '1d ago', authors: 'Kendall Cornish',
                 swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
             }

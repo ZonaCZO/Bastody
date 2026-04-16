@@ -38,19 +38,19 @@
                         
                         <div v-if="news.sectionTitle" class="section-header" :class="{'trending-header': news.isTrendingSection}">
                             <div class="section-title-wrap">
-                                <h2>{{ news.sectionTitle }}</h2>
+                                <h2 :style="news.isSubHeader ? 'font-size: 22px; margin-top: 10px;' : ''">{{ news.sectionTitle }}</h2>
                                 <p v-if="news.sectionSubtitle">{{ news.sectionSubtitle }}</p>
                             </div>
-                                <div class="section-actions">
-                                    <button v-if="!['For You', 'Top Stories'].includes(news.sectionTitle)" class="section-add-btn">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                                            <line x1="12" y1="5" x2="12" y2="19"></line>
-                                            <line x1="5" y1="12" x2="19" y2="12"></line>
-                                        </svg>
-                                    </button>
-    
-                                    <button class="section-more-btn">•••</button>
-                                </div>
+                            
+                            <div class="section-actions" v-if="!news.isSubHeader">
+                                <button v-if="!['For You', 'Top Stories'].includes(news.sectionTitle)" class="section-add-btn">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    </svg>
+                                </button>
+                                <button class="section-more-btn">•••</button>
+                            </div>
                         </div>
                         <div v-else-if="news.layout === 'recipe-hero'" class="card-recipe-hero-block">
                             <div class="recipe-hero-image" :style="{ backgroundImage: 'url(' + news.image + ')' }">
@@ -284,7 +284,7 @@
 
                                         <template v-else>
                                             <div class="news-card-image" v-if="news.image" :style="{ backgroundImage: 'url(' + news.image + ')' }"></div>
-                                            <div v-if="news.layout === 'trending'" class="trending-rank">{{ news.rank }}</div>
+                                            <div v-if="news.layout === 'trending'" class="trending-rank" :class="'rank-' + news.rank">{{ news.rank }}</div>
                                             <div class="news-card-content">
                                                 <div class="publisher">
                                                     <span v-if="news.isAppleNewsPlus && !news.hasNewsPlusHeader" class="news-plus">
