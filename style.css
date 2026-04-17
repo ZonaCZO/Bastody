@@ -91,11 +91,20 @@
         display: flex; align-items: center; gap: 6px; white-space: nowrap; cursor: pointer;
     }
     .topic-icon { 
-    font-size: 16px; 
+    width: 18px;   /* 👈 Явно задаем ширину контейнера */
+    height: 18px;  /* 👈 Явно задаем высоту контейнера */
     opacity: 0.6; 
     display: flex; 
     align-items: center;
-    color: #000; /* Убеждаемся, что currentColor для SVG будет черным */
+    justify-content: center;
+    color: #000;
+}
+
+.topic-icon svg {
+    width: 100%;   /* Растягиваем SVG на весь контейнер */
+    height: 100%; 
+    fill: currentColor; 
+    display: block;
 }
 /* === КАРУСЕЛЬ РЕЦЕПТОВ И МЕНЮ === */
 .recipe-carousel {
@@ -547,8 +556,18 @@
     opacity: 0.8; 
 }
     .nav-item.active { opacity: 1; color: var(--apple-red); }
-    .icon { width: 26px; height: 26px; background-color: currentColor; mask-size: contain; mask-repeat: no-repeat; mask-position: center; -webkit-mask-size: contain; -webkit-mask-repeat: no-repeat; -webkit-mask-position: center; }
-
+    .icon { 
+    width: 26px; 
+    height: 26px; 
+    background-color: currentColor; 
+    mask-size: contain; 
+    mask-repeat: no-repeat; 
+    mask-position: center; 
+    -webkit-mask-size: contain; 
+    -webkit-mask-repeat: no-repeat; 
+    -webkit-mask-position: center;
+    display: block; /* 👈 Убеждаемся, что это блочный элемент */
+}
     .search-fab {
     pointer-events: auto; 
     width: 60px; 
