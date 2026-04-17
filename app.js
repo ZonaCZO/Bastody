@@ -32,7 +32,7 @@ createApp({
             return { maskImage: url, WebkitMaskImage: url };
         };
 
-            const topStories = ref([
+        const topStories = ref([
             // === TOP STORIES ===
             {
                 id: 'top-1', layout: 'hero', sectionTitle: 'Top Stories', sectionColor: 'var(--apple-red)',
@@ -66,7 +66,7 @@ createApp({
             {
                 id: 'top-5', layout: 'list',
                 image: 'https://insider-gaming.com/wp-content/uploads/2026/04/Black-Flag-rating.jpg',
-                publisher: 'Insider Gaming', title: "ASSASSIN'S CREED BLACK FLAG REMAKE LEAK CONFIRMS NEW CONTENT",
+                publisher: 'Insider Gaming', title: "Assassin's Creed Black Flag Remake Leak Confirms New Content",
                 time: '1h ago', authors: 'Sam Sepiol', swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
             },
             {
@@ -158,7 +158,7 @@ createApp({
             {
                 id: 'ent-3', layout: 'list',
                 image: 'https://assets.blabbermouth.net/media/amyleeapril2026_638.jpg',
-                publisher: 'BLABBERMOUTH.NET', title: "EVANESCENCE'S AMY LEE On Upcoming 'Sanctuary' Album",
+                publisher: 'BLABBERMOUTH.NET', title: "Evanescence's Amy Lee On Upcoming 'Sanctuary' Album",
                 time: '4h ago', authors: '', swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
             },
 
@@ -170,7 +170,7 @@ createApp({
             },
             {
                 id: 'trend-2', layout: 'trending', rank: 2,
-                publisher: '<span style="color: #D22027; font-weight: 900;">Rolling Stone</span>', title: "THE STROKES SET SUMMER TOUR IN SUPPORT OF 'REALITY AWAITS'",
+                publisher: '<span style="color: #D22027; font-weight: 900;">Rolling Stone</span>', title: "The Strokes Set Summer Tour in Support of 'Reality Awaits'",
                 time: '5h ago', authors: 'Daniel Kreps',
                 swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
             },
@@ -199,7 +199,7 @@ createApp({
             },
             // === FOR YOU (FOOD) ===
             {
-                id: 'food-foryou-1', layout: 'list', sectionTitle: 'For You', isSubHeader: true,
+                id: 'food-foryou-1', layout: 'list', sectionTitle: 'For You', isSubHeader: true, 
                 image: 'https://www.gannett-cdn.com/authoring/authoring-images/2024/11/01/USAT/75996179007-foods-that-cause-and-foods-that-combat-inflammation.jpg?crop=7199,5399,x0,y0',
                 publisher: '<span style="font-weight: 900; font-family: Helvetica, Arial, sans-serif; letter-spacing: -0.5px;">USA TODAY</span>', 
                 title: 'Foods that cause and combat inflammation',
@@ -217,26 +217,26 @@ createApp({
 
             // 3. Второй подзаголовок (Recipes For You)
             {
-                id: 'recipes-block', layout: 'recipe-carousel', sectionTitle: 'Recipes For You', isSubHeader: true,
+                id: 'recipes-block', layout: 'recipe-carousel', sectionTitle: 'Recipes For You', sectionSubtitle: 'Selected by the Apple News editors.', isSubHeader: true,
                 disableSwipe: true,
                 cards: [
                     { 
                         id: 'rec-1', isAppleNewsPlus: true, 
-                        bgColor: 'rgba(140, 119, 100, 0.6)', /* 👈 Полупрозрачный бежевый */
+                        bgColor: 'rgba(140, 119, 100, 0.6)', 
                         image: 'https://images.food52.com/a2PYZYizq3QxcGjbvjBsXCnvSbU=/031efcab-244d-46be-931f-f66dc2d6dad8--Freezer_Door_Manhattan_Credit_Lucianna_McIntosh.jpg?w=3840&q=75', 
                         publisher: 'AllRecipcer',
                         title: 'Freezer Door Manhattan', time: '2h 10m' 
                     },
                     { 
                         id: 'rec-2', isAppleNewsPlus: true, 
-                        bgColor: 'rgba(59, 85, 83, 0.6)', /* 👈 Полупрозрачный темно-бирюзовый */
+                        bgColor: 'rgba(59, 85, 83, 0.6)', 
                         image: 'https://lemonsandzest.com/wp-content/uploads/2021/07/Protein-Overnight-Oats-3.2.jpg', 
                         publisher: 'EatingWell', 
                         title: 'Peanut Butter Protein Overnight Oats', time: '8h' 
                     },
                     { 
                         id: 'rec-3', isAppleNewsPlus: true, 
-                        bgColor: 'rgba(46, 65, 48, 0.6)', /* 👈 Полупрозрачный темно-зеленый */
+                        bgColor: 'rgba(46, 65, 48, 0.6)', 
                         image: 'https://cleananddelicious.com/wp-content/uploads/2025/01/avocado-toast.jpg', 
                         publisher: 'Veggie', 
                         title: 'Avocado Toast', time: '10m' 
@@ -361,7 +361,7 @@ createApp({
                 ]
             },
             {
-                id: 'spo-1', layout: 'list', 
+                id: 'spo-1', layout: 'list', sectionTitle: 'Sport For You', sectionSubtitle: 'Selected by the Apple News editors.', isSubHeader: true,
                 image: 'https://imageio.forbes.com/specials-images/imageserve/68adfe41f07d0fb1351c3157/Dallas-Cowboys-quarterback-Dak-Prescott-/0x0.jpg?format=jpg&height=1093&width=1639',
                 publisher: 'NFL', title: '2026 NFL mock draft 2.0: Cowboys take Rueben Bain Jr.; Steelers and Eagles select receivers',
                 time: '2h ago', authors: 'Mike Band', swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
@@ -382,14 +382,14 @@ createApp({
             // === FASHION ===
             {
                 id: 'fash-1', layout: 'list', sectionTitle: 'Fashion', hasNewsPlusHeader: true,
-                image: 'https://s.yimg.com/ny/api/res/1.2/xSj8NdHiw3ewyFntOF2wA--/YXBwaWQ9aGlnaGxhbmRlcjt3PTE5MjA7aD0yODgwO2NmPXdIYnA-/https://media.zenfs.com/en/harpers_bazaar_391/46d1c6a0a2e25ff94aad115a17ebb0af',
+                image: 'https://i.cbc.ca/ais/1.7630156,1757522833000/full/max/0/default.jpg?im=Crop%2Crect%3D%280%2C148%2C5472%2C3078%29%3B',
                 publisher: 'BAZAAR', title: "Hilary Duff's Backless Dress Solidifies Her New Fashion Era",
                 time: '1d ago', authors: 'Joel Calfee',
                 swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
             },
             {
                 id: 'fash-2', layout: 'list',
-                image: 'https://placehold.co/400x300/F2F2F7/8e8e93?text=Moda+Man+Closes',
+                image: 'https://businessden.com/wp-content/uploads/2026/04/jon-clothes-scaled.jpg',
                 publisher: 'THE DENVER POST', title: "Downtown men's fashion retailer to close after decades in business",
                 time: '8h ago', authors: '',
                 swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
@@ -425,7 +425,6 @@ createApp({
                 swipeState: { startX: 0, startY: 0, startOffsetX: 0, offsetX: 0, isSwiping: false, isDragging: false, maxOffset: SWIPE_OFFSET_NORMAL }
             }
         ]);
-
 
         const updateDate = () => {
             const now = new Date();

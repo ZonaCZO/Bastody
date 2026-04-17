@@ -38,14 +38,14 @@
                         
                         <div v-if="news.sectionTitle" class="section-header" :class="{'trending-header': news.isTrendingSection}">
                             <div class="section-title-wrap">
-                                <h2 :style="(news.isSubHeader ? 'font-size: 18px; margin-top: 10px; ' : '') + (news.sectionColor ? 'color: ' + news.sectionColor + ';' : '')">{{ news.sectionTitle }}</h2>
+                                <h2 :style="(news.isSubHeader ? 'font-size: 22px; font-weight: 700; letter-spacing: -0.5px; margin-top: 10px; ' : '') + (news.sectionTitle === 'Top Stories' ? 'color: var(--apple-red);' : (news.sectionTitle === 'For You' && !news.isSubHeader) ? 'color: var(--apple-green);' : '')">{{ news.sectionTitle }}</h2>
                                 <p v-if="news.sectionSubtitle">{{ news.sectionSubtitle }}</p>
                             </div>
                             <div class="section-actions" v-if="!news.isSubHeader">
-                                <button v-if="!['For You', 'Top Stories'].includes(news.sectionTitle)" class="section-add-btn">
+                                <button v-if="!['For You', 'Top Stories', 'Politics', 'Food', 'Sport', 'Trending Stories', 'Latest Puzzles'].includes(news.sectionTitle)" class="section-add-btn">
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                                 </button>
-                                <button class="section-more-btn">•••</button>
+                                <button v-if="!['Top Stories', 'For You'].includes(news.sectionTitle)" class="section-more-btn">•••</button>
                             </div>
                         </div>
 
@@ -253,7 +253,7 @@
                                                     <span v-html="card.publisher"></span>
                                                 </div>
                                                 <h3 class="headline">{{ card.title }}</h3>
-                                                <div class="meta"><span>{{ card.time }} · {{ card.authors }}</span><span>•••</span></div>
+                                                <div class="meta"><span>{{ news.time }} · {{ news.authors }}</span><span class="card-more-btn">•••</span></div>
                                             </div>
                                         </template>
                                     </div>
@@ -279,7 +279,7 @@
                                                     <span v-html="news.publisher"></span>
                                                 </div>
                                                 <h3 class="headline">{{ news.title }}</h3>
-                                                <div class="meta"><span>{{ news.time }} · {{ news.authors }}</span><span>•••</span></div>
+                                                <div class="meta"><span>{{ news.time }} · {{ news.authors }}</span><span class="card-more-btn">•••</span></div>
                                             </div>
                                         </div>
 
@@ -295,7 +295,7 @@
                                                     <span v-html="news.publisher"></span>
                                                 </div>
                                                 <h3 class="headline">{{ news.title }}</h3>
-                                                <div class="meta"><span>{{ news.time }} · {{ news.authors }}</span><span>•••</span></div>
+                                                <div class="meta"><span>{{ news.time }} · {{ news.authors }}</span><span class="card-more-btn">•••</span></div>
                                             </div>
                                         </template>
                                     </div>
