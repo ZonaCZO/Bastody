@@ -217,7 +217,7 @@ createApp({
 
             // 3. Второй подзаголовок (Recipes For You)
             {
-                id: 'recipes-block', layout: 'recipe-carousel', sectionTitle: 'Recipes For You', sectionSubtitle: 'Selected by the Apple News editors.', isSubHeader: true,
+                id: 'recipes-block', layout: 'recipe-carousel', sectionTitle: 'Recipes For You', sectionSubtitle: 'Selected by the Apple News editors.', isSubHeader: true, moreText: 'More Recipes >',
                 disableSwipe: true,
                 cards: [
                     { 

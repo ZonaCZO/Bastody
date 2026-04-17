@@ -97,146 +97,109 @@
     align-items: center;
     color: #000; /* Убеждаемся, что currentColor для SVG будет черным */
 }
-/* === КАРУСЕЛЬ РЕЦЕПТОВ (Горизонтальная) === */
-.card-recipe-carousel-block {
-    grid-column: span 2;
-    margin: 0 -20px; /* Растягиваем на всю ширину экрана */
-    padding-bottom: 20px;
+/* === КАРУСЕЛЬ РЕЦЕПТОВ И МЕНЮ === */
+.recipe-carousel {
+    grid-column: span 2; margin: 0 -20px; padding-bottom: 20px;
 }
-.recipe-carousel-wrapper { 
-    width: 100%; 
-    overflow-x: auto; 
-    scroll-snap-type: x mandatory; 
-    scrollbar-width: none; 
-    /* 👈 УКАЗЫВАЕМ БРАУЗЕРУ ТОЧКУ ПРИЛИПАНИЯ, чтобы он не "съедал" левый отступ */
-    scroll-padding-left: 20px; 
+.recipe-carousel__wrapper { 
+    width: 100%; overflow-x: auto; scroll-snap-type: x mandatory; 
+    scrollbar-width: none; scroll-padding-left: 20px; 
 }
-
-.recipe-carousel-scroll { 
-    display: flex; 
-    gap: 12px; 
-    padding: 0 20px; 
-    width: max-content; 
+.recipe-carousel__scroll { 
+    display: flex; gap: 12px; padding: 0 20px; width: max-content; 
+}
+.recipe-carousel__scroll::after {
+    content: ''; width: 8px; flex-shrink: 0; display: block;
 }
 
-/* 👈 ДОБАВЛЯЕМ НЕВИДИМЫЙ БЛОК В КОНЕЦ: Это лечит баг Safari с обрезанием правого отступа */
-.recipe-carousel-scroll::after {
-    content: '';
-    width: 8px; /* Дополняет gap (12px) до полных 20px отступа справа */
-    flex-shrink: 0;
-    display: block;
+.recipe-card { 
+    width: 160px; scroll-snap-align: start; display: flex; flex-direction: column; gap: 12px; 
 }
+.recipe-card__image-wrap {
+    width: 100%; height: 210px; border-radius: 16px; background-size: cover;
+    background-position: center; position: relative; overflow: hidden;
+}
+.recipe-card__gradient {
+    position: absolute; top: 0; left: 0; right: 0; height: 60px; 
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); z-index: 1;
+}
+.recipe-card__overlay {
+    position: absolute; top: 0; left: 0; right: 0; padding: 12px;
+    display: flex; justify-content: space-between; align-items: flex-start; color: white; z-index: 2;
+}
+.recipe-card__publisher {
+    display: flex; flex-direction: column; font-size: 13px; font-weight: 600; text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+.recipe-card__label {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.5px; opacity: 0.9; margin-top: 2px;
+}
+.recipe-card__icon { 
+    width: 22px; height: 22px; stroke: white; fill: none; stroke-width: 2; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.4));
+}
+.recipe-card__info { display: flex; flex-direction: column; gap: 4px; }
+.recipe-card__title {
+    margin: 0; font-size: 18px; font-weight: 600; line-height: 1.2; color: #000; letter-spacing: -0.4px;
+}
+.recipe-card__time {
+    display: flex; align-items: center; gap: 4px; font-size: 13px; color: var(--text-secondary); font-weight: 500;
+}
+.recipe-card__time svg { width: 14px; height: 14px; }
 
-.recipe-carousel-card { 
-    width: 160px; 
-    scroll-snap-align: start; /* 👈 Теперь карточки будут идеально прилипать ровно к отступу 20px */
-    display: flex; 
-    flex-direction: column; 
-    gap: 12px; 
-}
-.recipe-carousel-image {
-    width: 100%;
-    height: 210px;
-    border-radius: 16px;
-    background-size: cover;
-    background-position: center;
-    position: relative;
-    overflow: hidden;
-    /* box-shadow: убрали, так как теперь есть красивый блюр */
-}
-
-/* МАГИЯ APPLE: Плавный градиент с размытием (frosted glass) */
-.recipe-carousel-gradient {
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 60px; /* Высота плашки */
-    backdrop-filter: blur(20px); /* 👈 Мощное размытие */
-    -webkit-backdrop-filter: blur(20px); /* Для iPhone/Safari */
-    
-    z-index: 1;
-    /* Больше никаких масок и opacity! Цвет регулируется через rgba в app.js */
-}
-
-.recipe-carousel-overlay {
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    padding: 12px;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    color: white;
-    z-index: 2; /* Текст должен быть поверх блюра */
-}
-.recipe-carousel-publisher {
-    display: flex;
-    flex-direction: column;
-    font-size: 13px;
-    font-weight: 600;
-    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
-}
-.recipe-carousel-label {
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    opacity: 0.9;
-    margin-top: 2px;
-}
-.recipe-icon { width: 22px; height: 22px; stroke: white; fill: none; stroke-width: 2; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.4));}
-.recipe-carousel-info { display: flex; flex-direction: column; gap: 4px; }
-.recipe-carousel-title {
-    margin: 0; font-size: 18px; font-weight: 600; line-height: 1.2;
-    color: #000; letter-spacing: -0.4px;
-}
-.recipe-carousel-time {
-    display: flex; align-items: center; gap: 4px;
-    font-size: 13px; color: var(--text-secondary); font-weight: 500;
-}
-.recipe-carousel-time svg { width: 14px; height: 14px; }
-
-/* === МЕНЮ ПОД РЕЦЕПТАМИ === */
-.recipe-links {
-    margin: 24px 20px 0 20px;
+/* Меню под рецептами */
+.recipe-menu {
+    margin: 10px 20px 0 20px; /* Уменьшили верхний отступ с 24px до 10px */
     border-top: 1px solid var(--border-color);
 }
-.recipe-link-item {
+.recipe-menu__item {
     display: flex; justify-content: space-between; align-items: center;
     padding: 16px 0; border-bottom: 1px solid var(--border-color); cursor: pointer;
 }
-.recipe-link-left { display: flex; align-items: center; gap: 14px; }
-.recipe-link-icon {
+.recipe-menu__left { display: flex; align-items: center; gap: 14px; }
+.recipe-menu__icon {
     width: 24px; height: 24px; display: flex; justify-content: center; align-items: center; color: #000;
 }
-.recipe-link-icon svg { width: 100%; height: 100%; }
-.recipe-link-text { font-size: 18px; font-weight: 600; color: #000; letter-spacing: -0.4px;}
-.chevron-right { width: 20px; height: 20px; color: #C7C7CC; }
-.recipe-more-link {
-    text-align: right; padding: 16px 20px 0 20px; font-size: 16px;
-    font-weight: 800; color: #000; cursor: pointer;
+.recipe-menu__icon svg { width: 100%; height: 100%; }
+.recipe-menu__text { font-size: 18px; font-weight: 600; color: #000; letter-spacing: -0.4px;}
+.recipe-menu__chevron { width: 20px; height: 20px; color: #C7C7CC; }
+.recipe-menu__more-link {
+    text-align: right; 
+    padding: 12px 20px 0 20px; 
+    font-size: 16px; 
+    font-weight: 800; 
+    color: #000; 
+    cursor: pointer;
 }
-
-/* === ЛОГОТИП NEWS+ СНИЗУ === */
+/* Возвращаем стили для маленького логотипа News+ */
 .news-plus-logo-small {
-    display: flex; align-items: center; gap: 2px;
-    color: var(--apple-red); font-size: 13px; font-weight: 800; margin-top: 2px;
+    display: flex; 
+    align-items: center; 
+    gap: 2px;
+    color: var(--apple-red); 
+    font-size: 13px; 
+    font-weight: 800; 
+    margin-top: 2px;
 }
-.news-plus-logo-small svg { width: 12px; height: 12px; fill: currentColor; margin-bottom: 1px;}
 
-/* Добавляем это правило для выравнивания SVG внутри span */
-.topic-icon svg {
-    width: 18px;  /* 👈 Строго фиксируем ширину */
-    height: 18px; /* 👈 Строго фиксируем высоту */
+.news-plus-logo-small svg { 
+    width: 12px; 
+    height: 12px; 
     fill: currentColor; 
-    display: block;
+    margin-bottom: 1px;
 }
 
     /* === СЕТКА === */
     .feed-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 16px; padding: 0 16px; }
 
     /* === ЗАГОЛОВКИ СЕКЦИЙ === */
-    .section-header { 
-        grid-column: span 2; margin-top: 24px; margin-bottom: 4px; padding-bottom: 8px;
-        display: flex; justify-content: space-between; align-items: flex-start;
-    }
+   .section-header { 
+    grid-column: span 2; 
+    margin-top: 12px;    /* Было 16px — прижимаем заголовок к блоку выше */
+    margin-bottom: 0px;   /* Было 4px — прижимаем контент секции к заголовку */
+    padding-bottom: 4px;  /* Было 8px */
+    display: flex; 
+    justify-content: space-between; 
+    align-items: flex-start;
+}
     .section-header h2 { 
     font-size: 30px; /* 👈 Было 34px, сделали чуть меньше и аккуратнее */
     font-weight: 900; 
@@ -419,7 +382,7 @@
     .card-trending { 
         display: flex; 
         align-items: flex-start; 
-        padding: 16px 20px; /* 👈 Добавляем "запас" фона внутри (20px слева и справа) */
+        padding: 3px 20px; /* 👈 Добавляем "запас" фона внутри (20px слева и справа) */
         margin: 0 -20px;    /* 👈 Растягиваем сам фон до краев экрана */
         border: none; 
         box-shadow: none; 
@@ -597,8 +560,8 @@
     grid-column: span 2;
     display: flex;
     flex-direction: column;
-    gap: 14px;
-    margin-bottom: 24px;
+    gap: 8px;            /* Уменьшили расстояние между картинкой и текстом */
+    margin-bottom: 20px;
 }
 
 /* Внешний контейнер (рамка с матовым стеклом) */
@@ -720,92 +683,86 @@
 
 
 /* === ИГРЫ И ГОЛОВОЛОМКИ (Puzzles) === */
-.card-puzzles-block {
+.puzzles {
     grid-column: span 2;
     display: flex;
     flex-direction: column;
     margin-bottom: 24px;
 }
-.puzzle-cards-container {
+.puzzles__list {
     display: flex;
     flex-direction: column;
     gap: 16px;
 }
 
-/* Общие стили для текста внутри игр */
-.puzzle-news-plus-label {
-    display: flex; align-items: center; gap: 4px;
-    font-size: 13px; font-weight: 600; margin-bottom: 4px;
+/* Общие элементы карточки */
+.puzzle-card__label {
+    display: flex; 
+    align-items: center; 
+    gap: 6px; /* Отступ между News+ и названием игры */
+    font-size: 13px; 
+    font-weight: 600; 
+    margin-bottom: 4px;
 }
-.news-plus-red {
-    color: var(--apple-red); font-weight: 800;
-    display: flex; align-items: center; gap: 2px;
-}
-.news-plus-red svg { width: 12px; height: 12px; fill: currentColor; margin-bottom: 1px;}
-.puzzle-game-name { color: var(--text-secondary); }
+.puzzle-card__game-name { color: var(--text-secondary); }
 
-.puzzle-card-bottom {
+.puzzle-card__bottom {
     margin-top: auto;
     display: flex; justify-content: space-between; align-items: flex-end;
 }
-.puzzle-author { color: var(--text-secondary); font-size: 13px; }
-.puzzle-action-text { color: #000; font-size: 14px; font-weight: 700; }
-.puzzle-more-btn {
+.puzzle-card__author { color: var(--text-secondary); font-size: 13px; }
+.puzzle-card__action-text { color: #000; font-size: 14px; font-weight: 700; }
+.puzzle-card__spacer { flex: 1; }
+.puzzle-card__more-btn {
     background: transparent; border: none; color: var(--text-secondary);
     font-size: 16px; letter-spacing: 2px; padding: 0; cursor: pointer;
 }
-.puzzle-spacer { flex: 1; }
 
-/* Карточка Hero (С большой картинкой) */
-.puzzle-hero-card {
+/* Модификатор: Большая карточка (Hero) */
+.puzzle-card--hero {
     display: flex; flex-direction: column;
 }
-.puzzle-hero-image {
+.puzzle-card--hero .puzzle-card__image {
     width: 100%; height: 200px;
     background-size: cover; background-position: center;
 }
-.puzzle-hero-content {
-    padding: 16px;
-    display: flex; flex-direction: column;
+.puzzle-card--hero .puzzle-card__content {
+    padding: 16px; display: flex; flex-direction: column;
 }
-.puzzle-hero-title {
+.puzzle-card--hero .puzzle-card__title {
     font-size: 20px; font-weight: 700; margin: 4px 0 16px 0; color: #000; letter-spacing: -0.3px;
 }
 
-/* Карточка List (С квадратной иконкой слева) */
-.puzzle-list-card {
+/* Модификатор: Карточка списком (List) */
+.puzzle-card--list {
     display: flex; flex-direction: row; padding: 16px; align-items: stretch;
 }
-.puzzle-icon {
-    width: 90px; height: 90px;
-    border-radius: 18px;
-    flex-shrink: 0;
-    display: flex; justify-content: center; align-items: center;
+.puzzle-card--list .puzzle-card__icon {
+    width: 90px; 
+    height: 90px; 
+    border-radius: 18px; 
+    flex-shrink: 0; /* Не дает иконке сжиматься, если текст длинный */
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
 }
-.puzzle-icon svg {
-    width: 100%; height: 100%;
+.puzzle-card--list .puzzle-card__icon svg { width: 100%; height: 100%; }
+.puzzle-card--list .puzzle-card__content {
+    margin-left: 16px; display: flex; flex-direction: column; flex: 1;
 }
-.puzzle-list-content {
-    margin-left: 16px;
-    display: flex; flex-direction: column; flex: 1;
+.puzzle-card--list .puzzle-card__title {
+    font-size: 18px; font-weight: 600; margin: 0; color: #000; 
+    letter-spacing: -0.4px; line-height: 1.1;
 }
-.puzzle-list-title {
-    font-size: 18px; 
-    font-weight: 600;           /* 👈 Фирменная полужирность */
-    margin: 0; 
-    color: #000; 
-    letter-spacing: -0.4px;     /* 👈 Газетное сжатие */
-    line-height: 1.1;           /* 👈 Плотный межстрочный интервал */
-}
-.puzzle-subtitle {
+.puzzle-card__subtitle {
     font-size: 16px; font-weight: 600; margin-top: 4px; color: #000;
 }
-.puzzle-difficulty {
+.puzzle-card__difficulty {
     font-size: 14px; color: var(--text-secondary); margin-top: 2px;
 }
 
-/* Кнопка внизу */
-.puzzles-more-link {
+/* Ссылка под играми */
+.puzzles__more-link {
     text-align: right; padding: 24px 0 0 0; font-size: 16px;
     font-weight: 800; color: #000; cursor: pointer;
 }
@@ -815,7 +772,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 24px;
+    margin-bottom: 8px;
     padding-top: 10px;
 }
 .sports-teams-circles {
@@ -940,4 +897,18 @@
     color: var(--text-secondary); /* 👈 Оставляем их серыми */
     cursor: pointer;            /* 👈 При наведении будет пальчик */
     display: inline-block;      /* 👈 Помогает span правильно применять отступы */
+}
+.news-plus-red {
+    color: var(--apple-red); 
+    font-weight: 800;
+    display: inline-flex; 
+    align-items: center; 
+    gap: 2px;
+}
+
+.news-plus-red svg { 
+    width: 12px; 
+    height: 12px; 
+    fill: currentColor; 
+    margin-bottom: 1px;
 }
