@@ -567,8 +567,8 @@
 /* Внешний контейнер (рамка с матовым стеклом) */
 .recipe-hero-visual {
     position: relative;
-    width: 90%;          
-    margin-left: 8px;       
+    width: 95%;          
+    margin-left: -2px;       
     border-radius: 20px;
     background-size: cover;
     background-position: center;
