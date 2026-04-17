@@ -845,12 +845,12 @@
     letter-spacing: -0.2px; /* Делаем шрифт чуть плотнее */
 }
 /*score-team_*/
-.score-team-name {
+.score-team__name {
     font-weight: 700; /* Было 800 (экстра-жирный), сделали 600 (полужирный) */
     margin-right: 6px;
     color: #000;
 }
-.score-team-record {
+.score-team__record {
     color: var(--text-secondary);
     font-weight: 400; /* Было 500, сделали 400 (обычный текст) */
     font-size: 13px;
@@ -862,7 +862,7 @@
     opacity: 0.8;
     margin-top: 4px; 
 }
-.score-team-icon {
+.score-team__icon {
     margin-right: 6px;
     font-size: 14px; /* Размер для обычных эмодзи */
     display: inline-flex;
@@ -873,7 +873,7 @@
 }
 
 /* Правило конкретно для картинок внутри иконки */
-.score-team-icon img {
+.score-team__icon img {
     width: 100%;
     height: 100%;
     object-fit: contain; /* Картинка не сплюснется, а аккуратно впишется в квадрат 16x16 */

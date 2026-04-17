@@ -194,14 +194,14 @@
                                 <div class="score-column" v-for="score in news.scores" :key="score.league">
                                     <div class="score-league">{{ score.league }}</div>
                                     <div class="score-team">
-                                        <span class="score-team-icon" v-html="score.team1.icon"></span>
-                                        <span class="score-team-name">{{ score.team1.name }}</span>
-                                        <span class="score-team-record" v-if="score.team1.score">{{ score.team1.score }}</span>
+                                        <span class="score-team__icon" v-html="score.team1.icon"></span>
+                                        <span class="score-team__name">{{ score.team1.name }}</span>
+                                        <span class="score-team__record" v-if="score.team1.score">{{ score.team1.score }}</span>
                                     </div>
                                     <div class="score-team">
-                                        <span class="score-team-icon" v-html="score.team2.icon"></span>
-                                        <span class="score-team-name">{{ score.team2.name }}</span>
-                                        <span class="score-team-record" v-if="score.team2.score">{{ score.team2.score }}</span>
+                                        <span class="score-team__icon" v-html="score.team2.icon"></span>
+                                        <span class="score-team__name">{{ score.team2.name }}</span>
+                                        <span class="score-team__record" v-if="score.team2.score">{{ score.team2.score }}</span>
                                     </div>
                                     <div class="score-time">{{ score.time }}</div>
                                 </div>
