@@ -260,7 +260,13 @@
                                                     <span v-html="card.publisher"></span>
                                                 </div>
                                                 <h3 class="headline">{{ card.title }}</h3>
-                                                <div class="meta"><span>{{ news.time }} · {{ news.authors }}</span><span class="card-more-btn">•••</span></div>
+                                                <div class="meta">
+    <span>
+        {{ news.time }}
+        <template v-if="news.authors"> · {{ news.authors }}</template>
+    </span>
+    <span class="card-more-btn">•••</span>
+</div>
                                             </div>
                                         </template>
                                     </div>
@@ -286,7 +292,13 @@
                                                     <span v-html="news.publisher"></span>
                                                 </div>
                                                 <h3 class="headline">{{ news.title }}</h3>
-                                                <div class="meta"><span>{{ news.time }} · {{ news.authors }}</span><span class="card-more-btn">•••</span></div>
+                                                <div class="meta">
+    <span>
+        {{ news.time }}
+        <template v-if="news.authors"> · {{ news.authors }}</template>
+    </span>
+    <span class="card-more-btn">•••</span>
+</div>
                                             </div>
                                         </div>
 
@@ -302,7 +314,13 @@
                                                     <span v-html="news.publisher"></span>
                                                 </div>
                                                 <h3 class="headline">{{ news.title }}</h3>
-                                                <div class="meta"><span>{{ news.time }} · {{ news.authors }}</span><span class="card-more-btn">•••</span></div>
+                                               <div class="meta">
+    <span>
+        {{ news.time }}
+        <template v-if="news.authors"> · {{ news.authors }}</template>
+    </span>
+    <span class="card-more-btn">•••</span>
+</div>
                                             </div>
                                         </template>
                                     </div>
