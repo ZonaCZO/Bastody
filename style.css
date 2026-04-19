@@ -416,7 +416,7 @@
     .card-trending { 
         display: flex; 
         align-items: flex-start; 
-        padding: 12px 8px 12px 20px; /* 👈 Добавляем "запас" фона внутри (20px слева и справа) */
+        padding: 9px 8px 9px 20px; /* 👈 Добавляем "запас" фона внутри (20px слева и справа) */
         margin: 0 -20px;    /* 👈 Растягиваем сам фон до краев экрана */
         border: none; 
         box-shadow: none; 
