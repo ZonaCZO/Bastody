@@ -15,7 +15,7 @@
     body, html {
         margin: 0; padding: 0; width: 100%; height: 100%;
         background-color: var(--bg-color);
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
         overscroll-behavior-y: none;
     }
 
@@ -147,10 +147,10 @@
 }
 .recipe-card__info { display: flex; flex-direction: column; gap: 4px; }
 .recipe-card__title {
-    margin: 0; font-size: 18px; font-weight: 600; line-height: 1.2; color: #000; letter-spacing: -0.4px;
+    margin: 0; font-size: 16px; font-weight: 600; line-height: 1.2; color: #000; letter-spacing: -0.4px;
 }
 .recipe-card__time {
-    display: flex; align-items: center; gap: 4px; font-size: 13px; color: var(--text-secondary); font-weight: 500;
+    display: flex; align-items: center; gap: 4px; font-size: 12px; color: var(--text-secondary); font-weight: 500;
 }
 .recipe-card__time svg { width: 14px; height: 14px; }
 
@@ -194,7 +194,7 @@
     align-items: center; 
     gap: 2px;
     color: var(--apple-red); 
-    font-size: 12px; 
+    font-size: 11px; 
     font-weight: 800; 
     margin-top: 2px;
 }
@@ -328,10 +328,10 @@
     flex: 1; 
 }
 .card-grid-half .headline { 
-    font-size: 16px;            /* Делаем размер точно таким же, как в списках */
-    font-weight: 600;           
-    line-height: 1.35;          /* Раздвигаем строки (было 1.1) */
-    letter-spacing: -0.35px;     /* Унифицируем межбуквенное расстояние */
+    font-size: 16px;            
+    font-weight: 600;           /* 👈 Было 600 */
+    line-height: 1.18;          /* 👈 Было 1.35 */
+    letter-spacing: -0.5px;     /* 👈 Было -0.35px */
     margin: 0 0 6px 0; 
     color: #000;
 }
@@ -379,11 +379,11 @@
     grid-column: 1; 
     grid-row: 2; 
     align-self: start; 
-    font-size: 16px;            /* Уменьшаем до 15px */
-    font-weight: 600;           
-    line-height: 1.35;          /* Делаем межстрочный интервал еще больше */
-    letter-spacing: -0.4px;     /* Чуть ослабили сжатие */
-    margin: 0 0 6px 0; 
+    font-size: 16px;            
+    font-weight: 600;           /* 👈 Делаем текст по-настоящему жирным (было 600) */
+    line-height: 1.18;          /* 👈 Сжимаем строки почти вплотную (было 1.35) */
+    letter-spacing: -0.5px;     /* 👈 Прижимаем буквы друг к другу */
+    margin: 0 0 6px 0;
 }
 
 /* Выносим время и троеточие в самый низ на всю ширину карточки */
@@ -416,7 +416,7 @@
     .card-trending { 
         display: flex; 
         align-items: flex-start; 
-        padding: 8px 8px 8px 20px; /* 👈 Добавляем "запас" фона внутри (20px слева и справа) */
+        padding: 12px 8px 12px 20px; /* 👈 Добавляем "запас" фона внутри (20px слева и справа) */
         margin: 0 -20px;    /* 👈 Растягиваем сам фон до краев экрана */
         border: none; 
         box-shadow: none; 
@@ -425,18 +425,18 @@
         background: var(--bg-color); /* 👈 Делаем фон белым для красоты (если хочешь оставить серым, напиши var(--bg-color)) */
     } 
     .card-trending .headline { 
-    font-size: 16px;            /* 👈 Уменьшили шрифт (был 18px) */
-    font-weight: 600;           
-    line-height: 1.35;          /* 👈 Увеличили высоту линии */
-    letter-spacing: -0.35px;     
+  font-size: 16px;            
+    font-weight: 600;           /* 👈 Было 600 */
+    line-height: 1.18;          /* 👈 Было 1.35 */
+    letter-spacing: -0.5px;     /* 👈 Было -0.35px */
     margin-top: 4px; 
     color: #000;
 }
     
     .card-trending:last-child { border-bottom: none; }
     .trending-rank { 
-        width: 52px; /* Было 36px, сделали больше */
-        height: 52px; 
+        width: 44px; /* Было 36px, сделали больше */
+        height: 44px; 
         margin-top: 16px;
         background-color: var(--apple-orange); /* Цвет по умолчанию */
         color: white; 
@@ -445,7 +445,7 @@
         justify-content: center; 
         align-items: center; 
         font-weight: 700; 
-        font-size: 26px; /* Увеличили цифру */
+        font-size: 22px; /* Увеличили цифру */
         margin-right: 0px; 
         flex-shrink: 0; 
     }
