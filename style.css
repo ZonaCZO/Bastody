@@ -33,9 +33,9 @@
 
     /* === ШАПКА === */
     .header-top { display: flex; justify-content: space-between; align-items: flex-start; padding: 0 20px 15px 20px; }
-    .header-titles h1 { font-size: 38px; font-weight: 900; margin: 0; letter-spacing: -1px; display: flex; align-items: center; gap: 6px; }
+    .header-titles h1 { font-size: 36px; font-weight: 900; margin: 0; letter-spacing: -1px; display: flex; align-items: center; gap: 6px; }
     .apple-logo-img { width: 28px; height: 28px; fill: var(--text-main); margin-bottom: 2px; }
-    .header-titles h2 { font-size: 42px; font-weight: 800; color: var(--text-secondary); margin: -16px 0 0 0; letter-spacing: -1.5px; }
+    .header-titles h2 { font-size: 38px; font-weight: 800; color: var(--text-secondary); margin: -10px 0 0 0; letter-spacing: -1.5px; }
 
 .try-free-btn {
     /* Жестко задаем фон и скругляем, чтобы ничего не торчало */
@@ -87,12 +87,12 @@
     .topics-nav { display: flex; gap: 10px; overflow-x: auto; padding: 0 20px 0px 20px; scrollbar-width: none; }
     .topics-nav::-webkit-scrollbar { display: none; }
     .topic-pill {
-        background: #FFFFFF; color: #000; border-radius: 20px; padding: 8px 16px; font-size: 15px; font-weight: 600;
+        background: #FFFFFF; color: #000; border-radius: 20px; padding: 6px 14px; font-size: 14px; font-weight: 600;
         display: flex; align-items: center; gap: 6px; white-space: nowrap; cursor: pointer;
     }
     .topic-icon { 
-    width: 18px;   /* 👈 Явно задаем ширину контейнера */
-    height: 18px;  /* 👈 Явно задаем высоту контейнера */
+    width: 16px;   /* 👈 Явно задаем ширину контейнера */
+    height: 16px;  /* 👈 Явно задаем высоту контейнера */
     opacity: 0.6; 
     display: flex; 
     align-items: center;
@@ -305,7 +305,7 @@
         margin-bottom: 2px;
     }
 
-    .headline { font-size: 24px; font-weight: 700; line-height: 1.2; margin: 0 0 8px 0; letter-spacing: -0.8px; }
+    .headline { font-size: 21px; font-weight: 700; line-height: 1.2; margin: 0 0 8px 0; letter-spacing: -0.7px; }
     .meta { 
     font-size: 13px; 
     color: var(--text-secondary); 
@@ -698,8 +698,8 @@
     padding: 0 0px;
 }
 .recipe-hero-title {
-    font-size: 22px;
-    font-weight: 700;
+    font-size: 19px;
+    font-weight: 600;
     margin: 0;
     color: #000;
     letter-spacing: -0.4px;
@@ -792,8 +792,8 @@
 
 /* Увеличиваем размер тайла и делаем углы острее */
     .puzzle-card--list .puzzle-card__icon {
-        width: 96px;          /* 👈 Сделали крупнее (было 90px) */
-        height: 96px;         /* 👈 Сделали крупнее */
+        width: 104px;          /* 👈 Сделали крупнее (было 90px) */
+        height: 104px;         /* 👈 Сделали крупнее */
         border-radius: 9px;  /* 👈 Уменьшили скругление, чтобы было ближе к квадрату (было 18px) */
         flex-shrink: 0; 
         display: flex; 
