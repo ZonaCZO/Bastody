@@ -87,12 +87,12 @@
     .topics-nav { display: flex; gap: 10px; overflow-x: auto; padding: 0 20px 0px 20px; scrollbar-width: none; }
     .topics-nav::-webkit-scrollbar { display: none; }
     .topic-pill {
-        background: #FFFFFF; color: #000; border-radius: 20px; padding: 6px 14px; font-size: 14px; font-weight: 600;
+        background: #FFFFFF; color: #000; border-radius: 20px; padding: 6px 14px; font-size: 13px; font-weight: 600;
         display: flex; align-items: center; gap: 6px; white-space: nowrap; cursor: pointer;
     }
     .topic-icon { 
-    width: 16px;   /* 👈 Явно задаем ширину контейнера */
-    height: 16px;  /* 👈 Явно задаем высоту контейнера */
+    width: 15px;   
+    height: 15px;  
     opacity: 0.6; 
     display: flex; 
     align-items: center;
@@ -311,7 +311,7 @@
     color: var(--text-secondary); 
     display: flex; 
     justify-content: space-between; 
-    align-items: baseline; /* 👈 Строгое выравнивание по линии шрифта */
+    align-items: baseline; 
 }
 
     .card-hero .news-card-image { height: 320px; }
@@ -329,9 +329,9 @@
 }
 .card-grid-half .headline { 
     font-size: 16px;            
-    font-weight: 600;           /* 👈 Было 600 */
-    line-height: 1.18;          /* 👈 Было 1.35 */
-    letter-spacing: -0.5px;     /* 👈 Было -0.35px */
+    font-weight: 600;           
+    line-height: 1.18;         
+    letter-spacing: -0.5px;     
     margin: 0 0 6px 0; 
     color: #000;
 }
@@ -350,7 +350,7 @@
     grid-template-columns: 1fr auto; 
     grid-template-rows: auto 1fr auto; 
     column-gap: 16px; 
-    padding: 14px 16px 12px 16px; /* 👈 Немного уменьшили отступы внутри карточки */
+    padding: 14px 16px 12px 16px; 
 }
 
 /* Делаем контейнер контента "прозрачным" для сетки, чтобы расставить элементы свободно */
@@ -362,10 +362,10 @@
 .list-layout-inner .news-card-image { 
     grid-column: 2; 
     grid-row: 1 / 3; 
-    width: 130px;        /* 👈 Меньше размер */
-    height: 130px;       /* 👈 Меньше размер */
+    width: 130px;        
+    height: 130px;       
     flex-shrink: 0; 
-    border-radius: 12px; /* 👈 Чуть меньше скругление */
+    border-radius: 12px; 
     margin: 0; 
 }
 
@@ -380,9 +380,9 @@
     grid-row: 2; 
     align-self: start; 
     font-size: 16px;            
-    font-weight: 600;           /* 👈 Делаем текст по-настоящему жирным (было 600) */
-    line-height: 1.18;          /* 👈 Сжимаем строки почти вплотную (было 1.35) */
-    letter-spacing: -0.5px;     /* 👈 Прижимаем буквы друг к другу */
+    font-weight: 600;          
+    line-height: 1.18;         
+    letter-spacing: -0.5px;     
     margin: 0 0 6px 0;
 }
 
@@ -392,7 +392,7 @@
     grid-row: 3; 
     align-self: end;
     justify-content: space-between;
-    margin-top: 6px; /* 👈 Было 24px, из-за чего и получалась гигантская пустота */
+    margin-top: 6px; 
 }
     /* === РЕЦЕПТЫ === */
     .card-recipe { display: block; }
@@ -416,19 +416,19 @@
     .card-trending { 
         display: flex; 
         align-items: flex-start; 
-        padding: 9px 8px 9px 20px; /* 👈 Добавляем "запас" фона внутри (20px слева и справа) */
-        margin: 0 -20px;    /* 👈 Растягиваем сам фон до краев экрана */
+        padding: 9px 8px 9px 20px;
+        margin: 0 -20px;    
         border: none; 
         box-shadow: none; 
         border-bottom: 1px solid var(--border-color); 
         border-radius: 0; 
-        background: var(--bg-color); /* 👈 Делаем фон белым для красоты (если хочешь оставить серым, напиши var(--bg-color)) */
+        background: var(--bg-color); 
     } 
     .card-trending .headline { 
   font-size: 16px;            
-    font-weight: 600;           /* 👈 Было 600 */
-    line-height: 1.18;          /* 👈 Было 1.35 */
-    letter-spacing: -0.5px;     /* 👈 Было -0.35px */
+    font-weight: 600;          
+    line-height: 1.18;         
+    letter-spacing: -0.5px;     
     margin-top: 4px; 
     color: #000;
 }
@@ -740,7 +740,7 @@
     gap: 10px;
 }
 .puzzle-card {
-    border-radius: 10px !important; /* 👈 Было 15px, сделали 10px. Можно сделать 8px для еще большей "квадратности" */
+    border-radius: 10px !important; 
 }
 
 /* Общие элементы карточки */
@@ -786,15 +786,15 @@
 .puzzle-card--list {
     display: flex; 
     flex-direction: row; 
-    padding: 14px 16px; /* 👈 Было 16px */
+    padding: 14px 16px; 
     align-items: stretch;
 }
 
 /* Увеличиваем размер тайла и делаем углы острее */
     .puzzle-card--list .puzzle-card__icon {
-        width: 104px;          /* 👈 Сделали крупнее (было 90px) */
-        height: 104px;         /* 👈 Сделали крупнее */
-        border-radius: 9px;  /* 👈 Уменьшили скругление, чтобы было ближе к квадрату (было 18px) */
+        width: 104px;         
+        height: 104px;        
+        border-radius: 9px;  
         flex-shrink: 0; 
         display: flex; 
         justify-content: center; 
